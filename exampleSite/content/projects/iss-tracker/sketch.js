@@ -1,5 +1,6 @@
 // URL for ISS tracking api
-let url = "http://api.open-notify.org/iss-now.json";
+// let url = "http://api.open-notify.org/iss-now.json";
+let url = "https://api.wheretheiss.at/v1/satellites/25544";
 
 // Stores the satellite image
 let img;
@@ -55,8 +56,9 @@ function setup() {
 function getIssPosition() {
   loadJSON(url, (data) => {
     // Grab the ISS latitude/longitude data
-    let longitude = data.iss_position.longitude;
-    let latitude = data.iss_position.latitude;
+    let longitude = data.longitude;
+    let latitude = data.latitude;
+    let timestamp = data.timestamp;
 
     // Scale to to window area
     issX = map(longitude, -180, 180, 0, width);
@@ -65,7 +67,16 @@ function getIssPosition() {
     // Show the received JSON
     iss_text = JSON.stringify(data);
 
-    window.parent.postMessage(iss_text, "*");
+    // window.parent.postMessage(iss_text, "*");
+    window.parent.postMessage(
+      "timestamp: " +
+        timestamp +
+        "   latitude: " +
+        latitude.toFixed(4) +
+        "   longitude: " +
+        longitude.toFixed(4),
+      "*",
+    );
 
     // Add this coordinate to the path
     issPath.push({ x: issX, y: issY });

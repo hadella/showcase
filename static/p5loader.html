@@ -52,7 +52,7 @@
                 var url = new URL(base);
                 var parts = url.pathname.split("/").filter(Boolean);
                 var subdir = parts.length > 0 ? "/" + parts[0] + "/" : "/";
-                var js_root = url.origin + subdir + "js/";
+                var js_root = params.get("jsroot") || "/js/";
 
                 document.write(
                     '<script src="' + js_root + 'p5.min.js"><\/script>',
@@ -64,6 +64,7 @@
                             'p5.sound.min.js"><\/script>',
                     );
                 }
+
                 file_list.forEach(function (f) {
                     document.write('<script src="' + base + f + '"><\/script>');
                 });
