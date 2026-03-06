@@ -1,7 +1,7 @@
 # Example hugo.toml for a site using the showcase theme
 # Copy this to your project root and adjust as needed.
 
-baseURL       = "http://localhost:1313/"
+baseURL       = "https://hadella.github.io/showcase/"
 languageCode  = "en-us"
 title         = "My Showcase"
 theme         = "showcase"
