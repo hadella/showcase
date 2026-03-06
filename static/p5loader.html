@@ -48,13 +48,20 @@
                           .filter(Boolean)
                     : [];
 
-                document.write('<script src="/js/p5.min.js"><\/script>');
+                // Derive site root from base — strip everything after the 3rd slash-segment
+                var url = new URL(base);
+                var parts = url.pathname.split("/").filter(Boolean);
+                var subdir = parts.length > 0 ? "/" + parts[0] + "/" : "/";
+                var js_root = url.origin + subdir + "js/";
+
                 document.write(
-                    '<script>console.log("window.preload before sketch:", typeof window.preload);<\/script>',
+                    '<script src="' + js_root + 'p5.min.js"><\/script>',
                 );
                 if (sound) {
                     document.write(
-                        '<script src="/js/p5.sound.min.js"><\/script>',
+                        '<script src="' +
+                            js_root +
+                            'p5.sound.min.js"><\/script>',
                     );
                 }
                 file_list.forEach(function (f) {
