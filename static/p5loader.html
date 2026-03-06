@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script>
+            var params = new URLSearchParams(window.location.search);
+            var base = params.get("base") || "";
+            if (base) {
+                var tag = document.createElement("base");
+                tag.href = base;
+                document.head.appendChild(tag);
+            }
+        </script>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background: #000;
+            }
+            canvas {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            (function () {
+                var params = new URLSearchParams(window.location.search);
+                var base = params.get("base") || "";
+                var sketch = params.get("sketch") || "";
+                var files = params.get("files") || "";
+                var sound = params.get("sound") === "1";
+
+                var file_list = files
+                    ? files
+                          .split(",")
+                          .map(function (l) {
+                              return l.trim();
+                          })
+                          .filter(Boolean)
+                    : [];
+
+                document.write('<script src="/js/p5.min.js"><\/script>');
+                document.write(
+                    '<script>console.log("window.preload before sketch:", typeof window.preload);<\/script>',
+                );
+                if (sound) {
+                    document.write(
+                        '<script src="/js/p5.sound.min.js"><\/script>',
+                    );
+                }
+                file_list.forEach(function (f) {
+                    document.write('<script src="' + base + f + '"><\/script>');
+                });
+                if (sketch) {
+                    document.write(
+                        '<script src="' + base + sketch + '"><\/script>',
+                    );
+                }
+                document.write(
+                    '<script>console.log("window.preload after sketch:", typeof window.preload);<\/script>',
+                );
+            })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+{{ define "body_class" }}launcher-page{{ end }} {{ define "main" }} {{- $cols :=
+.Site.Params.grid_cols | default 4 -}} {{- $rows := .Site.Params.grid_rows |
+default 3 -}} {{- $posts := where .Site.RegularPages "Type" "projects" -}} {{-
+$count := len $posts -}} {{- /* Pad the last row with empty cells if count isn't
+a clean multiple */ -}} {{- $remain := mod $count $cols -}} {{- $pad := 0 -}}
+{{- if gt $remain 0 }} {{- $pad = sub $cols $remain -}} {{- end }} {{- $banner
+:= .Site.Params.banner_image -}}
+
+<div class="stage">
+    {{- if $banner }}
+    <div class="banner">
+        <img src="{{ $banner | relURL }}" alt="{{ .Site.Title }}" />
+    </div>
+    {{- end }}
+
+    <div
+        class="launcher-grid"
+        style="grid-template-columns: repeat({{ $cols }}, 1fr);"
+    >
+        {{- range $posts }} {{- $thumb := .Params.thumbnail -}}
+        <div class="tile-cell">
+            <a href="{{ .RelPermalink }}">
+                {{- if $thumb }}
+                <img src="{{ $thumb | relURL }}" alt="{{ .Title }}" />
+                {{- end }}
+                <div class="tile-overlay"></div>
+            </a>
+        </div>
+        {{- end }} {{- range seq $pad }}
+        <div class="tile-cell tile-empty"></div>
+        {{- end }}
+    </div>
+</div>
+{{ end }}

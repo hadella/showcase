@@ -1,0 +1,8 @@
+name = "Showcase"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A launcher-style Hugo theme for showcasing projects"
+homepage = ""
+tags = ["launcher", "portfolio", "p5js", "projects"]
+features = ["p5.js integration", "YouTube embed", "16:9 grid layout"]
+min_version = "0.110.0"

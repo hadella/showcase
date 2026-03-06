@@ -1,0 +1,75 @@
+{{- /*
+    shortcodes/p5.html
+    Usage:
+        {{< p5 sketch="sketch.js" files="bubble.js,other.js"
+               width="400" height="400" sound=true
+               caption="Use arrow keys to move" >}}
+
+    Parameters:
+        sketch  (required) — main sketch filename (in page bundle)
+        files   (optional) — comma-separated supporting JS files,
+                             loaded in order before sketch
+        width   (optional) — canvas width  in px (default 400)
+        height  (optional) — canvas height in px (default 400)
+        sound   (optional) — load p5.sound library (default false)
+        caption (optional) — text shown below the frame
+
+    How it works:
+        Sketch files live in the page bundle alongside index.md.
+        The shortcode iframes /p5loader.html (shipped with the theme)
+        passing sketch paths as query params. The loader builds the
+        correct <script> sequence in its own document, so p5 global
+        mode works exactly as it would in a standalone HTML file.
+*/ -}}
+
+{{- $sketch  := .Get "sketch" -}}
+{{- $files   := .Get "files"   -}}
+{{- $width   := .Get "width"  | default "400" -}}
+{{- $height  := .Get "height" | default "400" -}}
+{{- $sound   := .Get "sound"  | default false -}}
+{{- $caption := .Get "caption" -}}
+
+{{- $base := printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Page.RelPermalink) -}}
+
+{{- $qs := printf "base=%s&sketch=%s" $base $sketch -}}
+{{- if $files }}
+{{- $qs = printf "%s&files=%s" $qs $files -}}
+{{- end }}
+{{- if $sound }}
+{{- $qs = printf "%s&sound=1" $qs -}}
+{{- end }}
+
+{{- $loader := printf "%sp5loader.html?%s" .Site.BaseURL $qs -}}
+
+<div class="p5-wrapper">
+    <iframe class="p5-frame"
+            src="{{ $loader }}"
+            width="{{ $width }}"
+            height="{{ $height }}"
+            scrolling="no"
+            frameborder="0"
+            allowtransparency="true">
+    </iframe>
+    {{- if $caption }}
+    <p class="p5-caption">{{ $caption }}</p>
+    {{- end }}
+</div>
+<!--
+{{- $width := .Get "width" | default "400" -}} {{- $height := .Get "height" |
+default "400" -}} {{- $caption := .Get "caption" -}} {{- $src := printf
+"%ssketch.html" .Page.RelPermalink -}}
+
+<div class="p5-wrapper">
+    <iframe
+        class="p5-frame"
+        src="{{ $src }}"
+        width="{{ $width }}"
+        height="{{ $height }}"
+        scrolling="no"
+        frameborder="0"
+    >
+    </iframe>
+    {{- if $caption }}
+    <p class="p5-caption">{{ $caption }}</p>
+    {{- end }}
+</div>-->

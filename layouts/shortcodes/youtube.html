@@ -1,0 +1,26 @@
+{{- /* shortcodes/youtube.html Usage: {{< youtube id="VIDEO_ID"
+caption="Optional caption" >}} Parameters: id (required) — YouTube video ID
+caption (optional) — text shown below the embed */ -}} {{- $id := .Get "id" -}}
+{{- $caption := .Get "caption" -}}
+
+<div class="yt-wrapper">
+    <div class="yt-frame">
+        <iframe
+            src="https://www.youtube-nocookie.com/embed/{{ $id }}"
+            title="YouTube video"
+            allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+            "
+            allowfullscreen
+        >
+        </iframe>
+    </div>
+    {{- if $caption }}
+    <p class="yt-caption">{{ $caption }}</p>
+    {{- end }}
+</div>
