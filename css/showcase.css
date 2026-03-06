@@ -1,0 +1,325 @@
+/* showcase/static/css/showcase.css
+ * All visual styling lives here. HTML templates stay logic-only.
+ * Override these variables in your project's assets to retheme.
+ */
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+    /* Site-wide */
+    --bg-color: #000000;
+    --accent-color: #00ffff;
+    --text-color: #e0e0e0;
+
+    /* Grid / launcher */
+    --grid-gap: 12px;
+    --tile-overlay-bg: rgba(0, 0, 0, 0);
+    --tile-overlay-hover: rgba(0, 0, 0, 0.25);
+    --tile-transition: 0.18s ease;
+
+    /* Banner */
+    --banner-radius: 4px;
+    --banner-mb: 24px;
+
+    /* Post / single page */
+    --post-bg: var(--bg-color);
+    --post-text: var(--text-color);
+    --post-heading: #ffffff;
+    --post-link: var(--accent-color);
+    --post-max-width: 900px;
+    --post-padding: 2rem;
+
+    /* p5 embed */
+    --p5-border: none;
+    --p5-border-radius: 0;
+    --p5-bg: transparent;
+    --p5-shadow: none;
+
+    /* YouTube embed */
+    --yt-border: 2px solid var(--accent-color);
+    --yt-border-radius: 4px;
+    --yt-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Reset / Base ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+a {
+    color: var(--post-link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.centered,
+.centered p {
+    text-align: center;
+}
+
+/* ── 16:9 stage container ───────────────────────────────────── */
+/* Constrains content width to 16:9 based on viewport height.
+ * Left/right margins absorb the extra space on wide displays.
+ */
+.stage {
+    /* 16/9 * 100vh, but cap at 100vw */
+    width: min(calc(100vh * 16 / 9), 100vw);
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* ── Banner image ───────────────────────────────────────────── */
+.banner {
+    width: 100%;
+    margin-bottom: var(--banner-mb);
+    border-radius: var(--banner-radius);
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ── Launcher grid ──────────────────────────────────────────── */
+.launcher-grid {
+    display: grid;
+    /* cols/rows set inline via style attr from hugo template */
+    gap: var(--grid-gap);
+    width: 100%;
+}
+
+/* Each cell maintains 4:3 ratio */
+.tile-cell {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    transition:
+        transform var(--tile-transition),
+        box-shadow var(--tile-transition);
+}
+
+.tile-cell:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.tile-cell a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.tile-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity var(--tile-transition);
+}
+
+.tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--tile-overlay-bg);
+    transition: background var(--tile-transition);
+}
+
+.tile-cell:hover .tile-overlay {
+    background: var(--tile-overlay-hover);
+}
+
+/* Empty cell — invisible but holds grid shape */
+.tile-cell.tile-empty {
+    background: transparent;
+    border: none;
+    cursor: default;
+    pointer-events: none;
+}
+
+.tile-cell.tile-empty:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ── Single / Post page ─────────────────────────────────────── */
+body.single-page {
+    background-color: var(--post-bg);
+    color: var(--post-text);
+}
+
+.post-stage {
+    max-width: var(--post-max-width);
+    margin: 0 auto;
+    padding: var(--post-padding);
+}
+
+.post-banner {
+    width: 100%;
+    border-radius: var(--banner-radius);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.post-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-title {
+    margin-bottom: 2rem;
+}
+
+.post-title h1 {
+    color: var(--post-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.post-content {
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+    color: var(--post-heading);
+    margin: 1.5rem 0 0.75rem;
+}
+
+.post-content p {
+    margin-bottom: 1rem;
+}
+
+.post-content img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.site-footer {
+    margin-top: 2rem;
+}
+
+.footer-rule {
+    border: none;
+    border-top: 1px solid var(--text-color);
+    opacity: 0.25;
+    margin-bottom: 0.75rem;
+}
+
+.footer-text {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.footer-text a {
+    color: var(--text-color);
+}
+
+.footer-text a:hover {
+    color: var(--accent-color);
+}
+
+/* ── p5.js embed ────────────────────────────────────────────── */
+.p5-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.p5-frame {
+    border: var(--p5-border);
+    border-radius: var(--p5-border-radius);
+    box-shadow: var(--p5-shadow);
+    display: block;
+    outline: none;
+}
+
+.p5-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.75;
+    text-align: center;
+}
+
+/* ── YouTube embed ──────────────────────────────────────────── */
+.yt-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.yt-frame {
+    border: var(--yt-border);
+    border-radius: var(--yt-border-radius);
+    box-shadow: var(--yt-shadow);
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+}
+
+.yt-frame iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: none;
+}
+
+.yt-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.75;
+    text-align: center;
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .stage {
+        width: 100%;
+        padding: 0.75rem;
+    }
+
+    /* Single column, ignore grid col/row params */
+    .launcher-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* All cells visible in single column on mobile */
+    .tile-cell.tile-empty {
+        display: none;
+    }
+
+    .post-stage {
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on My Showcase</title>
+    <link>https://hadella.github.io/showcase/projects/</link>
+    <description>Recent content in Projects on My Showcase</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 May 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://hadella.github.io/showcase/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Starfield</title>
+      <link>https://hadella.github.io/showcase/projects/starfield/</link>
+      <pubDate>Tue, 09 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/projects/starfield/</guid>
+      <description>Move the mouse right to increase or left to decrease speed&#xA;Starfield is an implementation of Coding Challenge #1 from The Coding Train by Daniel Shiffman.&#xA;A field of stars flies toward the viewer, simulating warp speed travel through space. Each star is positioned in 3D space and projected onto the 2D canvas, growing larger as it approaches. Moving the mouse left slows the warp, moving right accelerates it.</description>
+    </item>
+    <item>
+      <title>ISS Tracker</title>
+      <link>https://hadella.github.io/showcase/projects/iss-tracker/</link>
+      <pubDate>Mon, 08 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/projects/iss-tracker/</guid>
+      <description>ISS Tracker Demo&#xA;ISS Tracker queries a live API for the current GPS position of the International Space Station, plotting it as a red dot on a map of Earth. As time passes, a red trail marks the path the station has traveled.&#xA;This demo illustrates two key p5.js concepts: loading external assets via preload() — which ensures the globe image is ready before the sketch runs — and fetching live data from a remote API using loadJSON().</description>
+    </item>
+    <item>
+      <title>Bouncing Ball</title>
+      <link>https://hadella.github.io/showcase/projects/bouncing-ball/</link>
+      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/projects/bouncing-ball/</guid>
+      <description> Bouncing Ball is the &amp;ldquo;Hello, World&amp;rdquo; of p5.js &amp;ndash; A ball bouncing within a window. </description>
+    </item>
+  </channel>
+</rss>

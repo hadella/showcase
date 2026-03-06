@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> | My Showcase</title>
+    <link rel="stylesheet" href="/css/showcase.css" />
+     
+</head>
+<body class="single-page">
+    <div class="post-stage">
+    <div class="post-title">
+        <h1></h1>
+    </div>
+
+    <div class="post-content"><!doctype html>
+<html>
+    <head>
+        <script src="/path/to/p5.min.js"></script>
+    </head>
+    <body>
+        <script>
+            new p5(function (p) {
+                var img;
+                p.preload = function () {
+                    console.log("preload called");
+                    img = p.loadImage(
+                        "http://localhost:1313/projects/iss_tracker/assets/Blue_Marble_2002.png",
+                        function () {
+                            console.log("loaded");
+                        },
+                        function (e) {
+                            console.log("failed:", e);
+                        },
+                    );
+                };
+                p.setup = function () {
+                    console.log("setup, img:", img);
+                    p.createCanvas(400, 400);
+                };
+                p.draw = function () {
+                    p.background(0);
+                    if (img) p.image(img, 0, 0);
+                };
+            });
+        </script>
+    </body>
+</html>
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
