@@ -14,6 +14,7 @@ linking to a project page.
 - Single-column mobile fallback
 - Built-in `p5` shortcode for embedding p5.js sketches
 - Built-in `youtube` shortcode with styled wrapper
+- Built-in `center` shortcode for centering markdown content
 - 100% CSS variable driven — retheme without touching HTML
 - Default single post layout; fully overridable per project
 
@@ -33,9 +34,12 @@ themes/showcase/
     _default/
       baseof.html      ← base HTML shell
       single.html      ← default project post layout
+    partials/
+      footer.html      ← site footer
     shortcodes/
       p5.html          ← p5.js embed shortcode
       youtube.html     ← YouTube embed shortcode
+      center.html      ← center content shortcode
   archetypes/
     projects.md        ← template for new project posts
 ```
@@ -101,18 +105,25 @@ content/projects/
     index.md      ← front matter + content
     sketch.js     ← p5 entry point
     ball.js       ← supporting class files
-    paddle.js
+    assets/       ← images, sounds, etc.
 ```
 
 ## hugo.toml params
 
 ```toml
+baseURL      = "https://yourusername.github.io/showcase/"
+languageCode = "en-us"
+title        = "My Showcase"
+theme        = "showcase"
+
 [params]
     banner_image = "images/banner.jpg"   # wide banner, in static/
     grid_cols    = 4
     grid_rows    = 3                     # initial row count;
                                          # grid grows down as
                                          # projects are added
+[markup.goldmark.renderer]
+    unsafe = true                        # required for script blocks in markdown
 ```
 
 ## Project front matter
@@ -133,35 +144,70 @@ banner    = "images/projects/my-banner.jpg"  # wide, optional
 +++
 ```
 
-## p5 shortcode
+## Development
 
-Page bundles — place your sketch files alongside `index.md`:
+### Local development
 
+The `baseURL` in `exampleSite/hugo.toml` should be set to your
+deployment URL (e.g. GitHub Pages). Override it on the command line
+for local development:
+```bash
+hugo server --source exampleSite --themesDir ../.. \
+    --baseURL "http://localhost:1313/"
 ```
-content/projects/breakout/
-  index.md
-  sketch.js
-  ball.js
-  paddle.js
+
+### Deploying to GitHub Pages
+
+Set `baseURL` in `exampleSite/hugo.toml` to your GitHub Pages URL:
+```toml
+baseURL = "https://yourusername.github.io/showcase/"
 ```
 
-In `index.md`:
+Run the publish script from the theme root:
+```bash
+./publish.sh
+```
 
+This builds the example site, switches to the `gh-pages` branch,
+copies the built files, commits, and pushes. Make sure the `gh-pages`
+branch exists before first run:
+```bash
+git checkout --orphan gh-pages
+git reset --hard
+git commit --allow-empty -m "Init gh-pages"
+git push origin gh-pages
+git checkout main
+```
+
+Then on GitHub go to Settings → Pages and set the source to the
+`gh-pages` branch, root directory.
+
+## Shortcodes
+
+### p5
 ```
 {{< p5 sketch="sketch.js" files="ball.js,paddle.js"
         width="600" height="400" sound=false
         caption="Arrow keys to move" >}}
 ```
 
+Parameters:
+- `sketch` — main sketch filename (in page bundle)
+- `files` — comma-separated supporting JS files, loaded in order before sketch
+- `width` — canvas width in px (default 400)
+- `height` — canvas height in px (default 400)
+- `sound` — load p5.sound library (default false)
+- `caption` — text shown below the frame
+
 `files` are loaded in order before `sketch.js`. p5.js itself is served
-from the theme's `static/js/` — no CDN dependency, no copies per sketch.
-The sketch runs in an iframe via `p5loader.html` so p5 global mode works
-exactly as it does in a standalone HTML file. No changes needed to
-existing sketches.
+from the theme's `static/js/` — no CDN dependency, no copies per
+sketch. The sketch runs in an iframe via `p5loader.html` so p5 global
+mode works exactly as it does in a standalone HTML file. No changes
+needed to existing sketches.
 
-### p5 border
+#### p5 border
 
-By default no border is drawn around the canvas. To add one, set
+No border is drawn around the canvas by default. To add one, set
 `p5_border_color` in the post's front matter:
 ```toml
 p5_border_color = "#4da6ff"
@@ -172,7 +218,7 @@ To explicitly suppress any border:
 p5_border_color = "transparent"
 ```
 
-### Known limitations
+#### Known limitations
 
 **`setInterval` is blocked in iframe contexts.** Use recursive `setTimeout`
 instead for any sketch that needs a repeating timer:
@@ -211,10 +257,35 @@ function draw() {
 }
 ```
 
-## YouTube shortcode
+**Communicating data from sketch to post page** — p5 DOM elements
+created with `createP()` etc. are confined inside the iframe. To
+display dynamic sketch data on the post page use `postMessage`:
+
+In `sketch.js`:
+```javascript
+window.parent.postMessage(your_data, "*");
+```
+
+In `index.md` below the shortcode (requires `unsafe = true` in
+`hugo.toml`):
+```html
+window.addEventListener("message", function(e) {
+    document.getElementById("my-data").textContent = e.data;
+});
+
+```
+
+### youtube
 
 ```
 {{< youtube id="VIDEO_ID" caption="Demo video" >}}
+```
+
+### center
+```
+{{% center %}}
+Your **markdown** content here.
+{{% /center %}}
 ```
 
 ## Footer
@@ -253,5 +324,3 @@ a layout override. Key variables:
     --p5-shadow:        none;
 }
 ```
-
-All variables are documented at the top of `static/css/showcase.css`.
