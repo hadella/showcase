@@ -29,7 +29,8 @@
 {{- $sound   := .Get "sound"  | default false -}}
 {{- $caption := .Get "caption" -}}
 
-{{- $base := printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Page.RelPermalink) -}}
+<!--{{- $base := printf "%s%s" .Site.BaseURL (strings.TrimPrefix "/" .Page.RelPermalink) -}}-->
+{{- $base := .Page.Permalink -}}
 
 {{- $qs := printf "base=%s&sketch=%s" $base $sketch -}}
 {{- if $files }}
