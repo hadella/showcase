@@ -1,11 +1,20 @@
-{{- /* layouts/_default/single.html — Default project post page Front matter
-params: banner : str — path to banner image (optional) bg_color : str — override
---post-bg (optional) text_color : str — override --post-text (optional)
-p5_border_color : str — override --p5-border color (optional) p5_bg_color : str
-— override --p5-bg (optional) */ -}} {{ define "body_class" }}single-page{{ end
-}} {{ define "head_extra" }} {{- $bg := .Params.bg_color -}} {{- $fg :=
-.Params.text_color -}} {{- $p5border := .Params.p5_border_color -}} {{- $p5bg :=
-.Params.p5_bg_color -}} {{- if or $bg $fg $p5border $p5bg }}
+{{- /*
+    layouts/_default/single.html  —  Default project post page
+    Front matter params:
+        banner          : str  — path to banner image (optional)
+        bg_color        : str  — override --post-bg         (optional)
+        text_color      : str  — override --post-text       (optional)
+        p5_border_color : str  — override --p5-border color (optional)
+        p5_bg_color     : str  — override --p5-bg           (optional)
+*/ -}}
+{{ define "body_class" }}single-page{{ end }}
+
+{{ define "head_extra" }}
+{{- $bg       := .Params.bg_color -}}
+{{- $fg       := .Params.text_color -}}
+{{- $p5border := .Params.p5_border_color -}}
+{{- $p5bg     := .Params.p5_bg_color -}}
+{{- if or $bg $fg $p5border $p5bg }}
 <style>
     :root {
         {{- if $bg }}       --post-bg:    {{ $bg }};                    {{- end }}

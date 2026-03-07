@@ -1,0 +1,29 @@
+{{- /*
+    layouts/_default/list.html  —  Section page (branch bundle)
+    Renders a launcher grid of the section's children.
+    Each child can be a leaf (single post) or another section.
+
+    Front matter in _index.md:
+        title     : str  — section title (shown if no banner)
+        thumbnail : str  — tile image on parent grid
+        banner    : str  — banner image for this section (optional)
+        grid_cols : int  — column override for this section (optional)
+        grid_rows : int  — row override for this section   (optional)
+*/ -}}
+{{ define "body_class" }}launcher-page{{ end }}
+
+{{ define "main" }}
+{{- $cols   := .Params.grid_cols | default .Site.Params.grid_cols | default 4 -}}
+{{- $rows   := .Params.grid_rows | default .Site.Params.grid_rows | default 3 -}}
+{{- $banner := .Params.banner -}}
+
+{{- $pages := union .Sections .RegularPages -}}
+
+{{ partial "grid.html" (dict
+    "pages"  $pages
+    "cols"   $cols
+    "rows"   $rows
+    "banner" $banner
+    "title"  .Title
+) }}
+{{ end }}

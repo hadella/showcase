@@ -2,7 +2,7 @@
 title      = "Starfield"
 date       = 2023-05-09
 draft      = false
-thumbnail  = "images/projects/starfield-thumb.png"
+thumbnail  = "images/starfield-thumb.png"
 p5_border_color = "transparent"
 +++
 

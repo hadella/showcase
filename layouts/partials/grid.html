@@ -1,0 +1,57 @@
+{{- /*
+    partials/grid.html — reusable launcher grid
+    Expects:
+        .pages  : the collection of pages to render as tiles
+        .cols   : number of columns
+        .rows   : number of rows (used only for initial height hint)
+        .banner : optional banner image path
+        .title  : optional title string (shown if no banner)
+*/ -}}
+
+{{- $cols   := .cols -}}
+{{- $pages  := .pages -}}
+{{- $banner := .banner -}}
+{{- $title  := .title -}}
+{{- $count  := len $pages -}}
+
+{{- /* Pad last row to keep grid shape clean */ -}}
+{{- $remain := mod $count $cols -}}
+{{- $pad    := 0 -}}
+{{- if gt $remain 0 }}
+{{- $pad = sub $cols $remain -}}
+{{- end }}
+
+<div class="stage">
+
+    {{- if $banner }}
+    <div class="banner">
+        <img src="{{ $banner | relURL }}" alt="{{ $title }}" />
+    </div>
+    {{- else if $title }}
+    <div class="section-title">
+        <h1>{{ $title }}</h1>
+    </div>
+    {{- end }}
+
+    <div class="launcher-grid"
+         style="grid-template-columns: repeat({{ $cols }}, 1fr);">
+
+        {{- range $pages }}
+        {{- $thumb := .Params.thumbnail -}}
+        <div class="tile-cell">
+            <a href="{{ .RelPermalink }}">
+                {{- if $thumb }}
+                <img src="{{ $thumb | relURL }}" alt="{{ .Title }}" />
+                {{- end }}
+                <div class="tile-overlay"></div>
+            </a>
+        </div>
+        {{- end }}
+
+        {{- range seq $pad }}
+        <div class="tile-cell tile-empty"></div>
+        {{- end }}
+
+    </div><!-- .launcher-grid -->
+
+</div><!-- .stage -->

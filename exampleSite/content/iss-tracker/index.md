@@ -2,7 +2,7 @@
 title      = "ISS Tracker"
 date       = 2023-05-08
 draft      = false
-thumbnail  = "images/projects/iss-tracker-thumb.png"
+thumbnail  = "images/iss-tracker-thumb.png"
 p5_border_color = "transparent"
 p5_sound    = false
 +++

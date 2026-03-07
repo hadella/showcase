@@ -2,7 +2,7 @@
 title      = "Bouncing Ball"
 date       = 2021-07-21
 draft      = false
-thumbnail  = "images/projects/bouncing-ball-thumb.png"
+thumbnail  = "images/bouncing-ball-thumb.png"
 p5_border_color = "#dc3ca0"
 +++
 
