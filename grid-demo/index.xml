@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Grid Demo on My Showcase</title>
+    <link>https://hadella.github.io/showcase/grid-demo/</link>
+    <description>Recent content in Grid Demo on My Showcase</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://hadella.github.io/showcase/grid-demo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bouncing Ball</title>
+      <link>https://hadella.github.io/showcase/grid-demo/bouncing-ball/</link>
+      <pubDate>Wed, 21 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/grid-demo/bouncing-ball/</guid>
+      <description> Bouncing Ball is the &amp;ldquo;Hello, World&amp;rdquo; of p5.js &amp;ndash; A ball bouncing within a window. </description>
+    </item>
+  </channel>
+</rss>

@@ -160,6 +160,21 @@ a:hover {
     box-shadow: none;
 }
 
+/* ── Section title (shown when no banner) ───────────────────── */
+.section-title {
+    margin-bottom: var(--banner-mb);
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.section-title h1 {
+    color: var(--text-color);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
 /* ── Single / Post page ─────────────────────────────────────── */
 body.single-page {
     background-color: var(--post-bg);
