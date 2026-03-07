@@ -2,15 +2,19 @@
 
 A launcher-style Hugo theme for showcasing projects. Inspired loosely by
 the Wii interface — a grid of image tiles on a clean background, each
-linking to a project page.
+linking to a project page. Supports nested sections so a tile can link
+to another grid rather than a single post.
 
 ## Features
 
 - 16:9 constrained stage — uses full screen on 16:9 displays, centered
   with empty margins on ultrawides
 - Configurable grid (rows × cols) via `hugo.toml`; grid grows downward
-  as projects are added, last row padded to stay clean
+  as content is added, last row padded to stay clean
 - 4:3 aspect ratio tiles; empty slots hold grid shape
+- Nested sections — a tile can link to another grid (brand, category,
+  collection) rather than a single post
+- Per-section grid column/row overrides via front matter
 - Single-column mobile fallback
 - Built-in `p5` shortcode for embedding p5.js sketches
 - Built-in `youtube` shortcode with styled wrapper
@@ -19,7 +23,6 @@ linking to a project page.
 - Default single post layout; fully overridable per project
 
 ## Directory Structure
-
 ```
 themes/showcase/
   static/
@@ -34,22 +37,24 @@ themes/showcase/
     _default/
       baseof.html      ← base HTML shell
       single.html      ← default project post layout
+      list.html        ← section grid layout
     partials/
+      grid.html        ← reusable grid partial
       footer.html      ← site footer
     shortcodes/
       p5.html          ← p5.js embed shortcode
       youtube.html     ← YouTube embed shortcode
       center.html      ← center content shortcode
   archetypes/
-    projects.md        ← template for new project posts
+    sections.md        ← template for new section _index.md
 ```
 
 ## Setup
 
 1. Copy theme to `themes/showcase/`
-2. Configure `hugo.toml` (see `exampleSite/hugo.toml`)
-3. Create your site banner image and place it in `static/images/`
-4. Create project content as page bundles under `content/projects/`
+1. Configure `hugo.toml` (see `exampleSite/hugo.toml`)
+1. Create your site banner image and place it in `static/images/`
+1. Create content as page bundles under `content/`
 
 ## Content Organization
 
@@ -58,89 +63,141 @@ themes/showcase/
 The wide banner shown at the top of the launcher lives in your site's
 own `static/` directory, not the theme's. Create it and place it here:
 ```
-static/images/banner.jpg
+static/images/banner.png
 ```
 
 Reference it in `hugo.toml`:
 ```toml
 [params]
-    banner_image = "images/banner.jpg"
+    banner_image = "images/banner.png"
 ```
 
 There is no default — if `banner_image` is not set the banner is
-simply omitted.
+simply omitted and the site title is shown instead.
+
+### Content structure
+
+Content can be flat or nested to any depth. A tile on the grid links
+to whatever is behind it — a single post or another grid.
+
+**Flat structure** — all posts at the top level:
+```
+content/
+  bouncing-ball/
+    index.md
+    sketch.js
+  starfield/
+    index.md
+    sketch.js
+    star.js
+```
+
+**Nested structure** — sections containing posts:
+```
+content/
+  brand_x/
+    _index.md       ← branch bundle, renders as a grid
+    item_1/
+      index.md      ← leaf bundle, renders as a post
+    item_2/
+      index.md
+  brand_y/
+    _index.md
+    widget_1/
+      index.md
+```
+
+Sections use `_index.md` (branch bundle). Posts use `index.md`
+(leaf bundle). Hugo picks the right layout automatically.
+
+Sections can be nested to any depth — a section can contain both
+posts and other sections.
 
 ### Project images
 
-Each project has two optional images — a thumbnail shown in the
-launcher grid and a banner shown at the top of the project page.
-These also live in your site's `static/` directory:
+Each post or section has two optional images — a thumbnail shown in
+the grid and a banner shown at the top of the page. These live in
+your site's `static/` directory:
 ```
-static/images/projects/
-  my-project-thumb.jpg    ← 4:3 ratio recommended for grid tiles
-  my-project-banner.jpg   ← wide, any ratio
+static/images/
+  banner.png                  ← site-wide banner
+  my-section-thumb.png        ← section thumbnail
+  projects/
+    my-project-thumb.png      ← 4:3 ratio recommended
+    my-project-banner.png     ← wide, any ratio
 ```
 
-Reference them in the project's front matter:
+Reference them in front matter:
 ```toml
-thumbnail = "images/projects/my-project-thumb.jpg"
-banner    = "images/projects/my-project-banner.jpg"
+thumbnail = "images/projects/my-thumb.png"
+banner    = "images/projects/my-banner.png"  # optional
 ```
 
-`banner` is optional — if omitted the project page shows the title
-as text instead. `thumbnail` is optional too but a tile with no image
-will render as an empty box.
+`banner` is optional — if omitted the page shows the title as text.
+`thumbnail` is optional but a tile with no image renders as an empty box.
 
-Note: project images are intentionally separate from the page bundle.
-If you rename or delete a project, remember to clean up the
-corresponding images in `static/images/projects/`.
+Note: images are intentionally separate from the page bundle. If you
+rename or delete content, remember to clean up the corresponding
+images in `static/images/`.
 
-### Project page bundles
+### Page bundle assets
 
-Sketch files and other per-project assets live alongside `index.md`
-in a page bundle:
+Sketch files and other per-project assets live alongside `index.md`:
 ```
-content/projects/
-  my-project/
-    index.md      ← front matter + content
-    sketch.js     ← p5 entry point
-    ball.js       ← supporting class files
-    assets/       ← images, sounds, etc.
+content/my-sketch/
+  index.md
+  sketch.js
+  helper.js
+  assets/
+    image.png
+    sound.mp3
 ```
 
-## hugo.toml params
-
+## hugo.toml
 ```toml
-baseURL      = "https://yourusername.github.io/showcase/"
+baseURL      = "https://yourusername.github.io/your-repo/"
 languageCode = "en-us"
 title        = "My Showcase"
 theme        = "showcase"
 
 [params]
-    banner_image = "images/banner.jpg"   # wide banner, in static/
+    banner_image = "images/banner.png"   # optional
     grid_cols    = 4
-    grid_rows    = 3                     # initial row count;
-                                         # grid grows down as
-                                         # projects are added
+    grid_rows    = 3
+
 [markup.goldmark.renderer]
-    unsafe = true                        # required for script blocks in markdown
+    unsafe = true              # required for script blocks in markdown
 ```
 
-## Project front matter
+## Front matter
 
-TOML format (`+++` delimiters):
+### Post (`index.md`)
 ```toml
 +++
-title      = "My Project"
-date       = 2025-01-01
-thumbnail = "images/projects/my-thumb.jpg"   # 4:3 recommended
-banner    = "images/projects/my-banner.jpg"  # wide, optional
-                                             # falls back to title text
-# Optional per-post overrides:
+title     = "My Project"
+date      = 2025-01-01
+draft     = false
+thumbnail = "images/my-thumb.png"   # 4:3 recommended
+banner    = "images/my-banner.png"  # optional
+
+# Optional per-post color overrides:
 # bg_color        = "#0d0d1a"
 # text_color      = "#f0f0f0"
-# p5_border_color = "#e94560"   # adds border around p5 canvas
-# p5_bg_color     = "#000000"   # background behind p5 canvas
+# p5_border_color = "#e94560"
+# p5_bg_color     = "#000000"
++++
+```
+
+### Section (`_index.md`)
+```toml
++++
+title     = "Brand-X"
+thumbnail = "images/brand-x-thumb.png"   # 4:3 recommended
+# banner  = "images/brand-x-banner.png"  # optional
+
+# Override site-wide grid dimensions for this section:
+# grid_cols = 4
+# grid_rows = 3
 +++
 ```
 
@@ -148,9 +205,8 @@ banner    = "images/projects/my-banner.jpg"  # wide, optional
 
 ### Local development
 
-The `baseURL` in `exampleSite/hugo.toml` should be set to your
-deployment URL (e.g. GitHub Pages). Override it on the command line
-for local development:
+The `baseURL` in `hugo.toml` should be set to your deployment URL.
+Override it on the command line for local development:
 ```bash
 hugo server --source exampleSite --themesDir ../.. \
     --baseURL "http://localhost:1313/"
@@ -193,17 +249,17 @@ Then on GitHub go to Settings → Pages and set the source to the
 
 Parameters:
 - `sketch` — main sketch filename (in page bundle)
-- `files` — comma-separated supporting JS files, loaded in order before sketch
+- `files` — comma-separated supporting JS files, loaded in order
+             before sketch
 - `width` — canvas width in px (default 400)
 - `height` — canvas height in px (default 400)
 - `sound` — load p5.sound library (default false)
 - `caption` — text shown below the frame
 
-`files` are loaded in order before `sketch.js`. p5.js itself is served
-from the theme's `static/js/` — no CDN dependency, no copies per
-sketch. The sketch runs in an iframe via `p5loader.html` so p5 global
-mode works exactly as it does in a standalone HTML file. No changes
-needed to existing sketches.
+p5.js is served from the theme's `static/js/` — no CDN dependency,
+no copies per sketch. The sketch runs in an iframe via `p5loader.html`
+so p5 global mode works exactly as it does in a standalone HTML file.
+No changes needed to existing sketches.
 
 #### p5 border
 
@@ -213,15 +269,10 @@ No border is drawn around the canvas by default. To add one, set
 p5_border_color = "#4da6ff"
 ```
 
-To explicitly suppress any border:
-```toml
-p5_border_color = "transparent"
-```
-
 #### Known limitations
 
-**`setInterval` is blocked in iframe contexts.** Use recursive `setTimeout`
-instead for any sketch that needs a repeating timer:
+**`setInterval` is blocked in iframe contexts.** Use recursive
+`setTimeout` instead:
 ```javascript
 function schedule_next() {
     setTimeout(function() {
@@ -229,12 +280,10 @@ function schedule_next() {
         schedule_next();
     }, 5000);
 }
-// call once from setup() to start the loop
-schedule_next();
+schedule_next();  // call once from setup()
 ```
 
-**`preload()` and async asset loading** — if you have trouble with assets
-not loading via `preload()`, use `loadImage()` (or `loadSound()` etc.)
+**Asset loading** — if `preload()` gives trouble, use `loadImage()`
 directly in `setup()` with a callback and a loaded flag:
 ```javascript
 let img;
@@ -251,32 +300,30 @@ function setup() {
 }
 
 function draw() {
-    if (img_loaded) {
-        image(img, 0, 0);
-    }
+    if (img_loaded) image(img, 0, 0);
 }
 ```
 
 **Communicating data from sketch to post page** — p5 DOM elements
-created with `createP()` etc. are confined inside the iframe. To
-display dynamic sketch data on the post page use `postMessage`:
+created with `createP()` etc. are confined inside the iframe. Use
+`postMessage` to surface dynamic data on the post page:
 
 In `sketch.js`:
 ```javascript
 window.parent.postMessage(your_data, "*");
 ```
 
-In `index.md` below the shortcode (requires `unsafe = true` in
-`hugo.toml`):
+In `index.md` (requires `unsafe = true` in `hugo.toml`):
 ```html
+<div id="my-data"></div>
+<script>
 window.addEventListener("message", function(e) {
     document.getElementById("my-data").textContent = e.data;
 });
-
+</script>
 ```
 
 ### youtube
-
 ```
 {{< youtube id="VIDEO_ID" caption="Demo video" >}}
 ```
@@ -290,31 +337,27 @@ Your **markdown** content here.
 
 ## Footer
 
-The footer displays a copyright line and theme credit. To customize
-the name or year, edit `layouts/partials/footer.html` directly — or
-override it in your site by creating your own
-`layouts/partials/footer.html` which Hugo will prefer over the
-theme's version.
+The footer displays a copyright line and theme credit. Override it
+in your site by creating `layouts/partials/footer.html` — Hugo will
+prefer your version over the theme's.
 
 ## Retheme via CSS variables
 
-All variables are at the top of `static/css/showcase.css`. Override
-any of them in your project's own CSS loaded after the theme, or via
-a layout override. Key variables:
+All variables are at the top of `static/css/showcase.css`. Key ones:
 ```css
 :root {
     /* Site-wide */
-    --bg-color:     #1a1a2e;
-    --accent-color: #e94560;
-    --text-color:   #e0e0e0;
+    --bg-color:       #1a1a2e;
+    --accent-color:   #e94560;
+    --text-color:     #e0e0e0;
 
     /* Grid */
-    --grid-gap:     12px;
+    --grid-gap:       12px;
 
     /* Post */
-    --post-bg:      #12121f;
-    --post-text:    #e0e0e0;
-    --post-heading: #ffffff;
+    --post-bg:        #12121f;
+    --post-text:      #e0e0e0;
+    --post-heading:   #ffffff;
     --post-max-width: 900px;
 
     /* p5 embed — all default to none/transparent */
