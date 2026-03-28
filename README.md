@@ -5,6 +5,8 @@ the Wii interface — a grid of image tiles on a clean background, each
 linking to a project page. Supports nested sections so a tile can link
 to another grid rather than a single post.
 
+Check out the [demo](https://hadella.github.io/showcase/) to see it in action
+
 ## Features
 
 - 16:9 constrained stage — uses full screen on 16:9 displays, centered
