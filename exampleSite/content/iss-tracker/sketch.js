@@ -53,6 +53,10 @@ function setup() {
   scheduleNext();
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function getIssPosition() {
   loadJSON(url, (data) => {
     // Grab the ISS latitude/longitude data

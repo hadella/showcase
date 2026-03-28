@@ -14,6 +14,10 @@ function setup() {
   r = 20;
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function draw() {
   background(0);
 
