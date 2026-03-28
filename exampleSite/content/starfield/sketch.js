@@ -8,7 +8,7 @@ let stars = [];
 let speed;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
 
   colorMode(HSB);
 

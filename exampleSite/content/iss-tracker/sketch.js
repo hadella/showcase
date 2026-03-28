@@ -33,7 +33,7 @@ function scheduleNext() {
 }
 
 function setup() {
-  createCanvas(960, 484);
+  createCanvas(windowWidth, windowHeight);
 
   // Alternative to preload:
   // loadImage(
