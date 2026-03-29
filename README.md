@@ -12,6 +12,7 @@ Check out the [demo](https://hadella.github.io/showcase/) to see it in action
 - Configurable grid (num cols) via `hugo.toml`; grid grows downward
   as content is added, last row padded to stay clean
 - Tile size driven by thumbnail image dimensions
+- Text-only tiles driven by front matter — no image required
 - Nested sections — a tile can link to another grid (brand, category,
   collection) rather than a single post
 - Single-column mobile fallback
@@ -182,11 +183,13 @@ thumbnail  = "images/my-thumb.png"   # 4:3 recommended
 banner     = "images/my-banner.png"  # optional
 show_title = true                    # optional
 
-# Optional per-post color overrides:
-# bg_color        = "#0d0d1a"
-# text_color      = "#f0f0f0"
+# Image tile color overrides:
 # p5_border_color = "#e94560"
 # p5_bg_color     = "#000000"
+
+# Text tile params (use instead of thumbnail for tool/utility posts):
+# tile_bg    = "#1e1e2e"
+# tile_color = "#6e6e8e"
 +++
 ```
 
@@ -367,18 +370,25 @@ All variables are at the top of `static/css/showcase.css`. Key ones:
 ```css
 :root {
     /* Site-wide */
-    --bg-color:       #1a1a2e;
-    --accent-color:   #e94560;
-    --text-color:     #e0e0e0;
+    --bg-color:         #1a1a2e;
+    --accent-color:     #e94560;
+    --text-color:       #e0e0e0;
 
     /* Grid */
-    --grid-gap:       12px;
+    --grid-gap:         12px;
 
     /* Post */
-    --post-bg:        #12121f;
-    --post-text:      #e0e0e0;
-    --post-heading:   #ffffff;
-    --post-max-width: 900px;
+    --post-bg:          #12121f;
+    --post-text:        #e0e0e0;
+    --post-heading:     #ffffff;
+    --post-max-width:   900px;
+
+    /* Text tiles */
+    --tile-text-bg:     #1e1e2e;
+    --tile-text-color:  #6e6e8e;
+    --tile-text-size:   1rem;
+    --tile-text-weight: 600;
+    --tile-text-pad:    0.6rem 1rem;
 
     /* p5 embed — all default to none/transparent */
     --p5-border:        none;

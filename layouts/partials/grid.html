@@ -42,12 +42,19 @@
 
         {{- range $pages }}
         {{- $thumb := .Params.thumbnail -}}
-        <div class="tile-cell">
+        {{- $tile_bg  := .Params.tile_bg -}}
+        {{- $tile_color := .Params.tile_color -}}
+        <div class="tile-cell{{ if not $thumb }} tile-text{{ end }}"
+             {{ if $tile_bg }}style="background:{{ $tile_bg }}; --tile-text-color:{{ $tile_color }};"{{ end }}>
             <a href="{{ .RelPermalink }}">
                 {{- if $thumb }}
                 <img src="{{ $thumb | relURL }}" alt="{{ .Title }}" />
-                {{- end }}
                 <div class="tile-overlay"></div>
+                {{- else }}
+                <span class="tile-label">
+                    {{ .Title }}
+                </span>
+                {{- end }}
             </a>
         </div>
         {{- end }}
