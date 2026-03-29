@@ -8,6 +8,7 @@
         .title  : optional title string (shown if no banner)
 */ -}}
 
+{{- $show_title := .show_title | default true -}}
 {{- $cols   := .cols -}}
 {{- $pages  := .pages -}}
 {{- $banner := .banner -}}
@@ -23,14 +24,16 @@
 
 <div class="stage">
 
-    {{- if $banner }}
-    <div class="banner">
-        <img src="{{ $banner | relURL }}" alt="{{ $title }}" />
-    </div>
-    {{- else if $title }}
-    <div class="section-title">
-        <h1>{{ $title }}</h1>
-    </div>
+    {{- if $show_title }}
+        {{- if $banner }}
+        <div class="banner">
+            <img src="{{ $banner | relURL }}" alt="{{ $title }}" />
+        </div>
+        {{- else }}
+        <div class="section-title">
+            <h1>{{ $title }}</h1>
+        </div>
+        {{- end }}
     {{- end }}
 
     <div class="launcher-grid"

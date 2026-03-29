@@ -236,7 +236,7 @@ body.single-page {
 /* ── Gallery / image cycler ─────────────────────────────────── */
 :root {
     --gallery-ratio: 4 / 3;
-    --gallery-bg: #000;
+    --gallery-bg: var(--bg-color);
     --gallery-btn-color: var(--text-color);
     --gallery-btn-hover: var(--accent-color);
     --gallery-counter-color: var(--text-color);

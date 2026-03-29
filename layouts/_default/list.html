@@ -16,6 +16,7 @@
 {{- $cols   := .Params.grid_cols | default .Site.Params.grid_cols | default 4 -}}
 {{- $rows   := .Params.grid_rows | default .Site.Params.grid_rows | default 3 -}}
 {{- $banner := .Params.banner -}}
+{{- $show_title := .Params.show_title | default true -}}
 
 {{- $pages := union .Sections .RegularPages -}}
 
@@ -24,6 +25,7 @@
     "cols"   $cols
     "rows"   $rows
     "banner" $banner
-    "title"  .Title
+    "title"  .Site.Title
+    "show_title" $show_title
 ) }}
 {{ end }}
