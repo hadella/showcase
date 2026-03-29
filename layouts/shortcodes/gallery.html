@@ -1,0 +1,75 @@
+{{- /*
+    shortcodes/gallery.html
+    Usage:
+        {{< gallery >}}
+        https://example.com/img1.jpg
+        https://example.com/img2.jpg
+        {{< /gallery >}}
+
+    One image URL per line in the shortcode body.
+    Navigation via on-screen arrows or keyboard left/right.
+    Counter shown as "1/N" centered between arrows.
+    Aspect ratio controlled by --gallery-ratio CSS variable.
+*/ -}}
+
+{{- $uid   := printf "gal-%v" now.UnixNano -}}
+{{- $lines := split (trim .Inner "\n") "\n" -}}
+{{- $imgs  := slice -}}
+{{- range $lines }}
+    {{- $url := trim . " \t\r" -}}
+    {{- if $url }}
+        {{- $imgs = $imgs | append $url -}}
+    {{- end }}
+{{- end }}
+{{- $count := len $imgs -}}
+
+<div class="gallery" id="{{ $uid }}" data-count="{{ $count }}">
+    <div class="gallery-stage">
+        {{- range $i, $url := $imgs }}
+        <img class="gallery-img{{if eq $i 0}} active{{end}}"
+             src="{{ $url }}"
+             alt="Image {{ add $i 1 }} of {{ $count }}"
+             data-index="{{ $i }}" />
+        {{- end }}
+    </div>
+    <div class="gallery-controls">
+        <button class="gallery-btn gallery-prev" aria-label="Previous">&#8592;</button>
+        <span class="gallery-counter">
+            <span class="gallery-current">1</span>/<span class="gallery-total">{{ $count }}</span>
+        </span>
+        <button class="gallery-btn gallery-next" aria-label="Next">&#8594;</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    var gal     = document.getElementById("{{ $uid }}");
+    var imgs    = gal.querySelectorAll(".gallery-img");
+    var current = gal.querySelector(".gallery-current");
+    var prev    = gal.querySelector(".gallery-prev");
+    var next    = gal.querySelector(".gallery-next");
+    var idx     = 0;
+    var count   = {{ $count }};
+
+    function show(n) {
+        imgs[idx].classList.remove("active");
+        idx = (n + count) % count;
+        imgs[idx].classList.add("active");
+        current.textContent = idx + 1;
+    }
+
+    prev.addEventListener("click", function() { show(idx - 1); });
+    next.addEventListener("click", function() { show(idx + 1); });
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "ArrowLeft")  show(idx - 1);
+        if (e.key === "ArrowRight") show(idx + 1);
+    });
+
+    // Hide prev/next if only one image
+    if (count <= 1) {
+        prev.style.visibility = "hidden";
+        next.style.visibility = "hidden";
+    }
+})();
+</script>
