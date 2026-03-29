@@ -176,11 +176,12 @@ theme        = "showcase"
 ### Post (`index.md`)
 ```toml
 +++
-title     = "My Project"
-date      = 2025-01-01
-draft     = false
-thumbnail = "images/my-thumb.png"   # 4:3 recommended
-banner    = "images/my-banner.png"  # optional
+title      = "My Project"
+date       = 2025-01-01
+draft      = false
+thumbnail  = "images/my-thumb.png"   # 4:3 recommended
+banner     = "images/my-banner.png"  # optional
+show_title = true                    # optional
 
 # Optional per-post color overrides:
 # bg_color        = "#0d0d1a"
@@ -193,9 +194,10 @@ banner    = "images/my-banner.png"  # optional
 ### Section (`_index.md`)
 ```toml
 +++
-title     = "Brand-X"
-thumbnail = "images/brand-x-thumb.png"   # 4:3 recommended
-# banner  = "images/brand-x-banner.png"  # optional
+title      = "Brand-X"
+thumbnail  = "images/brand-x-thumb.png"   # 4:3 recommended
+# banner     = "images/brand-x-banner.png"  # optional
+show_title = true                         # optional
 
 # Override site-wide grid dimensions for this section:
 # grid_cols = 4
@@ -241,6 +243,36 @@ Then on GitHub go to Settings → Pages and set the source to the
 `gh-pages` branch, root directory.
 
 ## Shortcodes
+
+### center
+```
+{{% center %}}
+Your **markdown** content here.
+{{% /center %}}
+```
+
+### gallery
+```
+{{< gallery >}}
+https://r2.yourdomain.com/cars/frog/shot1.jpg
+https://r2.yourdomain.com/cars/frog/shot2.jpg
+/images/local-image.jpg
+{{< /gallery >}}
+```
+
+One URL per line in the shortcode body. Paths can be absolute URLs
+(e.g. Cloudflare R2) or relative to the page bundle or `static/`.
+
+Navigation via on-screen left/right arrows or keyboard arrow keys.
+Counter shown as `1/N` centered between arrows.
+
+Aspect ratio is controlled by the `--gallery-ratio` CSS variable
+(default `4 / 3`). Override in your site's CSS:
+```css
+:root {
+    --gallery-ratio: 16 / 9;
+}
+```
 
 ### p5
 ```
@@ -328,13 +360,6 @@ window.addEventListener("message", function(e) {
 ### youtube
 ```
 {{< youtube id="VIDEO_ID" caption="Demo video" >}}
-```
-
-### center
-```
-{{% center %}}
-Your **markdown** content here.
-{{% /center %}}
 ```
 
 ## Footer

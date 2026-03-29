@@ -6,6 +6,7 @@
         text_color      : str  — override --post-text       (optional)
         p5_border_color : str  — override --p5-border color (optional)
         p5_bg_color     : str  — override --p5-bg           (optional)
+        show_title      : bool — show banner or title (default true)
 */ -}}
 {{ define "body_class" }}single-page{{ end }}
 
@@ -23,17 +24,24 @@
         {{- if $p5bg }}     --p5-bg:      {{ $p5bg }};                  {{- end }}
     }
 </style>
-{{- end }} {{ end }} {{ define "main" }} {{- $banner := .Params.banner -}}
+{{- end }}
+{{ end }}
+
+{{ define "main" }}
+{{- $banner := .Params.banner -}}
+{{- $show_title := .Params.show_title | default true -}}
 
 <div class="post-stage">
-    {{- if $banner }}
-    <div class="post-banner">
-        <img src="{{ $banner | relURL }}" alt="{{ .Title }}" />
-    </div>
-    {{- else }}
-    <div class="post-title">
-        <h1>{{ .Title }}</h1>
-    </div>
+    {{- if $show_title }}
+        {{- if $banner }}
+        <div class="post-banner">
+            <img src="{{ $banner | relURL }}" alt="{{ .Title }}" />
+        </div>
+        {{- else }}
+        <div class="post-title">
+            <h1>{{ .Title }}</h1>
+        </div>
+        {{- end }}
     {{- end }}
 
     <div class="post-content">{{ .Content }}</div>

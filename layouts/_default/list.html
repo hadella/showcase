@@ -4,11 +4,12 @@
     Each child can be a leaf (single post) or another section.
 
     Front matter in _index.md:
-        title     : str  — section title (shown if no banner)
-        thumbnail : str  — tile image on parent grid
-        banner    : str  — banner image for this section (optional)
-        grid_cols : int  — column override for this section (optional)
-        grid_rows : int  — row override for this section   (optional)
+        title      : str  — section title (shown if no banner)
+        thumbnail  : str  — tile image on parent grid
+        banner     : str  — banner image for this section (optional)
+        grid_cols  : int  — column override for this section (optional)
+        grid_rows  : int  — row override for this section   (optional)
+        show_title : bool — show banner or title (default true)
 */ -}}
 {{ define "body_class" }}launcher-page{{ end }}
 

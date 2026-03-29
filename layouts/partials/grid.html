@@ -1,11 +1,12 @@
 {{- /*
     partials/grid.html — reusable launcher grid
     Expects:
-        .pages  : the collection of pages to render as tiles
-        .cols   : number of columns
-        .rows   : number of rows (used only for initial height hint)
-        .banner : optional banner image path
-        .title  : optional title string (shown if no banner)
+        .pages      : the collection of pages to render as tiles
+        .cols       : number of columns
+        .rows       : number of rows (used only for initial height hint)
+        .banner     : optional banner image path
+        .title      : optional title string (shown if no banner)
+        .show_title : bool — show banner or title (default true)
 */ -}}
 
 {{- $show_title := .show_title | default true -}}
