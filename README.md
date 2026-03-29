@@ -9,18 +9,16 @@ Check out the [demo](https://hadella.github.io/showcase/) to see it in action
 
 ## Features
 
-- 16:9 constrained stage — uses full screen on 16:9 displays, centered
-  with empty margins on ultrawides
-- Configurable grid (rows × cols) via `hugo.toml`; grid grows downward
+- Configurable grid (num cols) via `hugo.toml`; grid grows downward
   as content is added, last row padded to stay clean
-- 4:3 aspect ratio tiles; empty slots hold grid shape
+- Tile size driven by thumbnail image dimensions
 - Nested sections — a tile can link to another grid (brand, category,
   collection) rather than a single post
-- Per-section grid column/row overrides via front matter
 - Single-column mobile fallback
 - Built-in `p5` shortcode for embedding p5.js sketches
 - Built-in `youtube` shortcode with styled wrapper
 - Built-in `center` shortcode for centering markdown content
+- Built-in `gallery` shortcode for image cycling with keyboard navigation
 - 100% CSS variable driven — retheme without touching HTML
 - Default single post layout; fully overridable per project
 
@@ -47,6 +45,7 @@ themes/showcase/
       p5.html          ← p5.js embed shortcode
       youtube.html     ← YouTube embed shortcode
       center.html      ← center content shortcode
+      gallery.html     ← image cycler shortcode
   archetypes/
     sections.md        ← template for new section _index.md
 ```
@@ -165,7 +164,7 @@ theme        = "showcase"
 [params]
     banner_image = "images/banner.png"   # optional
     grid_cols    = 4
-    grid_rows    = 3
+    show_title   = true                  # optional
 
 [markup.goldmark.renderer]
     unsafe = true              # required for script blocks in markdown
@@ -201,7 +200,6 @@ show_title = true                         # optional
 
 # Override site-wide grid dimensions for this section:
 # grid_cols = 4
-# grid_rows = 3
 +++
 ```
 
@@ -266,13 +264,8 @@ One URL per line in the shortcode body. Paths can be absolute URLs
 Navigation via on-screen left/right arrows or keyboard arrow keys.
 Counter shown as `1/N` centered between arrows.
 
-Aspect ratio is controlled by the `--gallery-ratio` CSS variable
-(default `4 / 3`). Override in your site's CSS:
-```css
-:root {
-    --gallery-ratio: 16 / 9;
-}
-```
+Aspect ratio is driven by the image dimensions. The gallery stage
+will match whatever ratio your images are.
 
 ### p5
 ```

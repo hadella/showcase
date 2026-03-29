@@ -72,13 +72,8 @@ a:hover {
     text-align: center;
 }
 
-/* ── 16:9 stage container ───────────────────────────────────── */
-/* Constrains content width to 16:9 based on viewport height.
- * Left/right margins absorb the extra space on wide displays.
- */
+/* ── stage container ─-----──────────────────────────────────── */
 .stage {
-    /* 16/9 * 100vh, but cap at 100vw */
-    width: min(calc(100vh * 16 / 9), 100vw);
     margin: 0 auto;
     padding: 1.5rem;
 }
@@ -108,7 +103,6 @@ a:hover {
 /* Each cell maintains 4:3 ratio */
 .tile-cell {
     position: relative;
-    aspect-ratio: 4 / 3;
     overflow: hidden;
     transition:
         transform var(--tile-transition),
@@ -235,7 +229,6 @@ body.single-page {
 
 /* ── Gallery / image cycler ─────────────────────────────────── */
 :root {
-    --gallery-ratio: 4 / 3;
     --gallery-bg: var(--bg-color);
     --gallery-btn-color: var(--text-color);
     --gallery-btn-hover: var(--accent-color);
