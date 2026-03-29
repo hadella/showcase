@@ -33,7 +33,7 @@ function scheduleNext() {
 }
 
 function setup() {
-  createCanvas(960, 484);
+  createCanvas(windowWidth, windowHeight);
 
   // Alternative to preload:
   // loadImage(
@@ -51,6 +51,10 @@ function setup() {
   setInterval(getIssPosition, 5000);
 
   scheduleNext();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function getIssPosition() {

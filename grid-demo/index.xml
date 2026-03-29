@@ -6,8 +6,15 @@
     <description>Recent content in Grid Demo on My Showcase</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://hadella.github.io/showcase/grid-demo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gallery Demo</title>
+      <link>https://hadella.github.io/showcase/grid-demo/gallery-test/</link>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/grid-demo/gallery-test/</guid>
+      <description>&amp;#8592; 1/5 &amp;#8594; A simple gallery demo — use the arrows or keyboard left/right to cycle through images.</description>
+    </item>
     <item>
       <title>Bouncing Ball</title>
       <link>https://hadella.github.io/showcase/grid-demo/bouncing-ball/</link>

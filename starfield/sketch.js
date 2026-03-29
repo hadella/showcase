@@ -8,7 +8,7 @@ let stars = [];
 let speed;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
 
   colorMode(HSB);
 
@@ -19,8 +19,10 @@ function setup() {
   for (let i = 0; i < total_stars; i++) {
     stars.push(new Star(random(40, 255)));
   }
+}
 
-  // createP("Move the mouse right to increase or left to decrease speed");
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function draw() {

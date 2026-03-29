@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery Demo | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+     
+</head>
+<body class="single-page">
+    <div class="post-stage">
+    <div class="post-title">
+        <h1>Gallery Demo</h1>
+    </div>
+
+    <div class="post-content"><div class="gallery" id="gal-1774747356495048869" data-count="5">
+    <div class="gallery-stage">
+        <img class="gallery-img active"
+             src="images/frame-1.jpg"
+             alt="Image 1 of 5"
+             data-index="0" />
+        <img class="gallery-img"
+             src="images/frame-2.jpg"
+             alt="Image 2 of 5"
+             data-index="1" />
+        <img class="gallery-img"
+             src="images/frame-3.jpg"
+             alt="Image 3 of 5"
+             data-index="2" />
+        <img class="gallery-img"
+             src="images/frame-4.jpg"
+             alt="Image 4 of 5"
+             data-index="3" />
+        <img class="gallery-img"
+             src="images/frame-5.jpg"
+             alt="Image 5 of 5"
+             data-index="4" />
+    </div>
+    <div class="gallery-controls">
+        <button class="gallery-btn gallery-prev" aria-label="Previous">&#8592;</button>
+        <span class="gallery-counter">
+            <span class="gallery-current">1</span>/<span class="gallery-total">5</span>
+        </span>
+        <button class="gallery-btn gallery-next" aria-label="Next">&#8594;</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    var gal     = document.getElementById("gal-1774747356495048869");
+    var imgs    = gal.querySelectorAll(".gallery-img");
+    var current = gal.querySelector(".gallery-current");
+    var prev    = gal.querySelector(".gallery-prev");
+    var next    = gal.querySelector(".gallery-next");
+    var idx     = 0;
+    var count   =  5 ;
+
+    function show(n) {
+        imgs[idx].classList.remove("active");
+        idx = (n + count) % count;
+        imgs[idx].classList.add("active");
+        current.textContent = idx + 1;
+    }
+
+    prev.addEventListener("click", function() { show(idx - 1); });
+    next.addEventListener("click", function() { show(idx + 1); });
+
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "ArrowLeft")  show(idx - 1);
+        if (e.key === "ArrowRight") show(idx + 1);
+    });
+
+    
+    if (count <= 1) {
+        prev.style.visibility = "hidden";
+        next.style.visibility = "hidden";
+    }
+})();
+</script>
+
+<p>A simple gallery demo — use the arrows or keyboard left/right to cycle through images.</p>
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
