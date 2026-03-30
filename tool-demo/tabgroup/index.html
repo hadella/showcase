@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tab/Tabgroup Shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>Tab/Tabgroup Shortcode</h1>
+        </div>
+
+    <div class="post-content"><p>Tab groups let you show related content in different formats:</p>
+<div class="tab-group" id="tabs-1774834809">
+    <div class="tab-buttons"></div>
+    <div class="tab-content">
+
+<div class="tab-pane" data-title="Python">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+</div>
+
+
+<div class="tab-pane" data-title="JavaScript">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">hello</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+
+<div class="tab-pane" data-title="Go">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello, world!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+
+</div>
+</div>
+
+<script>
+(function() {
+    var group   = document.getElementById("tabs-1774834809");
+    var buttons = group.querySelector(".tab-buttons");
+    var content = group.querySelector(".tab-content");
+    var tabs    = content.querySelectorAll(".tab-pane");
+
+    tabs.forEach(function(tab, i) {
+        var title = tab.getAttribute("data-title") || "Tab " + (i + 1);
+        var btn   = document.createElement("button");
+        btn.textContent = title;
+        btn.className   = "tab-btn";
+
+        if (i === 0) {
+            btn.classList.add("active");
+            tab.style.display = "block";
+        } else {
+            tab.style.display = "none";
+        }
+
+        btn.addEventListener("click", function() {
+            buttons.querySelectorAll(".tab-btn")
+                   .forEach(function(b) { b.classList.remove("active"); });
+            tabs.forEach(function(t) { t.style.display = "none"; });
+            btn.classList.add("active");
+            tab.style.display = "block";
+        });
+
+        buttons.appendChild(btn);
+    });
+})();
+</script>
+
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

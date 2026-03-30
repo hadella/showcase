@@ -3,41 +3,86 @@
  * Override these variables in your project's assets to retheme.
  */
 
-/* ── Variables ─────────────────────────────────────────────── */
 :root {
-    /* Site-wide */
+    /* ── Site-wide ──────────────────────────────────────── */
     --bg-color: #000000;
     --accent-color: #00ffff;
     --text-color: #e0e0e0;
 
-    /* Grid / launcher */
+    /* ── Grid ───────────────────────────────────────────── */
     --grid-gap: 12px;
+    --tile-transition: 0.18s ease;
     --tile-overlay-bg: rgba(0, 0, 0, 0);
     --tile-overlay-hover: rgba(0, 0, 0, 0.25);
-    --tile-transition: 0.18s ease;
 
-    /* Banner */
+    /* ── Text tiles ─────────────────────────────────────── */
+    --tile-text-bg: #1e1e2e;
+    --tile-text-color: #888888;
+    --tile-text-size: 1rem;
+    --tile-text-weight: 600;
+    --tile-text-pad: 0.6rem 1rem;
+
+    /* ── Banner ─────────────────────────────────────────── */
     --banner-radius: 4px;
     --banner-mb: 24px;
 
-    /* Post / single page */
-    --post-bg: var(--bg-color);
-    --post-text: var(--text-color);
+    /* ── Post ───────────────────────────────────────────── */
+    --post-bg: #000;
+    --post-text: #e0e0e0;
     --post-heading: #ffffff;
     --post-link: var(--accent-color);
     --post-max-width: 900px;
     --post-padding: 2rem;
 
-    /* p5 embed */
+    /* ── Code ───────────────────────────────────────────── */
+    --code-bg: #2a2a3e;
+    --code-bright: #ffffff;
+
+    /* ── p5 embed ───────────────────────────────────────── */
     --p5-border: none;
     --p5-border-radius: 0;
     --p5-bg: transparent;
     --p5-shadow: none;
 
-    /* YouTube embed */
+    /* ── YouTube embed ──────────────────────────────────── */
     --yt-border: 2px solid var(--accent-color);
     --yt-border-radius: 4px;
     --yt-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+
+    /* ── Gallery ────────────────────────────────────────── */
+    --gallery-bg: #000;
+    --gallery-btn-color: var(--text-color);
+    --gallery-btn-hover: var(--accent-color);
+    --gallery-counter-color: var(--text-color);
+    --gallery-ratio: 4 / 3;
+
+    /* ── Alert ──────────────────────────────────────────── */
+    --alert-info-color: #4da6ff;
+    --alert-warning-color: #ff8f40;
+    --alert-error-color: #e94560;
+    --alert-note-color: #a78bfa;
+    --alert-important-color: #ffbf00;
+    --alert-success-color: #26a98b;
+    --alert-label-size: 0.7rem;
+    --alert-radius: 4px;
+    --alert-padding: 0.75rem 1rem;
+
+    /* ── Details ────────────────────────────────────────── */
+    --details-color: #7a8aaa;
+    --details-bg: color-mix(in srgb, var(--details-color) 12%, transparent);
+
+    /* ── Img shortcode ──────────────────────────────────── */
+    --figcaption-color: var(--text-color);
+
+    /* ── Tabs ───────────────────────────────────────────── */
+    --tab-active-color: var(--accent-color);
+    --tab-border-color: #3a3a5a;
+    --tab-btn-bg: #1e1e2e;
+    --tab-btn-hover: #2a2a3e;
+    --tab-content-bg: #1e1e2e;
+
+    /* --- Table ------------------------------------------- */
+    --table-border-color: #3a3a5a;
 }
 
 /* ── Reset / Base ───────────────────────────────────────────── */
@@ -72,13 +117,8 @@ a:hover {
     text-align: center;
 }
 
-/* ── 16:9 stage container ───────────────────────────────────── */
-/* Constrains content width to 16:9 based on viewport height.
- * Left/right margins absorb the extra space on wide displays.
- */
+/* ── stage container ─-----──────────────────────────────────── */
 .stage {
-    /* 16/9 * 100vh, but cap at 100vw */
-    width: min(calc(100vh * 16 / 9), 100vw);
     margin: 0 auto;
     padding: 1.5rem;
 }
@@ -108,7 +148,6 @@ a:hover {
 /* Each cell maintains 4:3 ratio */
 .tile-cell {
     position: relative;
-    aspect-ratio: 4 / 3;
     overflow: hidden;
     transition:
         transform var(--tile-transition),
@@ -158,6 +197,52 @@ a:hover {
 .tile-cell.tile-empty:hover {
     transform: none;
     box-shadow: none;
+}
+
+.tile-cell.tile-text {
+    background: var(--tile-text-bg);
+    border: 2px solid var(--tile-text-color);
+    aspect-ratio: unset;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--tile-text-pad);
+}
+
+.tile-cell.tile-text:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--tile-text-color);
+}
+
+.tile-label {
+    font-size: var(--tile-text-size);
+    font-weight: var(--tile-text-weight);
+    letter-spacing: 0.05em;
+    text-align: center;
+    color: var(--tile-text-color);
+    pointer-events: none;
+    transition:
+        transform 0.15s ease,
+        font-size 0.15s ease;
+}
+
+.tile-cell.tile-text:hover .tile-label {
+    transform: scale(1.08);
+}
+
+.tile-cell.tile-text a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.tile-cell.tile-text a:hover {
+    text-decoration: none;
 }
 
 /* ── Section title (shown when no banner) ───────────────────── */
@@ -233,15 +318,442 @@ body.single-page {
     border-radius: 4px;
 }
 
-/* ── Gallery / image cycler ─────────────────────────────────── */
-:root {
-    --gallery-ratio: 4 / 3;
-    --gallery-bg: var(--bg-color);
-    --gallery-btn-color: var(--text-color);
-    --gallery-btn-hover: var(--accent-color);
-    --gallery-counter-color: var(--text-color);
+/* ── Lists ──────────────────────────────────────────────────── */
+.post-content ul,
+.post-content ol {
+    margin-left: 1rem;
+    margin-bottom: 1.5rem;
 }
 
+.post-content ul {
+    list-style-type: disc;
+}
+
+.post-content ol {
+    list-style-type: decimal;
+}
+
+.post-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Nested lists */
+.post-content ul ul,
+.post-content ol ul {
+    list-style-type: circle;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.post-content ol ol {
+    list-style-type: decimal;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.post-content ul ol {
+    list-style-type: decimal;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+/* ── Code blocks ────────────────────────────────────────────── */
+code {
+    font-family:
+        "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+    font-size: 0.9em;
+}
+
+/* Inline code */
+p code,
+li code {
+    background-color: var(--code-bg);
+    color: var(--code-bright);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+/* Code blocks */
+pre {
+    background-color: var(--post-bg);
+    border: 1px solid var(--code-bg);
+    border-radius: 6px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+    line-height: 1.5;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+}
+
+/* ── Alert shortcode ────────────────────────────────────────── */
+.alert {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+    border-left: 3px solid;
+    border-radius: var(--alert-radius);
+    padding: var(--alert-padding);
+    margin: 1rem 0;
+}
+
+.alert-label {
+    font-size: var(--alert-label-size);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-top: 0.15rem;
+    min-width: 3.5rem;
+}
+
+.alert-content {
+    flex: 1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.alert-content p {
+    margin: 0;
+}
+
+/* Type colors */
+.alert-note {
+    border-color: var(--alert-note-color);
+    color: var(--alert-note-color);
+}
+.alert-important {
+    border-color: var(--alert-important-color);
+    color: var(--alert-important-color);
+}
+.alert-info {
+    border-color: var(--alert-info-color);
+    color: var(--alert-info-color);
+}
+.alert-warning {
+    border-color: var(--alert-warning-color);
+    color: var(--alert-warning-color);
+}
+.alert-error {
+    border-color: var(--alert-error-color);
+    color: var(--alert-error-color);
+}
+.alert-success {
+    border-color: var(--alert-success-color);
+    color: var(--alert-success-color);
+}
+
+/* Content text stays readable */
+.alert-info .alert-content,
+.alert-warning .alert-content,
+.alert-error .alert-content,
+.alert-note .alert-content,
+.alert-important .alert-content,
+.alert-success .alert-content {
+    color: var(--text-color);
+}
+
+/* Background tint option */
+.alert-note.alert-bg {
+    background: color-mix(in srgb, var(--alert-note-color) 12%, transparent);
+}
+.alert-important.alert-bg {
+    background: color-mix(
+        in srgb,
+        var(--alert-important-color) 12%,
+        transparent
+    );
+}
+.alert-info.alert-bg {
+    background: color-mix(in srgb, var(--alert-info-color) 12%, transparent);
+}
+.alert-warning.alert-bg {
+    background: color-mix(in srgb, var(--alert-warning-color) 12%, transparent);
+}
+.alert-error.alert-bg {
+    background: color-mix(in srgb, var(--alert-error-color) 12%, transparent);
+}
+.alert-success.alert-bg {
+    background: color-mix(in srgb, var(--alert-success-color) 12%, transparent);
+}
+
+.alert-box {
+    border-left: 3px solid var(--text-color);
+    padding: var(--alert-padding);
+    margin: 1rem 0;
+    opacity: 0.8;
+}
+
+/* ── Highlight shortcode ────────────────────────────────────── */
+.highlight-box {
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    border-radius: var(--alert-radius);
+    border: 2px solid;
+}
+
+.highlight-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-icon {
+    font-size: 1rem;
+    margin-right: 0.4rem;
+}
+
+.highlight-content {
+    color: var(--text-color);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.highlight-content p {
+    margin: 0;
+}
+
+/* Type variants — reuse alert color vars */
+.highlight-tip {
+    border-color: var(--alert-info-color);
+}
+.highlight-tip .highlight-label {
+    color: var(--alert-info-color);
+}
+.highlight-tip .highlight-icon::before {
+    content: "★";
+}
+
+.highlight-warning {
+    border-color: var(--alert-warning-color);
+}
+.highlight-warning .highlight-label {
+    color: var(--alert-warning-color);
+}
+.highlight-warning .highlight-icon::before {
+    content: "⚠";
+}
+
+.highlight-success {
+    border-color: var(--alert-success-color);
+}
+.highlight-success .highlight-label {
+    color: var(--alert-success-color);
+}
+.highlight-success .highlight-icon::before {
+    content: "✓";
+}
+
+.highlight-error {
+    border-color: var(--alert-error-color);
+}
+.highlight-error .highlight-label {
+    color: var(--alert-error-color);
+}
+.highlight-error .highlight-icon::before {
+    content: "✗";
+}
+
+.highlight-important {
+    border-color: var(--alert-important-color);
+}
+.highlight-important .highlight-label {
+    color: var(--alert-important-color);
+}
+.highlight-important .highlight-icon::before {
+    content: "⚡";
+}
+
+.highlight-note {
+    border-color: var(--alert-note-color);
+}
+.highlight-note .highlight-label {
+    color: var(--alert-note-color);
+}
+.highlight-note .highlight-icon::before {
+    content: "✎";
+}
+
+/* Background tint option */
+.highlight-tip.highlight-bg {
+    background: color-mix(in srgb, var(--alert-info-color) 12%, transparent);
+}
+.highlight-note.highlight-bg {
+    background: color-mix(in srgb, var(--alert-note-color) 12%, transparent);
+}
+.highlight-warning.highlight-bg {
+    background: color-mix(in srgb, var(--alert-warning-color) 12%, transparent);
+}
+.highlight-success.highlight-bg {
+    background: color-mix(in srgb, var(--alert-success-color) 12%, transparent);
+}
+.highlight-error.highlight-bg {
+    background: color-mix(in srgb, var(--alert-error-color) 12%, transparent);
+}
+.highlight-important.highlight-bg {
+    background: color-mix(
+        in srgb,
+        var(--alert-important-color) 12%,
+        transparent
+    );
+}
+
+/* ── Details shortcode ──────────────────────────────────────── */
+.details-box {
+    border-left: 3px solid var(--details-color);
+    border-radius: var(--alert-radius);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+}
+
+.details-summary {
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: var(--details-color);
+    letter-spacing: 0.03em;
+    user-select: none;
+    list-style: none;
+}
+
+.details-summary::-webkit-details-marker {
+    display: none;
+}
+
+.details-summary::before {
+    content: "▶";
+    font-size: 0.65rem;
+    margin-right: 0.5rem;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+details[open] .details-summary::before {
+    transform: rotate(90deg);
+}
+
+.details-content {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.details-content p {
+    margin: 0;
+}
+
+.details-content ul,
+.details-content ol {
+    padding-left: 1.5rem;
+}
+
+.details-bg {
+    background: var(--details-bg);
+}
+
+/* ── Image shortcode ────────────────────────────────────────── */
+.img-figure {
+    display: block;
+    max-width: var(--img-width, 800px);
+    margin: 1.5rem auto;
+}
+
+.img-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.img-figure figcaption {
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 0.5rem;
+    color: var(--figcaption-color);
+}
+
+/* ── Tab / Tabgroup shortcode ───────────────────────────────── */
+.tab-group {
+    margin: 1rem 0;
+    border: 1px solid var(--tab-border-color);
+    border-radius: var(--alert-radius);
+    overflow: hidden;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--tab-border-color);
+    background: var(--tab-btn-bg);
+    margin-bottom: 0rem;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-color);
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    opacity: 0.6;
+    transition:
+        opacity 0.15s ease,
+        border-color 0.15s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    margin-bottom: -1px;
+}
+
+.tab-btn:hover {
+    opacity: 1;
+    background: var(--tab-btn-hover);
+}
+
+.tab-btn.active {
+    opacity: 1;
+    border-bottom-color: var(--tab-active-color);
+    color: var(--tab-active-color);
+}
+
+.tab-pane {
+    padding: 0rem 0rem;
+    background: var(--tab-content-bg);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.tab-pane pre {
+    margin: 0;
+    border-radius: 0;
+    border: none;
+}
+
+.tab-pane p {
+    margin: 0 0 0.75rem;
+}
+.tab-pane p:last-child {
+    margin-bottom: 0;
+}
+
+.tab-pane ul,
+.tab-pane ol {
+    padding-left: 0rem;
+}
+
+/* ── Gallery / image cycler ─────────────────────────────────── */
 .gallery {
     width: 100%;
     margin: 1.5rem 0;
@@ -298,6 +810,100 @@ body.single-page {
     color: var(--gallery-counter-color);
     opacity: 0.7;
     letter-spacing: 0.05em;
+}
+
+/* ── Table shortcode ────────────────────────────────────────── */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.table-caption {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+}
+
+.table-wrapper table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.9rem;
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--alert-radius);
+    overflow: hidden;
+}
+
+.table-wrapper th {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid var(--accent-color);
+    color: var(--post-heading);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.table-wrapper td {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--code-bg);
+    color: var(--text-color);
+}
+
+.table-wrapper tr:last-child td {
+    border-bottom: none;
+}
+
+.table-wrapper tr:nth-child(even) td {
+    background: transparent;
+}
+
+.table-wrapper tr:nth-child(odd) td {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.table-wrapper th {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid var(--accent-color);
+    border-right: 1px solid var(--table-border-color);
+    color: var(--post-heading);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.table-wrapper td {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--table-border-color);
+    border-right: 1px solid var(--table-border-color);
+    color: var(--text-color);
+}
+
+.table-wrapper th:last-child,
+.table-wrapper td:last-child {
+    border-right: none;
+}
+
+/* Color variants — header border takes type color */
+.table-accent th {
+    border-bottom-color: var(--accent-color);
+}
+.table-info th {
+    border-bottom-color: var(--alert-info-color);
+}
+.table-warning th {
+    border-bottom-color: var(--alert-warning-color);
+}
+.table-success th {
+    border-bottom-color: var(--alert-success-color);
+}
+.table-error th {
+    border-bottom-color: var(--alert-error-color);
+}
+.table-important th {
+    border-bottom-color: var(--alert-important-color);
+}
+.table-note th {
+    border-bottom-color: var(--alert-note-color);
 }
 
 /* ── Footer ─────────────────────────────────────────────────── */
