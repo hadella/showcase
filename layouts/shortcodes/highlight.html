@@ -1,0 +1,21 @@
+{{- /*
+    shortcodes/highlight.html
+    Usage:
+        {{% highlight tip %}}Your content here.{{% /highlight %}}
+        {{% highlight warning true %}}With tinted background.{{% /highlight %}}
+
+    Parameters:
+        type (positional 0) — tip, info, warning, success, error,
+                              important, note (default: tip)
+        bg   (positional 1) — true to add tinted background
+*/ -}}
+
+{{- $type := .Get 0 | default "tip" | lower -}}
+{{- $bg   := .Get 1 | default false -}}
+
+<div class="highlight-box highlight-{{ $type }}{{ if $bg }} highlight-bg{{ end }}">
+    <div class="highlight-label">
+        <span class="highlight-icon"></span>{{ $type }}
+    </div>
+    <div class="highlight-content">{{ .Inner | markdownify }}</div>
+</div>

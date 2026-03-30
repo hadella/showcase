@@ -11,24 +11,13 @@ theme         = "showcase"
     # Place file in static/ — e.g. static/images/banner.jpg
     banner_image = "images/banner.png"
 
-    # Launcher grid dimensions
+    # Launcher grid dimensions (rows grow dynamically)
     grid_cols = 5
-    grid_rows = 3
     show_title = true
 
 [markup.goldmark.renderer]
     unsafe = true
 
-# Content for the launcher tiles lives under content/projects/
-# Each project is a page bundle:
-#
-#   content/projects/
-#     my-sketch/
-#       index.md      ← front matter + description
-#       sketch.js     ← p5 entry point
-#       bubble.js     ← supporting class file
-#
-# Tile thumbnail and post banner are referenced in front matter:
-#   thumbnail = "images/projects/my-sketch-thumb.jpg"
-#   banner    = "images/projects/my-sketch-banner.jpg"
-# (paths relative to /static/)
+[markup.highlight]
+    codeFences = true
+    noClasses  = false

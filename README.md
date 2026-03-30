@@ -12,14 +12,22 @@ Check out the [demo](https://hadella.github.io/showcase/) to see it in action
 - Configurable grid (num cols) via `hugo.toml`; grid grows downward
   as content is added, last row padded to stay clean
 - Tile size driven by thumbnail image dimensions
-- Text-only tiles driven by front matter — no image required
 - Nested sections — a tile can link to another grid (brand, category,
   collection) rather than a single post
+- Text-only tiles driven by front matter — no image required
+- Optional title/banner per page and section via `show_title`
 - Single-column mobile fallback
-- Built-in `p5` shortcode for embedding p5.js sketches
-- Built-in `youtube` shortcode with styled wrapper
+- Built-in `alert` shortcode for callout boxes
 - Built-in `center` shortcode for centering markdown content
+- Built-in `details` shortcode for collapsible sections
 - Built-in `gallery` shortcode for image cycling with keyboard navigation
+- Built-in `highlight` shortcode for bordered content blocks with icons
+- Built-in `img` shortcode for images with captions and width control
+- Built-in `p5` shortcode for embedding p5.js sketches
+- Built-in `tab`/`tabgroup` shortcodes for tabbed content
+- Built-in `table` shortcode for styled tables with color variants
+- Built-in `youtube` shortcode with styled wrapper
+- Syntax highlighting via Hugo chroma with CSS class mode
 - 100% CSS variable driven — retheme without touching HTML
 - Default single post layout; fully overridable per project
 
@@ -33,6 +41,7 @@ themes/showcase/
       p5.sound.min.js
     css/
       showcase.css     ← all visual styling; CSS vars at top
+      syntax.css       ← syntax highlighting for code blocks
   layouts/
     index.html         ← launcher home page
     _default/
@@ -43,10 +52,17 @@ themes/showcase/
       grid.html        ← reusable grid partial
       footer.html      ← site footer
     shortcodes/
-      p5.html          ← p5.js embed shortcode
-      youtube.html     ← YouTube embed shortcode
+      alert.html       ← alert/callout shortcode
       center.html      ← center content shortcode
+      details.html     ← collapsible section shortcode
       gallery.html     ← image cycler shortcode
+      highlight.html   ← bordered highlight block shortcode
+      img.html         ← image with caption shortcode
+      p5.html          ← p5.js embed shortcode
+      tab.html         ← tab pane shortcode
+      tabgroup.html    ← tab group container shortcode
+      table.html       ← styled table shortcode
+      youtube.html     ← YouTube embed shortcode
   archetypes/
     sections.md        ← template for new section _index.md
 ```
@@ -74,7 +90,7 @@ Reference it in `hugo.toml`:
     banner_image = "images/banner.png"
 ```
 
-There is no default — if `banner_image` is not set the banner is
+There is no default—if `banner_image` is not set the banner is
 simply omitted and the site title is shown instead.
 
 ### Content structure
@@ -169,6 +185,10 @@ theme        = "showcase"
 
 [markup.goldmark.renderer]
     unsafe = true              # required for script blocks in markdown
+
+[markup.highlight]
+    codeFences = true
+    noClasses  = false         # use CSS classes not inline styles
 ```
 
 ## Front matter
@@ -245,12 +265,47 @@ Then on GitHub go to Settings → Pages and set the source to the
 
 ## Shortcodes
 
+### alert
+```
+{{% alert info %}}
+Your message here.
+{{% /alert %}}
+
+{{% alert warning true %}}
+With tinted background.
+{{% /alert %}}
+```
+
+Types: `info`, `note`, `warning`, `success`, `error`, `important`, or
+empty for an unlabeled callout. Second positional param `true` adds a
+tinted background.
+
+---
+
 ### center
 ```
 {{% center %}}
 Your **markdown** content here.
 {{% /center %}}
 ```
+
+---
+
+### details
+```
+{{% details "Click to expand" %}}
+Hidden content revealed on click.
+{{% /details %}}
+
+{{% details "With background" true %}}
+Tinted background variant.
+{{% /details %}}
+```
+
+Parameters: summary text (positional 0), optional tinted background
+(positional 1, default false).
+
+---
 
 ### gallery
 ```
@@ -269,6 +324,40 @@ Counter shown as `1/N` centered between arrows.
 
 Aspect ratio is driven by the image dimensions. The gallery stage
 will match whatever ratio your images are.
+
+---
+
+### highlight
+```
+{{% highlight tip %}}
+Key takeaway or important point.
+{{% /highlight %}}
+
+{{% highlight warning true %}}
+With tinted background.
+{{% /highlight %}}
+```
+
+Types: `tip`, `note`, `warning`, `success`, `error`, `important`.
+Second positional param `true` adds a tinted background. Similar to
+`alert` but uses a full border and an icon prefix.
+
+---
+
+### img
+```
+{{< img src="photo.jpg" >}}
+{{< img src="photo.jpg" width="600" caption="My caption" >}}
+{{< img src="photo.jpg" width="400" alt="Alt text" caption="Caption" >}}
+```
+
+Parameters:
+- `src` — image path (bundle-relative or absolute)
+- `width` — max width in px (default 800)
+- `caption` — caption shown below image
+- `alt` — alt text (defaults to caption if set)
+
+---
 
 ### p5
 ```
@@ -353,10 +442,51 @@ window.addEventListener("message", function(e) {
 </script>
 ```
 
+### tab / tabgroup
+```
+{{< tabgroup id="my-tabs" >}}
+{{% tab title="First" %}}
+Content for first tab.
+{{% /tab %}}
+{{% tab title="Second" %}}
+Content for second tab.
+{{% /tab %}}
+{{< /tabgroup >}}
+```
+
+`tab` must be nested inside `tabgroup`. The `id` param on `tabgroup`
+is optional but useful if you have multiple tab groups on one page.
+
+---
+
+### table
+```
+{{< table >}}
+| Col 1 | Col 2 |
+|-------|-------|
+| a     | b     |
+{{< /table >}}
+
+{{< table color="success" caption="Optional caption" >}}
+| Col 1 | Col 2 |
+|-------|-------|
+| a     | b     |
+{{< /table >}}
+```
+
+Color variants: `info`, `note`, `warning`, `success`, `error`,
+`important`. Color affects only the header bottom border — the accent
+line between headers and data rows. Grid lines and alternating row
+shading use the neutral `--table-border-color` var.
+
+---
+
 ### youtube
 ```
 {{< youtube id="VIDEO_ID" caption="Demo video" >}}
 ```
+
+---
 
 ## Footer
 
@@ -366,34 +496,91 @@ prefer your version over the theme's.
 
 ## Retheme via CSS variables
 
-All variables are at the top of `static/css/showcase.css`. Key ones:
+All variables are in a single `:root` block at the top of
+`static/css/showcase.css`. Override any of them in your site's own
+CSS loaded after the theme.
+
+Key variables:
 ```css
 :root {
-    /* Site-wide */
-    --bg-color:         #1a1a2e;
-    --accent-color:     #e94560;
-    --text-color:       #e0e0e0;
+    /* ── Site-wide ──────────────────────────────────────── */
+    --bg-color: #000000;
+    --accent-color: #00ffff;
+    --text-color: #e0e0e0;
 
-    /* Grid */
-    --grid-gap:         12px;
+    /* ── Grid ───────────────────────────────────────────── */
+    --grid-gap: 12px;
+    --tile-transition: 0.18s ease;
+    --tile-overlay-bg: rgba(0, 0, 0, 0);
+    --tile-overlay-hover: rgba(0, 0, 0, 0.25);
 
-    /* Post */
-    --post-bg:          #12121f;
-    --post-text:        #e0e0e0;
-    --post-heading:     #ffffff;
-    --post-max-width:   900px;
-
-    /* Text tiles */
-    --tile-text-bg:     #1e1e2e;
-    --tile-text-color:  #6e6e8e;
-    --tile-text-size:   1rem;
+    /* ── Text tiles ─────────────────────────────────────── */
+    --tile-text-bg: #1e1e2e;
+    --tile-text-color: #888888;
+    --tile-text-size: 1rem;
     --tile-text-weight: 600;
-    --tile-text-pad:    0.6rem 1rem;
+    --tile-text-pad: 0.6rem 1rem;
 
-    /* p5 embed — all default to none/transparent */
-    --p5-border:        none;
+    /* ── Banner ─────────────────────────────────────────── */
+    --banner-radius: 4px;
+    --banner-mb: 24px;
+
+    /* ── Post ───────────────────────────────────────────── */
+    --post-bg: #000;
+    --post-text: #e0e0e0;
+    --post-heading: #ffffff;
+    --post-link: var(--accent-color);
+    --post-max-width: 900px;
+    --post-padding: 2rem;
+
+    /* ── Code ───────────────────────────────────────────── */
+    --code-bg: #2a2a3e;
+    --code-bright: #ffffff;
+
+    /* ── p5 embed ───────────────────────────────────────── */
+    --p5-border: none;
     --p5-border-radius: 0;
-    --p5-bg:            transparent;
-    --p5-shadow:        none;
+    --p5-bg: transparent;
+    --p5-shadow: none;
+
+    /* ── YouTube embed ──────────────────────────────────── */
+    --yt-border: 2px solid var(--accent-color);
+    --yt-border-radius: 4px;
+    --yt-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+
+    /* ── Gallery ────────────────────────────────────────── */
+    --gallery-bg: #000;
+    --gallery-btn-color: var(--text-color);
+    --gallery-btn-hover: var(--accent-color);
+    --gallery-counter-color: var(--text-color);
+    --gallery-ratio: 4 / 3;
+
+    /* ── Alert ──────────────────────────────────────────── */
+    --alert-info-color: #4da6ff;
+    --alert-warning-color: #ff8f40;
+    --alert-error-color: #e94560;
+    --alert-note-color: #a78bfa;
+    --alert-important-color: #ffbf00;
+    --alert-success-color: #26a98b;
+    --alert-label-size: 0.7rem;
+    --alert-radius: 4px;
+    --alert-padding: 0.75rem 1rem;
+
+    /* ── Details ────────────────────────────────────────── */
+    --details-color: #7a8aaa;
+    --details-bg: color-mix(in srgb, var(--details-color) 12%, transparent);
+
+    /* ── Img shortcode ──────────────────────────────────── */
+    --figcaption-color: var(--text-color);
+
+    /* ── Tabs ───────────────────────────────────────────── */
+    --tab-active-color: var(--accent-color);
+    --tab-border-color: #3a3a5a;
+    --tab-btn-bg: #1e1e2e;
+    --tab-btn-hover: #2a2a3e;
+    --tab-content-bg: #1e1e2e;
+
+    /* --- Table ------------------------------------------- */
+    --table-border-color: #3a3a5a;
 }
 ```

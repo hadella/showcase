@@ -1,0 +1,52 @@
+{{- /*
+    shortcodes/tabgroup.html
+    Usage:
+        {{< tabgroup id="my-tabs" >}}
+        {{% tab title="First" %}}Content here.{{% /tab %}}
+        {{% tab title="Second" %}}More content.{{% /tab %}}
+        {{< /tabgroup >}}
+
+    Parameters:
+        id (optional) — unique id for this tab group
+                        (default: auto-generated from timestamp)
+*/ -}}
+
+{{- $id := .Get "id" | default (printf "tabs-%d" now.Unix) -}}
+
+<div class="tab-group" id="{{ $id }}">
+    <div class="tab-buttons"></div>
+    <div class="tab-content">{{ .Inner }}</div>
+</div>
+
+<script>
+(function() {
+    var group   = document.getElementById("{{ $id }}");
+    var buttons = group.querySelector(".tab-buttons");
+    var content = group.querySelector(".tab-content");
+    var tabs    = content.querySelectorAll(".tab-pane");
+
+    tabs.forEach(function(tab, i) {
+        var title = tab.getAttribute("data-title") || "Tab " + (i + 1);
+        var btn   = document.createElement("button");
+        btn.textContent = title;
+        btn.className   = "tab-btn";
+
+        if (i === 0) {
+            btn.classList.add("active");
+            tab.style.display = "block";
+        } else {
+            tab.style.display = "none";
+        }
+
+        btn.addEventListener("click", function() {
+            buttons.querySelectorAll(".tab-btn")
+                   .forEach(function(b) { b.classList.remove("active"); });
+            tabs.forEach(function(t) { t.style.display = "none"; });
+            btn.classList.add("active");
+            tab.style.display = "block";
+        });
+
+        buttons.appendChild(btn);
+    });
+})();
+</script>

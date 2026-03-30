@@ -1,0 +1,18 @@
+{{- /*
+    shortcodes/details.html
+    Usage:
+        {{% details "Click to expand" %}}Content here.{{% /details %}}
+        {{% details "Summary text" true %}}With tinted background.{{% /details %}}
+
+    Parameters:
+        summary (positional 0) — summary/trigger text (default: "Click to expand")
+        bg      (positional 1) — true to add tinted background
+*/ -}}
+
+{{- $summary := .Get 0 | default "Click to expand" -}}
+{{- $bg      := .Get 1 | default false -}}
+
+<details class="details-box{{ if $bg }} details-bg{{ end }}">
+    <summary class="details-summary">{{ $summary }}</summary>
+    <div class="details-content">{{ .Inner | markdownify }}</div>
+</details>

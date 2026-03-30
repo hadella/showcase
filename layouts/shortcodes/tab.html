@@ -1,0 +1,14 @@
+{{- /*
+    shortcodes/tab.html
+    Usage: must be nested inside a tabgroup shortcode.
+        {{% tab title="Tab Title" %}}Content here.{{% /tab %}}
+
+    Parameters:
+        title (optional) — tab button label (default: "Tab")
+*/ -}}
+
+{{- $title := .Get "title" | default "Tab" -}}
+
+<div class="tab-pane" data-title="{{ $title }}">
+    {{ .Inner | markdownify }}
+</div>

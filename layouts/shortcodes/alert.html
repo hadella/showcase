@@ -1,0 +1,22 @@
+{{- /*
+    shortcodes/alert.html
+    Usage:
+        {{% alert type="info" %}}Your message here.{{% /alert %}}
+        {{% alert type="warning" bg=true %}}Watch out!{{% /alert %}}
+
+    Parameters:
+        type (optional) — info, warning, error, success
+        bg   (optional) — true to add tinted background (default false)
+*/ -}}
+
+{{- $type := .Get 0 | default "" | lower -}}
+{{- $bg   := .Get 1 | default false -}}
+
+{{- if eq $type "" }}
+<div class="alert-box">{{ .Inner | markdownify }}</div>
+{{- else }}
+<div class="alert alert-{{ $type }}{{ if $bg }} alert-bg{{ end }}">
+    <div class="alert-label">{{ $type }}</div>
+    <div class="alert-content">{{ .Inner | markdownify }}</div>
+</div>
+{{- end }}

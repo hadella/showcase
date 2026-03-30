@@ -1,0 +1,28 @@
+{{- /*
+    shortcodes/table.html
+    Usage:
+        {{< table >}}
+        | Col 1 | Col 2 |
+        |-------|-------|
+        | a     | b     |
+        {{< /table >}}
+
+        {{< table color="accent" caption="My table" >}}
+        ...
+        {{< /table >}}
+
+    Parameters:
+        color   (optional) — accent, info, warning, success,
+                             error (default: none)
+        caption (optional) — caption shown above table
+*/ -}}
+
+{{- $color   := .Get "color"   | default "" | lower -}}
+{{- $caption := .Get "caption" | default "" -}}
+
+<div class="table-wrapper{{ if $color }} table-{{ $color }}{{ end }}">
+    {{- if $caption }}
+    <p class="table-caption">{{ $caption }}</p>
+    {{- end }}
+    {{ .Inner | markdownify }}
+</div>

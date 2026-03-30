@@ -1,0 +1,181 @@
+/* showcase/static/css/syntax.css
+ * Syntax highlighting for Hugo chroma code blocks.
+ * Adapted from Ayu Dark color scheme.
+ */
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+    --syntax-fn-color: #4da6ff;
+    --syntax-keyword-color: #ff9940;
+    --syntax-string-color: #4caf80;
+    --syntax-number-color: #e94560;
+    --syntax-comment-color: #5a6a7a;
+    --syntax-amber-color: #ffb347;
+    --syntax-highlight-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+.bg {
+    background-color: var(--post-bg);
+}
+
+.chroma {
+    background-color: var(--post-bg);
+    color: var(--text-color);
+}
+
+/* ── Keywords ───────────────────────────────────────────────── */
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr {
+    color: var(--syntax-keyword-color);
+}
+.chroma .kt {
+    color: var(--syntax-fn-color);
+}
+
+/* ── Functions ──────────────────────────────────────────────── */
+.chroma .nf,
+.chroma .fm {
+    color: var(--syntax-fn-color);
+}
+
+/* ── Class names ────────────────────────────────────────────── */
+.chroma .nc {
+    color: var(--syntax-keyword-color);
+}
+
+/* ── Variables and names ────────────────────────────────────── */
+.chroma .n,
+.chroma .na,
+.chroma .bp,
+.chroma .ni,
+.chroma .nl,
+.chroma .nn,
+.chroma .nx,
+.chroma .py,
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi,
+.chroma .vm {
+    color: var(--text-color);
+}
+
+.chroma .nb {
+    color: var(--syntax-fn-color);
+}
+.chroma .no,
+.chroma .ne {
+    color: var(--syntax-amber-color);
+}
+.chroma .nd {
+    color: var(--syntax-number-color);
+}
+.chroma .nt {
+    color: var(--syntax-keyword-color);
+}
+
+/* ── Strings ────────────────────────────────────────────────── */
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .sh,
+.chroma .sx,
+.chroma .sr,
+.chroma .s1,
+.chroma .ss {
+    color: var(--syntax-string-color);
+}
+.chroma .se,
+.chroma .si {
+    color: var(--syntax-amber-color);
+}
+
+/* ── Numbers ────────────────────────────────────────────────── */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo {
+    color: var(--syntax-number-color);
+}
+
+/* ── Operators ──────────────────────────────────────────────── */
+.chroma .o,
+.chroma .ow {
+    color: var(--syntax-keyword-color);
+}
+
+/* ── Comments ───────────────────────────────────────────────── */
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf {
+    color: var(--syntax-comment-color);
+    font-style: italic;
+}
+
+/* ── Errors ─────────────────────────────────────────────────── */
+.chroma .err {
+    color: var(--alert-error-color);
+}
+
+/* ── Line numbers ───────────────────────────────────────────── */
+.chroma .lnt,
+.chroma .ln {
+    color: var(--syntax-comment-color);
+}
+
+/* ── Line highlight ─────────────────────────────────────────── */
+.chroma .hl {
+    background-color: var(--syntax-highlight-color);
+}
+.chroma .line {
+    display: flex;
+}
+
+/* ── Table layout ───────────────────────────────────────────── */
+.chroma .lnlinks {
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+}
+.chroma .lntd {
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.chroma .lntable {
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/* ── Generic ────────────────────────────────────────────────── */
+.chroma .gd {
+    color: var(--alert-error-color);
+}
+.chroma .ge {
+    font-style: italic;
+}
+.chroma .gi {
+    color: var(--syntax-string-color);
+}
+.chroma .gs {
+    font-weight: bold;
+}
