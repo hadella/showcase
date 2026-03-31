@@ -329,7 +329,7 @@ will match whatever ratio your images are.
 
 ### highlight
 ```
-{{% highlight tip %}}
+{{% highlight info %}}
 Key takeaway or important point.
 {{% /highlight %}}
 
@@ -338,7 +338,7 @@ With tinted background.
 {{% /highlight %}}
 ```
 
-Types: `tip`, `note`, `warning`, `success`, `error`, `important`.
+Types: `info`, `note`, `warning`, `success`, `error`, `important`.
 Second positional param `true` adds a tinted background. Similar to
 `alert` but uses a full border and an icon prefix.
 

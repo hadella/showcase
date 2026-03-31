@@ -8,11 +8,11 @@ tile_color = "#6e6e8e"
 
 Highlights are similar to alerts but with different styling:
 
-{{% highlight tip %}}
+{{% highlight info %}}
 Highlights are great for key takeaways and important points. No tint.
 {{% /highlight %}}
 
-{{% highlight tip true %}}
+{{% highlight info true %}}
 Highlights are great for key takeaways and important points.
 {{% /highlight %}}
 
@@ -57,7 +57,7 @@ Always backup your data before proceeding.
 {{% /highlight %}}
 
 ### highlight types
-- tip
+- info
 - note
 - warning
 - success

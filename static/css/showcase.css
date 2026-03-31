@@ -520,13 +520,13 @@ pre code {
 }
 
 /* Type variants — reuse alert color vars */
-.highlight-tip {
+.highlight-info {
     border-color: var(--alert-info-color);
 }
-.highlight-tip .highlight-label {
+.highlight-info .highlight-label {
     color: var(--alert-info-color);
 }
-.highlight-tip .highlight-icon::before {
+.highlight-info .highlight-icon::before {
     content: "★";
 }
 
@@ -581,7 +581,7 @@ pre code {
 }
 
 /* Background tint option */
-.highlight-tip.highlight-bg {
+.highlight-info.highlight-bg {
     background: color-mix(in srgb, var(--alert-info-color) 12%, transparent);
 }
 .highlight-note.highlight-bg {
