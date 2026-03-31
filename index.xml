@@ -27,7 +27,7 @@
       <link>https://hadella.github.io/showcase/tool-demo/highlight/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://hadella.github.io/showcase/tool-demo/highlight/</guid>
-      <description>Highlights are similar to alerts but with different styling:&#xA;tip Highlights are great for key takeaways and important points. No tint. tip Highlights are great for key takeaways and important points. note Highlights are great for key takeaways and important points. No tint. note Highlights are great for key takeaways and important points. warning Be careful with this approach in production environments. No tint. warning Be careful with this approach in production environments.</description>
+      <description>Highlights are similar to alerts but with different styling:&#xA;info Highlights are great for key takeaways and important points. No tint. info Highlights are great for key takeaways and important points. note Highlights are great for key takeaways and important points. No tint. note Highlights are great for key takeaways and important points. warning Be careful with this approach in production environments. No tint. warning Be careful with this approach in production environments.</description>
     </item>
     <item>
       <title>Img Shortcode</title>
