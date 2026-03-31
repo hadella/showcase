@@ -9,19 +9,19 @@ tile_color = "#6e6e8e"
 Highlights are similar to alerts but with different styling:
 
 {{% highlight info %}}
-Highlights are great for key takeaways and important points. No tint.
+Highlights are great for sharing important information. No tint.
 {{% /highlight %}}
 
 {{% highlight info true %}}
-Highlights are great for key takeaways and important points.
+Highlights are great for sharing important information.
 {{% /highlight %}}
 
 {{% highlight note %}}
-Highlights are great for key takeaways and important points. No tint.
+Highlights are great for sharing key takeaways and notes. No tint.
 {{% /highlight %}}
 
 {{% highlight note true %}}
-Highlights are great for key takeaways and important points.
+Highlights are great for sharing key takeaways and notes.
 {{% /highlight %}}
 
 {{% highlight warning %}}
