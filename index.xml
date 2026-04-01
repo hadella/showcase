@@ -6,8 +6,15 @@
     <description>Recent content on My Showcase</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 29 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://hadella.github.io/showcase/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Layout/Cell Shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/layout/</link>
+      <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/layout/</guid>
+      <description>Gallery and Text Side-by-Side &amp;#8592; 1/5 &amp;#8594; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Image and Text Side-by-Side Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</description>
+    </item>
     <item>
       <title>Alert Shortcodes</title>
       <link>https://hadella.github.io/showcase/tool-demo/alert/</link>
@@ -55,7 +62,7 @@
       <link>https://hadella.github.io/showcase/grid-demo/gallery-test/</link>
       <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://hadella.github.io/showcase/grid-demo/gallery-test/</guid>
-      <description>&amp;#8592; 1/5 &amp;#8594; A simple gallery demo — use the arrows or keyboard left/right to cycle through images.</description>
+      <description>Full Width Gallery &amp;#8592; 1/5 &amp;#8594; A simple gallery demo — use the arrows or keyboard left/right to cycle through images.&#xA;Custom Width Gallery &amp;#8592; 1/5 &amp;#8594; We can also specify a width. Notice that both galleries operate independentally.</description>
     </item>
     <item>
       <title>Starfield</title>

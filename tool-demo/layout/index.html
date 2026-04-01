@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout/Cell Shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage" style="max-width: var(--post-max-width-wide);">
+        <div class="post-title">
+            <h1>Layout/Cell Shortcode</h1>
+        </div>
+
+    <div class="post-content"><h2 id="gallery-and-text-side-by-side">Gallery and Text Side-by-Side</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell">
+    
+
+<div class="gallery" id="gal-1775013813277360808" data-count="5">
+
+    <div class="gallery-stage">
+        <img class="gallery-img active"
+             src="images/frame-1.jpg"
+             alt="Image 1 of 5"
+             data-index="0" />
+        <img class="gallery-img"
+             src="images/frame-2.jpg"
+             alt="Image 2 of 5"
+             data-index="1" />
+        <img class="gallery-img"
+             src="images/frame-3.jpg"
+             alt="Image 3 of 5"
+             data-index="2" />
+        <img class="gallery-img"
+             src="images/frame-4.jpg"
+             alt="Image 4 of 5"
+             data-index="3" />
+        <img class="gallery-img"
+             src="images/frame-5.jpg"
+             alt="Image 5 of 5"
+             data-index="4" />
+    </div>
+    <div class="gallery-controls">
+        <button class="gallery-btn gallery-prev"
+                aria-label="Previous">&#8592;</button>
+        <span class="gallery-counter">
+            <span class="gallery-current">1</span>/<span
+            class="gallery-total">5</span>
+        </span>
+        <button class="gallery-btn gallery-next"
+                aria-label="Next">&#8594;</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    var gal     = document.getElementById("gal-1775013813277360808");
+    var imgs    = gal.querySelectorAll(".gallery-img");
+    var current = gal.querySelector(".gallery-current");
+    var prev    = gal.querySelector(".gallery-prev");
+    var next    = gal.querySelector(".gallery-next");
+    var idx     = 0;
+    var count   =  5 ;
+
+    function show(n) {
+        imgs[idx].classList.remove("active");
+        idx = (n + count) % count;
+        imgs[idx].classList.add("active");
+        current.textContent = idx + 1;
+    }
+
+    prev.addEventListener("click", function() { show(idx - 1); });
+    next.addEventListener("click", function() { show(idx + 1); });
+
+    gal.dataset.focused = "0";
+
+    gal.addEventListener("mouseenter", function() {
+        gal.dataset.focused = "1";
+    });
+    gal.addEventListener("mouseleave", function() {
+        gal.dataset.focused = "0";
+    });
+
+    document.addEventListener("keydown", function(e) {
+    console.log('focused = ' + gal.dataset.focused);
+        if (gal.dataset.focused !== "1") return;
+        if (e.key === "ArrowLeft")  show(idx - 1);
+        if (e.key === "ArrowRight") show(idx + 1);
+    });
+
+    
+    if (count <= 1) {
+        prev.style.visibility = "hidden";
+        next.style.visibility = "hidden";
+    }
+})();
+</script>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</p>
+
+</div>
+
+
+
+</div>
+
+<h2 id="image-and-text-side-by-side">Image and Text Side-by-Side</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-1.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+</p>
+
+</div>
+
+
+
+</div>
+
+<h2 id="image-wall-exceeds-column-limit">Image Wall Exceeds Column Limit</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr 1fr;gap:0;align-items:start;">
+    
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-1.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-2.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-3.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-4.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-5.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+
+</div>
+
+<h2 id="two-columns-of-text">Two Columns of Text</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+
+</div>
+
+<h2 id="two-columns-of-text-with-left-column-wide">Two Columns of Text with Left Column Wide</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:2fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
+</p>
+
+</div>
+
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+
+</div>
+
+<h2 id="two-columns-of-text-with-right-column-wide">Two Columns of Text with Right Column Wide</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 2fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
+</p>
+
+</div>
+
+
+
+</div>
+
+<h2 id="three-columns-of-text">Three Columns of Text</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+
+</div>
+
+<h2 id="three-columns-middle-one-wide">Three Columns Middle One Wide</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 2fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell">
+    <ul>
+<li>Item 1</li>
+<li>Item 2
+<ul>
+<li>SubItem 1</li>
+<li>SubItem 2</li>
+</ul>
+</li>
+<li>Item 3</li>
+</ul>
+
+</div>
+
+
+<div class="layout-cell">
+    
+
+<div class="alert alert-info">
+    <div class="alert-label">info</div>
+    <div class="alert-content">This is an informational alert. Great for sharing helpful info. No tint.</div>
+</div>
+
+
+
+<div class="alert alert-warning alert-bg">
+    <div class="alert-label">warning</div>
+    <div class="alert-content">This is a warning alert. Use it to caution readers about potential issues.</div>
+</div>
+
+
+<div class="highlight-box highlight-note">
+    <div class="highlight-label">
+        <span class="highlight-icon"></span>note
+    </div>
+    <div class="highlight-content">Highlights are great for sharing key takeaways and notes. No tint.</div>
+</div>
+
+
+<div class="highlight-box highlight-success highlight-bg">
+    <div class="highlight-label">
+        <span class="highlight-icon"></span>success
+    </div>
+    <div class="highlight-content">Your configuration is working correctly! No tint.</div>
+</div>
+
+
+</div>
+
+
+<div class="layout-cell" style="text-align: justify;">
+    
+<p>
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+</p>
+
+</div>
+
+
+
+</div>
+
+<h2 id="code-blocks-in-multi-columns">Code Blocks in Multi-Columns</h2>
+
+
+<div class="layout-grid" style="gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell">
+    
+<div class="layout-cell">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<div class="tab-group" id="tabs-1775013813">
+    <div class="tab-buttons"></div>
+    <div class="tab-content">
+
+<div class="tab-pane" data-title="Python">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">)</span>
+</span></span></code></pre></div>
+</div>
+
+
+<div class="tab-pane" data-title="JavaScript">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">hello</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Hello, world!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+
+<div class="tab-pane" data-title="Go">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello, world!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+
+</div>
+</div>
+
+<script>
+(function() {
+    var group   = document.getElementById("tabs-1775013813");
+    var buttons = group.querySelector(".tab-buttons");
+    var content = group.querySelector(".tab-content");
+    var tabs    = content.querySelectorAll(".tab-pane");
+
+    tabs.forEach(function(tab, i) {
+        var title = tab.getAttribute("data-title") || "Tab " + (i + 1);
+        var btn   = document.createElement("button");
+        btn.textContent = title;
+        btn.className   = "tab-btn";
+
+        if (i === 0) {
+            btn.classList.add("active");
+            tab.style.display = "block";
+        } else {
+            tab.style.display = "none";
+        }
+
+        btn.addEventListener("click", function() {
+            buttons.querySelectorAll(".tab-btn")
+                   .forEach(function(b) { b.classList.remove("active"); });
+            tabs.forEach(function(t) { t.style.display = "none"; });
+            btn.classList.add("active");
+            tab.style.display = "block";
+        });
+
+        buttons.appendChild(btn);
+    });
+})();
+</script>
+
+
+</div>
+
+
+
+</div>
+
+<h2 id="get-crazy">Get Crazy</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell">
+    
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:0;align-items:start;">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-1.jpg" alt="" />
+</figure>
+
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-2.jpg" alt="" />
+</figure>
+
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-3.jpg" alt="" />
+</figure>
+
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-4.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<div class="table-wrapper table-note">
+    <table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Type</th>
+<th>First Release</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>Interpreted</td>
+<td>1991</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Interpreted</td>
+<td>1995</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>Compiled</td>
+<td>2009</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>Compiled</td>
+<td>2010</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+</div>
+
+
+<details class="details-box details-bg">
+    <summary class="details-summary">Click to see technical details</summary>
+    <div class="details-content"><p>Here&rsquo;s some detailed technical information that most readers might not need. By hiding it in a collapsible section, you keep the main content focused while still providing depth for interested readers.</p>
+<div class="layout-cell">
+<p>You can include any Markdown content here:</p>
+<ul>
+<li>Lists</li>
+<li>Code blocks</li>
+<li><strong>Formatted text</strong></li>
+</ul>
+</div>
+</div>
+</details>
+
+
+<div class="layout-cell">
+    
+
+<div class="alert alert-info">
+    <div class="alert-label">info</div>
+    <div class="alert-content">This is an informational alert. Great for sharing helpful info. No tint.</div>
+</div>
+
+
+
+<div class="alert alert-warning alert-bg">
+    <div class="alert-label">warning</div>
+    <div class="alert-content">This is a warning alert. Use it to caution readers about potential issues.</div>
+</div>
+
+
+<div class="highlight-box highlight-note">
+    <div class="highlight-label">
+        <span class="highlight-icon"></span>note
+    </div>
+    <div class="highlight-content">Highlights are great for sharing key takeaways and notes. No tint.</div>
+</div>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<div class="layout-cell">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Hello, World!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+
+</div>
+
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="images/frame-5.jpg" alt="" />
+</figure>
+
+
+</div>
+
+
+
+</div>
+
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
