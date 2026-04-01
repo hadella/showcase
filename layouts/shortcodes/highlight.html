@@ -1,8 +1,20 @@
 {{- /*
     shortcodes/highlight.html
+
+    Creates emphasis boxes with icons and full border (vs alert's left border).
+
     Usage:
-        {{% highlight info %}}Your content here.{{% /highlight %}}
-        {{% highlight warning true %}}With tinted background.{{% /highlight %}}
+        {{< highlight info >}}
+        Important information to highlight.
+        {{< /highlight >}}
+
+    Available types:
+        - info      (cyan, ★ icon)
+        - note      (magenta/purple, ✎ icon)
+        - warning   (orange, ⚠ icon)
+        - success   (green, ✓ icon)
+        - error     (red, ✗ icon)
+        - important (yellow, ⚡ icon)
 
     Parameters:
         type (positional 0) — info, note, warning, success, error,

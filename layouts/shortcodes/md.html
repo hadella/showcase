@@ -1,0 +1,5 @@
+{{- $text := .Get "text" | default "" -}}
+
+<div class="layout-cell"{{ if $text }} style="text-align: {{ $text }};"{{ end }}>
+    {{ .Inner | markdownify }}
+</div>

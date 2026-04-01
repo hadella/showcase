@@ -30,8 +30,9 @@
 {{ define "main" }}
 {{- $banner := .Params.banner -}}
 {{- $show_title := .Params.show_title | default true -}}
+{{- $wide       := .Params.wide | default false -}}
 
-<div class="post-stage">
+<div class="post-stage"{{ if $wide }} style="max-width: var(--post-max-width-wide);"{{ end }}>
     {{- if $show_title }}
         {{- if $banner }}
         <div class="post-banner">

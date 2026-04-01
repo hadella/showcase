@@ -1,0 +1,46 @@
+{{- /*
+    shortcodes/layout.html
+    Usage:
+        {{< layout >}}
+        {{< cell >}}Left content.{{< /cell >}}
+        {{< cell >}}Right content.{{< /cell >}}
+        {{< /layout >}}
+
+        {{< layout cols="1 2" gap="1rem" align="center" >}}
+        {{< cell >}}{{< img src="photo.jpg" >}}{{< /cell >}}
+        {{< cell >}}Text next to image.{{< /cell >}}
+        {{< /layout >}}
+
+    Parameters:
+        cols  (optional) — space-separated fr values defining column
+                           widths e.g. "1 2" for 1/3 and 2/3
+                           (default: equal columns)
+        gap   (optional) — gap between cells (default: 0)
+        align (optional) — vertical alignment: top, center, bottom
+                           (default: top)
+*/ -}}
+
+{{- $cols  := .Get "cols"  | default "" -}}
+{{- $gap   := .Get "gap"   | default "0" -}}
+{{- $align := .Get "align" | default "top" -}}
+
+{{- /* Build grid-template-columns from cols param */ -}}
+{{- $grid_cols := "" -}}
+{{- if $cols -}}
+    {{- range (split $cols " ") -}}
+        {{- if $grid_cols -}}
+            {{- $grid_cols = printf "%s %sfr" $grid_cols . -}}
+        {{- else -}}
+            {{- $grid_cols = printf "%sfr" . -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- /* Map align param to CSS align-items value */ -}}
+{{- $align_items := "start" -}}
+{{- if eq $align "center" }}{{- $align_items = "center" -}}{{- end }}
+{{- if eq $align "bottom" }}{{- $align_items = "end" -}}{{- end }}
+
+<div class="layout-grid" style="{{- if $grid_cols }}grid-template-columns:{{ $grid_cols }};{{ end }}gap:{{ $gap }};align-items:{{ $align_items }};">
+    {{ .Inner }}
+</div>

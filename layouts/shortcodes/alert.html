@@ -1,8 +1,24 @@
 {{- /*
     shortcodes/alert.html
+
+    Creates colored alert boxes with semantic types.
+
     Usage:
-        {{% alert type="info" %}}Your message here.{{% /alert %}}
-        {{% alert type="warning" bg=true %}}Watch out!{{% /alert %}}
+        {{< alert >}}
+        Unlabeled alert box with grey border.
+        {{< /alert >}}
+
+        {{< alert warning true >}}
+        Alert with colored label and border.
+        {{< /alert >}}
+
+    Available types:
+        - info      (cyan)
+        - note      (magenta/purple)
+        - warning   (orange)
+        - success   (green)
+        - error     (red)
+        - important (yellow)
 
     Parameters:
         type (optional) — info, note, warning, success, error,

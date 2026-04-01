@@ -8,6 +8,7 @@
     --bg-color: #000000;
     --accent-color: #00ffff;
     --text-color: #e0e0e0;
+    --post-max-width-wide: 80vw;
 
     /* ── Grid ───────────────────────────────────────────── */
     --grid-gap: 12px;
@@ -312,7 +313,7 @@ body.single-page {
     margin-bottom: 1rem;
 }
 
-.post-content img {
+.post-content img:not(.gallery-img) {
     max-width: 100%;
     border-radius: 4px;
 }
@@ -681,7 +682,7 @@ details[open] .details-summary::before {
 
 /* ── Tab / Tabgroup shortcode ───────────────────────────────── */
 .tab-group {
-    margin: 1rem 0;
+    margin: 0;
     border: 1px solid var(--tab-border-color);
     border-radius: var(--alert-radius);
     overflow: hidden;
@@ -759,13 +760,7 @@ details[open] .details-summary::before {
     padding: 0;
 }
 
-.gallery-stage {
-    position: relative;
-    width: 100%;
-    background: var(--gallery-bg);
-}
-
-.gallery-img {
+.gallery-stage .gallery-img {
     width: 100%;
     height: auto;
     display: none;
@@ -773,8 +768,14 @@ details[open] .details-summary::before {
     padding: 0;
 }
 
-.gallery-img.active {
+.gallery-stage .gallery-img.active {
     display: block;
+}
+
+.gallery-stage {
+    position: relative;
+    width: 100%;
+    background: var(--gallery-bg);
 }
 
 .gallery-controls {
@@ -808,10 +809,48 @@ details[open] .details-summary::before {
     letter-spacing: 0.05em;
 }
 
+/* ── Layout shortcode ───────────────────────────────────────── */
+.post-content .layout-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    width: 100%;
+    margin: 0;
+}
+
+.layout-cell {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.layout-cell p {
+    margin-top: 0;
+}
+
+.layout-cell pre {
+    margin-top: 0;
+}
+
+.layout-cell img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.layout-cell .img-figure {
+    margin: 0;
+}
+
+/* Mobile — single column */
+@media (max-width: 640px) {
+    .layout-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
 /* ── Table shortcode ────────────────────────────────────────── */
 .table-wrapper {
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin: 0;
 }
 
 .table-caption {

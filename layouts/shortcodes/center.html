@@ -1,1 +1,17 @@
-<div class="centered">{{ .Inner | markdownify }}</div>
+{{- /*
+    shortcodes/center.html
+    Usage:
+        {{% center %}}
+        Your **markdown** content here.
+        {{% /center %}}
+
+    Parameters:
+        none
+
+    Centers content horizontally. Use {{% %}} delimiters to
+    process inner content as markdown.
+*/ -}}
+
+<div class="centered">
+    {{ .Inner | markdownify }}
+</div>

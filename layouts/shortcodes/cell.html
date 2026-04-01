@@ -1,0 +1,21 @@
+{{- /*
+    shortcodes/cell.html
+    Usage: must be nested inside a layout shortcode.
+        {{< cell >}}
+        Any content here — text, images, shortcodes.
+        {{< /cell >}}
+
+        {{< cell text="justify" >}}
+        Justified text content.
+        {{< /cell >}}
+
+    Parameters:
+        text (optional) — text alignment: left, center, right,
+                          justify (default: inherited from page)
+*/ -}}
+
+{{- $text := .Get "text" | default "" -}}
+
+<div class="layout-cell"{{ if $text }} style="text-align: {{ $text }};"{{ end }}>
+    {{ .Inner }}
+</div>
