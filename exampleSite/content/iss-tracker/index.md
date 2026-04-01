@@ -4,10 +4,11 @@ date       = 2023-05-08
 draft      = false
 thumbnail  = "images/iss-tracker-thumb.png"
 p5_border_color = "transparent"
-p5_sound    = false
+p5_sound   = false
+wide       = true
 +++
 
-{{< p5 sketch="sketch.js" width="960" height="484" caption="ISS Tracker Demo" >}}
+{{< p5 sketch="sketch.js" width="960" height="484" caption="ISS Tracker Demo" responsive=true >}}
 
 <div id="iss-data" class="iss-json"></div>
 <script>

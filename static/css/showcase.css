@@ -9,6 +9,7 @@
     --accent-color: #00ffff;
     --text-color: #e0e0e0;
     --post-max-width-wide: 80vw;
+    --p5-responsive-ratio: 16 / 9;
 
     /* ── Grid ───────────────────────────────────────────── */
     --grid-gap: 12px;
@@ -977,6 +978,7 @@ details[open] .details-summary::before {
 }
 
 .p5-frame {
+    max-width: 100%;
     border: var(--p5-border);
     border-radius: var(--p5-border-radius);
     box-shadow: var(--p5-shadow);
@@ -990,6 +992,12 @@ details[open] .details-summary::before {
     color: var(--text-color);
     opacity: 0.75;
     text-align: center;
+}
+
+.p5-responsive {
+    width: 100%;
+    aspect-ratio: var(--p5-responsive-ratio, 16 / 9);
+    height: auto;
 }
 
 /* ── YouTube embed ──────────────────────────────────────────── */

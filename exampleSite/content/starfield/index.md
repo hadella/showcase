@@ -6,7 +6,7 @@ thumbnail  = "images/starfield-thumb.png"
 p5_border_color = "transparent"
 +++
 
-{{< p5 sketch="sketch.js" files="star.js" width="800" height="600" 
+{{< p5 sketch="sketch.js" files="star.js" width="800" height="600" responsive=true
   caption="Move the mouse right to increase or left to decrease speed">}}
 
 ---

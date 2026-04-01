@@ -26,6 +26,7 @@
 {{- $height  := .Get "height" | default "400" -}}
 {{- $sound   := .Get "sound"  | default false -}}
 {{- $caption := .Get "caption" -}}
+{{- $responsive := .Get "responsive" | default false -}}
 
 {{- $base   := .Page.Permalink -}}
 {{- $jsroot := "js/" | absURL -}}
@@ -41,6 +42,15 @@
 {{- $loader := printf "%sp5loader.html?%s" .Site.BaseURL $qs -}}
 
 <div class="p5-wrapper">
+{{- if $responsive }}
+    <iframe class="p5-frame p5-responsive"
+            src="{{ $loader }}"
+            width="100%"
+            scrolling="no"
+            frameborder="0"
+            allowtransparency="true">
+    </iframe>
+    {{- else }}
     <iframe class="p5-frame"
             src="{{ $loader }}"
             width="{{ $width }}"
@@ -49,6 +59,7 @@
             frameborder="0"
             allowtransparency="true">
     </iframe>
+    {{- end }}
     {{- if $caption }}
     <p class="p5-caption">{{ $caption }}</p>
     {{- end }}
