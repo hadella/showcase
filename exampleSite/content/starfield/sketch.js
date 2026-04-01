@@ -40,6 +40,10 @@ function draw() {
   }
 }
 
+function touchMoved() {
+  return false;
+}
+
 function backdrop() {
   background(0);
 

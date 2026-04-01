@@ -33,7 +33,8 @@ function scheduleNext() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  // Scale canvas to window, maintaining 16:9 ratio
+  createCanvas(windowWidth, (windowWidth * 9) / 16);
 
   // Alternative to preload:
   // loadImage(
@@ -54,7 +55,7 @@ function setup() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, (windowWidth * 9) / 16);
 }
 
 function getIssPosition() {
@@ -111,7 +112,7 @@ function drawPath() {
 function draw() {
   // Show the satellite projection as the background
   if (img_loaded) {
-    image(img, 0, 0, img.width / 2, img.height / 2);
+    image(img, 0, 0, width, height);
   }
 
   if (hasIssData) {

@@ -5,10 +5,9 @@ draft      = false
 thumbnail  = "images/iss-tracker-thumb.png"
 p5_border_color = "transparent"
 p5_sound   = false
-wide       = true
 +++
 
-{{< p5 sketch="sketch.js" width="960" height="484" caption="ISS Tracker Demo" responsive=true >}}
+{{< p5 sketch="sketch.js" responsive=true caption="ISS Tracker Demo" >}}
 
 <div id="iss-data" class="iss-json"></div>
 <script>
