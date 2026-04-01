@@ -27,12 +27,11 @@ function windowResized() {
 
 function draw() {
   backdrop();
-
   translate(width / 2, height / 2);
 
-  speed = map(mouseX, 0, width, 1, 50);
-
-  // We only want to move forward
+  // Use touch position if available, otherwise mouse
+  var input_x = touches.length > 0 ? touches[0].x : mouseX;
+  speed = map(input_x, 0, width, 1, 50);
   speed = constrain(speed, 1, 50);
 
   for (let star of stars) {
