@@ -7,6 +7,8 @@ let stars = [];
 
 let speed;
 
+let touched = false;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -41,10 +43,15 @@ function draw() {
 }
 
 function touchStarted() {
+  touched = true;
   return false;
 }
 
 function touchMoved() {
+  return false;
+}
+
+function touchEnded() {
   return false;
 }
 
