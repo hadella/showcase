@@ -40,6 +40,10 @@ function draw() {
   }
 }
 
+function touchStarted() {
+  return false;
+}
+
 function touchMoved() {
   return false;
 }
