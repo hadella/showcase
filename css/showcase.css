@@ -33,7 +33,7 @@
     --post-text: #e0e0e0;
     --post-heading: #ffffff;
     --post-link: var(--accent-color);
-    --post-max-width: 900px;
+    --post-max-width: 1000px;
     --post-padding: 2rem;
 
     /* ── Code ───────────────────────────────────────────── */
