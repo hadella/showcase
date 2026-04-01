@@ -2,14 +2,27 @@
     shortcodes/gallery.html
     Usage:
         {{< gallery >}}
-        https://example.com/img1.jpg
-        https://example.com/img2.jpg
+        https://r2.yourdomain.com/img1.jpg
+        images/local-img.jpg
         {{< /gallery >}}
 
-    One image URL per line in the shortcode body.
-    Navigation via on-screen arrows or keyboard left/right.
-    Counter shown as "1/N" centered between arrows.
-    Aspect ratio controlled by --gallery-ratio CSS variable.
+        {{< gallery width="600" >}}
+        images/img1.jpg
+        images/img2.jpg
+        {{< /gallery >}}
+
+    Parameters:
+        width (optional) — max width in px, centered on page
+                           (default: 100% of container)
+
+    One image URL per line in the shortcode body. Paths can be
+    absolute URLs (e.g. Cloudflare R2) or relative to the page
+    bundle or static/.
+
+    Navigation via on-screen left/right arrows or keyboard arrow
+    keys while hovering over the gallery. Counter shown as "1/N"
+    centered between arrows. Image height is driven naturally by
+    the image dimensions — no fixed aspect ratio.
 */ -}}
 
 {{- $uid   := printf "gal-%v" now.UnixNano -}}
@@ -22,8 +35,16 @@
     {{- end }}
 {{- end }}
 {{- $count := len $imgs -}}
+{{- $width := .Get "width" | default "" -}}
 
+{{- if $width }}
+<div style="width: 100%;">
+    <div class="gallery" id="{{ $uid }}" data-count="{{ $count }}"
+         style="max-width:{{ $width }}px; margin: 0 auto;">
+{{- else }}
 <div class="gallery" id="{{ $uid }}" data-count="{{ $count }}">
+{{- end }}
+
     <div class="gallery-stage">
         {{- range $i, $url := $imgs }}
         <img class="gallery-img{{if eq $i 0}} active{{end}}"
@@ -33,13 +54,22 @@
         {{- end }}
     </div>
     <div class="gallery-controls">
-        <button class="gallery-btn gallery-prev" aria-label="Previous">&#8592;</button>
+        <button class="gallery-btn gallery-prev"
+                aria-label="Previous">&#8592;</button>
         <span class="gallery-counter">
-            <span class="gallery-current">1</span>/<span class="gallery-total">{{ $count }}</span>
+            <span class="gallery-current">1</span>/<span
+            class="gallery-total">{{ $count }}</span>
         </span>
-        <button class="gallery-btn gallery-next" aria-label="Next">&#8594;</button>
+        <button class="gallery-btn gallery-next"
+                aria-label="Next">&#8594;</button>
+    </div>
+
+{{- if $width }}
     </div>
 </div>
+{{- else }}
+</div>
+{{- end }}
 
 <script>
 (function() {
@@ -61,7 +91,18 @@
     prev.addEventListener("click", function() { show(idx - 1); });
     next.addEventListener("click", function() { show(idx + 1); });
 
+    gal.dataset.focused = "0";
+
+    gal.addEventListener("mouseenter", function() {
+        gal.dataset.focused = "1";
+    });
+    gal.addEventListener("mouseleave", function() {
+        gal.dataset.focused = "0";
+    });
+
     document.addEventListener("keydown", function(e) {
+    console.log('focused = ' + gal.dataset.focused);
+        if (gal.dataset.focused !== "1") return;
         if (e.key === "ArrowLeft")  show(idx - 1);
         if (e.key === "ArrowRight") show(idx + 1);
     });

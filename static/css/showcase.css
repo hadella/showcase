@@ -54,7 +54,6 @@
     --gallery-btn-color: var(--text-color);
     --gallery-btn-hover: var(--accent-color);
     --gallery-counter-color: var(--text-color);
-    --gallery-ratio: 4 / 3;
 
     /* ── Alert ──────────────────────────────────────────── */
     --alert-info-color: #4da6ff;
@@ -756,29 +755,26 @@ details[open] .details-summary::before {
 /* ── Gallery / image cycler ─────────────────────────────────── */
 .gallery {
     width: 100%;
-    margin: 1.5rem 0;
+    margin: 0;
+    padding: 0;
 }
 
 .gallery-stage {
     position: relative;
     width: 100%;
-    aspect-ratio: var(--gallery-ratio);
     background: var(--gallery-bg);
-    overflow: hidden;
 }
 
 .gallery-img {
-    position: absolute;
-    inset: 0;
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    height: auto;
+    display: none;
+    margin: 0;
+    padding: 0;
 }
 
 .gallery-img.active {
-    opacity: 1;
+    display: block;
 }
 
 .gallery-controls {

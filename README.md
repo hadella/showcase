@@ -314,16 +314,23 @@ https://r2.yourdomain.com/cars/frog/shot1.jpg
 https://r2.yourdomain.com/cars/frog/shot2.jpg
 /images/local-image.jpg
 {{< /gallery >}}
+
+{{< gallery width="600" >}}
+images/bundle-image.jpg
+{{< /gallery >}}
 ```
 
-One URL per line in the shortcode body. Paths can be absolute URLs
-(e.g. Cloudflare R2) or relative to the page bundle or `static/`.
+One image URL per line in the shortcode body. Paths can be absolute
+URLs (e.g. Cloudflare R2), relative to `static/`, or relative to
+the page bundle.
 
-Navigation via on-screen left/right arrows or keyboard arrow keys.
-Counter shown as `1/N` centered between arrows.
+Parameters:
+- `width` — max width in px, centered on page (default: full width)
 
-Aspect ratio is driven by the image dimensions. The gallery stage
-will match whatever ratio your images are.
+Navigation via on-screen left/right arrows or keyboard arrow keys
+while hovering over the gallery. Counter shown as `1/N` centered
+between arrows. Image height is driven by the image dimensions —
+no fixed aspect ratio.
 
 ---
 
