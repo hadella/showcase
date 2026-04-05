@@ -6,56 +6,98 @@
     <description>Recent content in Tool Demo on My Showcase</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 30 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://hadella.github.io/showcase/tool-demo/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Layout/Cell Shortcode</title>
+      <title>space shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/space/</link>
+      <pubDate>Sun, 05 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/space/</guid>
+      <description>The space shortcode provides a mechanism to add some extra vertical space between various elements in a post.&#xA;note Markdown ignores whitespace between paragraphs Example Let&amp;rsquo;s say we have a few paragraphs with multiple blank lines in between.&#xA;Lorem ipsum ... Lorem ipsum ... warning Markdown will ignore those blank lines in between. So the rendered text looks like: Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat.</description>
+    </item>
+    <item>
+      <title>columns shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/columns/</link>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/columns/</guid>
+      <description>The columns shortcode flows text continuously across multiple columns like a newspaper — different from layout where each cell is independent.&#xA;Syntax {{&amp;lt; columns [count] [gap] [align] /&amp;gt;}} ...text... {{&amp;lt;/ /columns &amp;gt;}} Parameters count → number of columns (default: 2) gap → space between columns (default: 2rem) align → text alignment (default: left) vs layout columns → one text block flowing across columns layout → independent content blocks side by side note The examples here are just using text, but the columns shortcode will also allow other shortcodes, images, etc.</description>
+    </item>
+    <item>
+      <title>hr shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/hr/</link>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/hr/</guid>
+      <description>Markdown supports basic horizontal rules using ---.&#xA;However, we can use the hr shortcode to add styled horizontal breaks as an alterative.&#xA;{{&amp;lt; hr &amp;gt;}} The default is a line using using the mute color which matches the normal text color.&#xA;Options line → (default) dots dashed fade {{&amp;lt; hr dots &amp;gt;}} {{&amp;lt; hr dashed &amp;gt;}} {{&amp;lt; hr fade &amp;gt;}} Colors mute (default) info note warning success error important {{&amp;lt; hr line info &amp;gt;}} {{&amp;lt; hr fade info &amp;gt;}} {{&amp;lt; hr dashed note &amp;gt;}} </description>
+    </item>
+    <item>
+      <title>layout/cell shortcode</title>
       <link>https://hadella.github.io/showcase/tool-demo/layout/</link>
       <pubDate>Mon, 30 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://hadella.github.io/showcase/tool-demo/layout/</guid>
-      <description>Gallery and Text Side-by-Side &amp;#8592; 1/5 &amp;#8594; Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Image and Text Side-by-Side Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</description>
+      <description>The layout shortcode breaks out of markdown&amp;rsquo;s single-column flow. Use cell for shortcode/HTML content, md for markdown content. Both can be mixed within the same layout.&#xA;Syntax {{&amp;lt; layout [cols] [gap] [align] /&amp;gt;}} {{&amp;lt;/ cell /&amp;gt;}}...{{&amp;lt;/ /cell /&amp;gt;}} {{&amp;lt;/ md /&amp;gt;}}...{{&amp;lt;/ /md /&amp;gt;}} {{&amp;lt;/ /layout &amp;gt;}} layout params cols → fr values e.g. &amp;quot;1 2&amp;quot; (default: equal) gap → CSS value e.g. &amp;quot;1rem&amp;quot; (default: 0) align → top, center, bottom (default: top) cell / md params text → left, center, right, justify use cell for shortcodes and HTML use md for markdown lists, headings, etc.</description>
     </item>
     <item>
-      <title>Alert Shortcodes</title>
-      <link>https://hadella.github.io/showcase/tool-demo/alert/</link>
+      <title>color shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/color/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://hadella.github.io/showcase/tool-demo/alert/</guid>
-      <description>Alerts come in several types for different purposes:&#xA;info This is an informational alert. Great for sharing helpful info. No tint. info This is an informational alert. Great for sharing helpful info. note This is a note alert. Use it for general observations or side notes. No tint. note This is a note alert. Use it for general observations or side notes. warning This is a warning alert. Use it to caution readers about potential issues.</description>
+      <guid>https://hadella.github.io/showcase/tool-demo/color/</guid>
+      <description>The color shortcode applies color to inline text without breaking the flow of a sentence — useful when a full hint or flag would be too heavy.&#xA;Syntax {{&amp;lt; color &amp;#34;type&amp;#34; /&amp;gt;}}text{{&amp;lt;/ /color &amp;gt;}} Colors match the hint/flag type vocabulary:&#xA;info → cyan note → purple warning → orange success → green error → red important → yellow Inline Usage Regular text with info colored words inline.&#xA;Regular text with note colored words inline.</description>
     </item>
     <item>
-      <title>Details Shortcode</title>
+      <title>details shortcode</title>
       <link>https://hadella.github.io/showcase/tool-demo/details/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://hadella.github.io/showcase/tool-demo/details/</guid>
-      <description>Use details for optional information that readers can expand:&#xA;Click to see technical details Here&amp;rsquo;s some detailed technical information that most readers might not need. By hiding it in a collapsible section, you keep the main content focused while still providing depth for interested readers.&#xA;You can include any Markdown content here:&#xA;Lists Code blocks Formatted text Configuration example theme: showcase params: author: Your Name description: Your site description </description>
+      <description>Use the details shortcode for optional information that readers can expand.&#xA;Syntax {{&amp;lt; details [user text] [tint] &amp;gt;}} {{&amp;lt; /details &amp;gt;}} Option (empty) → &amp;ldquo;Click to expand&amp;rdquo; user text Tint true false → (default) Basic Example {{&amp;lt; details &amp;gt;}} Without any user params, this just shows ... {{&amp;lt; /details &amp;gt;}} Click to expand Without any user params, this just shows the default &amp;ldquo;Click to expand&amp;rdquo; string and whatever is inside with no tinting.</description>
     </item>
     <item>
-      <title>Highlight Shortcode</title>
-      <link>https://hadella.github.io/showcase/tool-demo/highlight/</link>
+      <title>flag shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/flag/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://hadella.github.io/showcase/tool-demo/highlight/</guid>
-      <description>Highlights are similar to alerts but with different styling:&#xA;info Highlights are great for sharing important information. No tint. info Highlights are great for sharing important information. note Highlights are great for sharing key takeaways and notes. No tint. note Highlights are great for sharing key takeaways and notes. warning Be careful with this approach in production environments. No tint. warning Be careful with this approach in production environments. success Your configuration is working correctly!</description>
+      <guid>https://hadella.github.io/showcase/tool-demo/flag/</guid>
+      <description>Flags are similar to hints but with different styling; a hint is subtle, where a flag demands attention.&#xA;Syntax {{&amp;lt; flag [option] [tint] &amp;gt;}} Option info → (default) note warning success error important Tint true false → (default) Examples {{% flag info %}} flags are great for sharing important information. No tint. {{% /flag %}} info flags are great for sharing important information. No tint. {{% flag info true %}} flags are great for sharing important information.</description>
     </item>
     <item>
-      <title>Img Shortcode</title>
+      <title>hint shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/hint/</link>
+      <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/hint/</guid>
+      <description>Hints come in several types for different purposes. Without a label, the hint is styled simply.&#xA;{{&amp;lt; hint &amp;gt;}} This is a simple hint without a label; use for for general callouts {{&amp;lt; /hint &amp;gt;}} This is a simple hint without a label; use for for general callouts The showcase Hugo theme doesn&amp;rsquo;t support normal markdown blockquotes, as the hint shortcode is essentially its replacement.&#xA;Syntax {{&amp;lt; hint [option] [tint] &amp;gt;}} Option (empty) → (default) info note warning success error important Tint true false → (default) Examples {{% hint info %}} This is an informational hint.</description>
+    </item>
+    <item>
+      <title>img shortcode</title>
       <link>https://hadella.github.io/showcase/tool-demo/img/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://hadella.github.io/showcase/tool-demo/img/</guid>
-      <description> a rubber duck </description>
+      <description>{{&amp;lt; img src=&amp;#34;images/rubber-duck.png&amp;#34; width=&amp;#34;600&amp;#34; caption=&amp;#34;a rubber duck&amp;#34; &amp;gt;}} a rubber duck </description>
     </item>
     <item>
-      <title>Tab/Tabgroup Shortcode</title>
+      <title>tab/tabgroup shortcode</title>
       <link>https://hadella.github.io/showcase/tool-demo/tabgroup/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://hadella.github.io/showcase/tool-demo/tabgroup/</guid>
-      <description>Tab groups let you show related content in different formats:&#xA;def hello(): print(&amp;#34;Hello, world!&amp;#34;) function hello() { console.log(&amp;#34;Hello, world!&amp;#34;); } package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello, world!&amp;#34;) } </description>
+      <description>The tab/tabgroup shortcodes organize related content into switchable panels — useful for showing the same concept in multiple languages, platforms, or formats.&#xA;Syntax {{&amp;lt; tabgroup id=&amp;#34;optional-id&amp;#34; /&amp;gt;}} {{&amp;lt;/ tab title=&amp;#34;Label&amp;#34; /&amp;gt;}} Content here. {{&amp;lt;/ /tab /&amp;gt;}} {{&amp;lt;/ /tabgroup &amp;gt;}} tabgroup id → unique id for multiple groups on one page (optional) tab title → tab button label (default: &amp;ldquo;Tab&amp;rdquo;) Code in Tabs {{&amp;lt; tabgroup /&amp;gt;}} {{&amp;lt;/ tab title=&amp;#34;Python&amp;#34; /&amp;gt;}} ... {{&amp;lt;/ /tab /&amp;gt;}} {{&amp;lt;/ /tabgroup &amp;gt;}} def hello(): print(&amp;#34;Hello, world!</description>
     </item>
     <item>
-      <title>Table Shortcode</title>
+      <title>table shortcode</title>
       <link>https://hadella.github.io/showcase/tool-demo/table/</link>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <guid>https://hadella.github.io/showcase/tool-demo/table/</guid>
-      <description>Use the table shortcode to add color to your table headers:&#xA;Uncolored table Language Type First Release Python Interpreted 1991 JavaScript Interpreted 1995 Go Compiled 2009 Rust Compiled 2010 Colored Table Language Type First Release Python Interpreted 1991 JavaScript Interpreted 1995 Go Compiled 2009 Rust Compiled 2010 Available colors:&#xA;accent info note warning success error important </description>
+      <description>Use the table shortcode to add color accents and captions to tables. The color affects only the header bottom border — a subtle accent line between headers and data rows.&#xA;Syntax {{&amp;lt; table [color] [caption] &amp;gt;}} | Col 1 | Col 2 | |-------|-------| | a | b | {{&amp;lt; /table &amp;gt;}} Color (none) → default info note warning success error important Caption any text string shown above the table optional No Color {{&amp;lt; table &amp;gt;}} Language Type First Release Python Interpreted 1991 JavaScript Interpreted 1995 Go Compiled 2009 Rust Compiled 2010 With Color {{&amp;lt; table note &amp;gt;}} Language Type First Release Python Interpreted 1991 JavaScript Interpreted 1995 Go Compiled 2009 Rust Compiled 2010 {{&amp;lt; table success &amp;#34;Programming languages by release year&amp;#34; &amp;gt;}} Programming languages by release year</description>
+    </item>
+    <item>
+      <title>gallery shortcode</title>
+      <link>https://hadella.github.io/showcase/tool-demo/gallery/</link>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/gallery/</guid>
+      <description>The gallery shortcode creates an image cycler with left/right navigation. Images are driven by natural dimensions — no fixed aspect ratio.&#xA;Syntax {{&amp;lt; gallery [width] /&amp;gt;}} image-path-1.jpg image-path-2.jpg {{&amp;lt;/ /gallery &amp;gt;}} Parameters width → max width in px, centered (default: full width) Navigation on-screen ← → arrows keyboard arrow keys while hovering counter shows 1/N Full Width &amp;#8592; 1/5 &amp;#8594; Custom Width &amp;#8592; 1/5 &amp;#8594; Both galleries operate independently — keyboard input only affects the gallery currently under the mouse cursor.</description>
+    </item>
+    <item>
+      <title>shortcode basics</title>
+      <link>https://hadella.github.io/showcase/tool-demo/shortcode-basics/</link>
+      <pubDate>Sat, 28 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/shortcode-basics/</guid>
+      <description>Hugo shortcodes are reusable content snippets embedded in markdown. Two delimiter styles control how inner content is processed.&#xA;Delimiters [angle brackets] — raw Inner content passed through as-is. Use when the cell contains:&#xA;Other shortcodes Raw HTML No markdown needed [percent signs] — markdown Inner content processed as markdown first. Use when the cell contains:&#xA;Bold, italic text Bullet lists Headings Inline code Examples Shortcode inside a shortcode → use {{&amp;lt; &amp;gt;}} {{&amp;lt; layout cols=&amp;#34;1 1&amp;#34; &amp;gt;}} {{&amp;lt; cell &amp;gt;}} {{&amp;lt; img src=&amp;#34;photo.</description>
     </item>
   </channel>
 </rss>

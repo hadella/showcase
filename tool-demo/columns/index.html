@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>columns shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>columns shortcode</h1>
+        </div>
+
+    <div class="post-content"><p>The <code>columns</code> shortcode flows text continuously across multiple columns
+like a newspaper — different from <code>layout</code> where each cell is independent.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; columns [count] [gap] [align] /&gt;}}
+...text...
+{{&lt;/ /columns &gt;}}
+</code></pre>
+
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="parameters">Parameters</h3>
+<ul>
+<li><code>count</code> → number of columns (default: 2)</li>
+<li><code>gap</code> → space between columns (default: 2rem)</li>
+<li><code>align</code> → text alignment (default: left)</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="vs-layout">vs layout</h3>
+<ul>
+<li><code>columns</code> → one text block flowing across columns</li>
+<li><code>layout</code> → independent content blocks side by side</li>
+</ul>
+
+</div>
+
+
+</div>
+
+
+<div class="hint hint-note">
+    <div class="hint-label">note</div>
+    <div class="hint-content">The examples here are just using text, but the <strong>columns</strong> shortcode will also allow other shortcodes, images, etc. within.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<h2 id="two-columns-default">Two Columns (default)</h2>
+<pre tabindex="0"><code>{{&lt; columns align=&#34;justify&#34; /&gt;}}
+Long text flows here...
+{{&lt;/ /columns &gt;}}
+</code></pre><div class="text-columns"
+     style="column-count: 2;
+            column-gap: 2rem;
+            text-align: justify;">
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat.
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="three-columns">Three Columns</h2>
+<pre tabindex="0"><code>{{&lt; columns count=&#34;3&#34; align=&#34;justify&#34; &gt;}}
+</code></pre><div class="text-columns"
+     style="column-count: 3;
+            column-gap: 2rem;
+            text-align: justify;">
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos
+himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit.
+Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus
+mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna.
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="custom-gap">Custom Gap</h2>
+<pre tabindex="0"><code>{{&lt; columns count=&#34;2&#34; gap=&#34;4rem&#34; &gt;}}
+</code></pre><div class="text-columns"
+     style="column-count: 2;
+            column-gap: 4rem;
+            text-align: left;">
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus
+ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus
+duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
+vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl
+malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class
+aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos.
+</div>
+
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

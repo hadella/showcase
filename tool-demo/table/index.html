@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Table Shortcode | My Showcase</title>
+    <title>table shortcode | My Showcase</title>
     <link rel="stylesheet" href="/showcase/css/showcase.css" />
     <link rel="stylesheet" href="/showcase/css/syntax.css" />
     
@@ -12,85 +12,26 @@
 <body class="single-page">
     <div class="post-stage">
         <div class="post-title">
-            <h1>Table Shortcode</h1>
+            <h1>table shortcode</h1>
         </div>
 
-    <div class="post-content"><p>Use the table shortcode to add color to your table headers:</p>
-<h3 id="uncolored-table">Uncolored table</h3>
-<div class="table-wrapper">
-    <table>
-<thead>
-<tr>
-<th>Language</th>
-<th>Type</th>
-<th>First Release</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Python</td>
-<td>Interpreted</td>
-<td>1991</td>
-</tr>
-<tr>
-<td>JavaScript</td>
-<td>Interpreted</td>
-<td>1995</td>
-</tr>
-<tr>
-<td>Go</td>
-<td>Compiled</td>
-<td>2009</td>
-</tr>
-<tr>
-<td>Rust</td>
-<td>Compiled</td>
-<td>2010</td>
-</tr>
-</tbody>
-</table>
+    <div class="post-content"><p>Use the <code>table</code> shortcode to add color accents and captions to tables.
+The color affects only the header bottom border — a subtle accent line
+between headers and data rows.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; table [color] [caption] &gt;}}
+| Col 1 | Col 2 |
+|-------|-------|
+| a     | b     |
+{{&lt; /table &gt;}}
+</code></pre>
 
-</div>
-
-<h3 id="colored-table">Colored Table</h3>
-<div class="table-wrapper table-note">
-    <table>
-<thead>
-<tr>
-<th>Language</th>
-<th>Type</th>
-<th>First Release</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Python</td>
-<td>Interpreted</td>
-<td>1991</td>
-</tr>
-<tr>
-<td>JavaScript</td>
-<td>Interpreted</td>
-<td>1995</td>
-</tr>
-<tr>
-<td>Go</td>
-<td>Compiled</td>
-<td>2009</td>
-</tr>
-<tr>
-<td>Rust</td>
-<td>Compiled</td>
-<td>2010</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-
-<p>Available colors:</p>
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="color">Color</h3>
 <ul>
-<li>accent</li>
+<li>(none) → default</li>
 <li>info</li>
 <li>note</li>
 <li>warning</li>
@@ -98,6 +39,136 @@
 <li>error</li>
 <li>important</li>
 </ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="caption">Caption</h3>
+<ul>
+<li>any text string</li>
+<li>shown above the table</li>
+<li>optional</li>
+</ul>
+
+</div>
+
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="no-color">No Color</h2>
+<pre tabindex="0"><code>{{&lt; table &gt;}}
+</code></pre><div class="table-wrapper">
+    <table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Type</th>
+<th>First Release</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>Interpreted</td>
+<td>1991</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Interpreted</td>
+<td>1995</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>Compiled</td>
+<td>2009</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>Compiled</td>
+<td>2010</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="with-color">With Color</h2>
+<pre tabindex="0"><code>{{&lt; table note &gt;}}
+</code></pre><div class="table-wrapper table-note">
+    <table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Type</th>
+<th>First Release</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>Interpreted</td>
+<td>1991</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Interpreted</td>
+<td>1995</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>Compiled</td>
+<td>2009</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>Compiled</td>
+<td>2010</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{&lt; table success &#34;Programming languages by release year&#34; &gt;}}
+</code></pre><div class="table-wrapper table-success">
+    <p class="table-caption">Programming languages by release year</p>
+    <table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Type</th>
+<th>First Release</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>Interpreted</td>
+<td>1991</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Interpreted</td>
+<td>1995</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>Compiled</td>
+<td>2009</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>Compiled</td>
+<td>2010</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
 </div>
 </div>
 

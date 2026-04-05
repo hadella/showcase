@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Details Shortcode | My Showcase</title>
+    <title>details shortcode | My Showcase</title>
     <link rel="stylesheet" href="/showcase/css/showcase.css" />
     <link rel="stylesheet" href="/showcase/css/syntax.css" />
     
@@ -12,10 +12,54 @@
 <body class="single-page">
     <div class="post-stage">
         <div class="post-title">
-            <h1>Details Shortcode</h1>
+            <h1>details shortcode</h1>
         </div>
 
-    <div class="post-content"><p>Use details for optional information that readers can expand:</p>
+    <div class="post-content"><p>Use the <code>details</code> shortcode for optional information that readers can expand.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; details [user text] [tint] &gt;}}
+{{&lt; /details &gt;}}
+</code></pre>
+
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="option">Option</h3>
+<ul>
+<li>(empty) → &ldquo;Click to expand&rdquo;</li>
+<li>user text</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="tint">Tint</h3>
+<ul>
+<li>true</li>
+<li>false → (default)</li>
+</ul>
+
+</div>
+
+
+</div>
+
+<h2 id="basic-example">Basic Example</h2>
+<pre tabindex="0"><code>{{&lt; details &gt;}}
+Without any user params, this just shows ...
+{{&lt; /details &gt;}}
+</code></pre><details class="details-box">
+    <summary class="details-summary">Click to expand</summary>
+    <div class="details-content">Without any user params, this just shows the default &ldquo;Click to expand&rdquo; string and whatever is inside with no tinting. The background color is just the default page background.</div>
+</details>
+
+<div class="flag-box flag-info">
+    <div class="flag-label">
+        <span class="flag-icon"></span>info
+    </div>
+    <div class="flag-content">The internals of details can contain markdown, other shortcodes, etc. It&rsquo;s pretty useful!</div>
+</div>
+<h2 id="more-examples">More Examples</h2>
 <details class="details-box details-bg">
     <summary class="details-summary">Click to see technical details</summary>
     <div class="details-content"><p>Here&rsquo;s some detailed technical information that most readers might not need. By hiding it in a collapsible section, you keep the main content focused while still providing depth for interested readers.</p>
@@ -34,7 +78,13 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">params</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="l">Your Name</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">Your site description</span><span class="w">
-</span></span></span></code></pre></div></div>
+</span></span></span></code></pre></div><div class="flag-box flag-note">
+    <div class="flag-label">
+        <span class="flag-icon"></span>note
+    </div>
+    <div class="flag-content">You can even embed other shortcodes</div>
+</div>
+</div>
 </details>
 
 </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tab/Tabgroup Shortcode | My Showcase</title>
+    <title>tab/tabgroup shortcode | My Showcase</title>
     <link rel="stylesheet" href="/showcase/css/showcase.css" />
     <link rel="stylesheet" href="/showcase/css/syntax.css" />
     
@@ -12,11 +12,49 @@
 <body class="single-page">
     <div class="post-stage">
         <div class="post-title">
-            <h1>Tab/Tabgroup Shortcode</h1>
+            <h1>tab/tabgroup shortcode</h1>
         </div>
 
-    <div class="post-content"><p>Tab groups let you show related content in different formats:</p>
-<div class="tab-group" id="tabs-1775080133">
+    <div class="post-content"><p>The <code>tab</code>/<code>tabgroup</code> shortcodes organize related content into switchable
+panels — useful for showing the same concept in multiple languages,
+platforms, or formats.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; tabgroup id=&#34;optional-id&#34; /&gt;}}
+{{&lt;/ tab title=&#34;Label&#34; /&gt;}}
+Content here.
+{{&lt;/ /tab /&gt;}}
+{{&lt;/ /tabgroup &gt;}}
+</code></pre>
+
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="tabgroup">tabgroup</h3>
+<ul>
+<li><code>id</code> → unique id for multiple groups on one page (optional)</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="tab">tab</h3>
+<ul>
+<li><code>title</code> → tab button label (default: &ldquo;Tab&rdquo;)</li>
+</ul>
+
+</div>
+
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="code-in-tabs">Code in Tabs</h2>
+<pre tabindex="0"><code>{{&lt; tabgroup /&gt;}}
+{{&lt;/ tab title=&#34;Python&#34; /&gt;}}
+...
+{{&lt;/ /tab /&gt;}}
+{{&lt;/ /tabgroup &gt;}}
+</code></pre><div class="tab-group" id="code-example">
     <div class="tab-buttons"></div>
     <div class="tab-content">
 
@@ -47,12 +85,77 @@
 </div>
 
 
+<div class="tab-pane" data-title="Rust">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&#34;Hello, world!&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
+</div>
+
+
 </div>
 </div>
 
 <script>
 (function() {
-    var group   = document.getElementById("tabs-1775080133");
+    var group   = document.getElementById("code-example");
+    var buttons = group.querySelector(".tab-buttons");
+    var content = group.querySelector(".tab-content");
+    var tabs    = content.querySelectorAll(".tab-pane");
+
+    tabs.forEach(function(tab, i) {
+        var title = tab.getAttribute("data-title") || "Tab " + (i + 1);
+        var btn   = document.createElement("button");
+        btn.textContent = title;
+        btn.className   = "tab-btn";
+
+        if (i === 0) {
+            btn.classList.add("active");
+            tab.style.display = "block";
+        } else {
+            tab.style.display = "none";
+        }
+
+        btn.addEventListener("click", function() {
+            buttons.querySelectorAll(".tab-btn")
+                   .forEach(function(b) { b.classList.remove("active"); });
+            tabs.forEach(function(t) { t.style.display = "none"; });
+            btn.classList.add("active");
+            tab.style.display = "block";
+        });
+
+        buttons.appendChild(btn);
+    });
+})();
+</script>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="multiple-tab-groups">Multiple Tab Groups</h2>
+<p>Use <code>id</code> to distinguish groups when more than one appears on a page.</p>
+<div class="tab-group" id="os-install">
+    <div class="tab-buttons"></div>
+    <div class="tab-content">
+<div class="tab-pane" data-title="Linux">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt install hugo
+</span></span></code></pre></div>
+</div>
+
+<div class="tab-pane" data-title="macOS">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install hugo
+</span></span></code></pre></div>
+</div>
+
+<div class="tab-pane" data-title="Windows">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">choco install hugo
+</span></span></code></pre></div>
+</div>
+
+</div>
+</div>
+
+<script>
+(function() {
+    var group   = document.getElementById("os-install");
     var buttons = group.querySelector(".tab-buttons");
     var content = group.querySelector(".tab-content");
     var tabs    = content.querySelectorAll(".tab-pane");

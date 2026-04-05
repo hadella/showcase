@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>space shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>space shortcode</h1>
+        </div>
+
+    <div class="post-content"><p>The <code>space</code> shortcode provides a mechanism to add some extra vertical space between various elements in a post.</p>
+
+<div class="hint hint-note">
+    <div class="hint-label">note</div>
+    <div class="hint-content">Markdown ignores whitespace between paragraphs</div>
+</div>
+<h2 id="example">Example</h2>
+<p>Let&rsquo;s say we have a few paragraphs with multiple blank lines in between.</p>
+<pre tabindex="0"><code>Lorem ipsum ...
+
+
+
+Lorem ipsum ...
+</code></pre><div class="hint hint-warning">
+    <div class="hint-label">warning</div>
+    <div class="hint-content">Markdown will <strong>ignore</strong> those blank lines in between. So the rendered text looks like:</div>
+</div>
+<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+<div class="hint hint-info">
+    <div class="hint-label">info</div>
+    <div class="hint-content">However, we can use the <strong>space</strong> shortcode to add vertical space in between.</div>
+</div>
+<pre tabindex="0"><code>Lorem ipsum ...
+
+{{&lt; space &#34;3rem&#34; &gt;}}
+
+Lorem ipsum ...
+</code></pre><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+<div style="height: 3rem;"></div>
+<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

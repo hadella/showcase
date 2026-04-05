@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>color shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>color shortcode</h1>
+        </div>
+
+    <div class="post-content"><p>The <code>color</code> shortcode applies color to inline text without breaking
+the flow of a sentence — useful when a full hint or flag would be
+too heavy.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; color &#34;type&#34; /&gt;}}text{{&lt;/ /color &gt;}}
+</code></pre><p>Colors match the hint/flag type vocabulary:</p>
+<ul>
+<li><code>info</code> → cyan</li>
+<li><code>note</code> → purple</li>
+<li><code>warning</code> → orange</li>
+<li><code>success</code> → green</li>
+<li><code>error</code> → red</li>
+<li><code>important</code> → yellow</li>
+</ul>
+<div class="hr-divider hr-fade"></div>
+<h2 id="inline-usage">Inline Usage</h2>
+<p>Regular text with <span class="color-info">info colored words</span>
+ inline.</p>
+<p>Regular text with <span class="color-note">note colored words</span>
+ inline.</p>
+<p>Regular text with <span class="color-warning">warning colored words</span>
+ inline.</p>
+<p>Regular text with <span class="color-success">success colored words</span>
+ inline.</p>
+<p>Regular text with <span class="color-error">error colored words</span>
+ inline.</p>
+<p>Regular text with <span class="color-important">important colored words</span>
+ inline.</p>
+<div class="hr-divider hr-fade"></div>
+<h2 id="longer-phrase">Longer Phrase</h2>
+<span class="color-warning">This entire sentence is colored warning orange without needing a full hint or flag box.</span>
+
+<span class="color-success">Color can span as much text as needed — words, sentences, or whole paragraphs.</span>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="combined-with-other-shortcodes">Combined with Other Shortcodes</h2>
+<div class="hint hint-info">
+    <div class="hint-label">info</div>
+    <div class="hint-content">Use <span class="color-warning">color</span>
+inside hints for
+extra emphasis on specific words.</div>
+</div>
+<div class="flag-box flag-note">
+    <div class="flag-label">
+        <span class="flag-icon"></span>note
+    </div>
+    <div class="flag-content"><span class="color-error">Critical values</span>
+stand out clearly
+when combined with a flag.</div>
+</div></div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

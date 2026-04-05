@@ -57,7 +57,7 @@
     --gallery-btn-hover: var(--accent-color);
     --gallery-counter-color: var(--text-color);
 
-    /* ── Alert ──────────────────────────────────────────── */
+    /* ── Alert Colors ───────────────────────────────────── */
     --alert-info-color: #4da6ff;
     --alert-warning-color: #ff8f40;
     --alert-error-color: #e94560;
@@ -391,8 +391,16 @@ pre code {
     color: inherit;
 }
 
-/* ── Alert shortcode ────────────────────────────────────────── */
-.alert {
+/* ── Color shortcode ────────────────────────────────────────── */
+.color-info      { color: var(--alert-info-color); }
+.color-note      { color: var(--alert-note-color); }
+.color-warning   { color: var(--alert-warning-color); }
+.color-success   { color: var(--alert-success-color); }
+.color-error     { color: var(--alert-error-color); }
+.color-important { color: var(--alert-important-color); }
+
+/* ── hint shortcode (subtle border-left) ────────────────────── */
+.hint {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -403,7 +411,7 @@ pre code {
     margin: 1rem 0;
 }
 
-.alert-label {
+.hint-label {
     font-size: var(--alert-label-size);
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -412,92 +420,92 @@ pre code {
     min-width: 3.5rem;
 }
 
-.alert-content {
+.hint-content {
     flex: 1;
     font-size: 0.9rem;
     line-height: 1.6;
 }
 
-.alert-content p {
+.hint-content p {
     margin: 0;
 }
 
 /* Type colors */
-.alert-note {
+.hint-note {
     border-color: var(--alert-note-color);
     color: var(--alert-note-color);
 }
-.alert-important {
+.hint-important {
     border-color: var(--alert-important-color);
     color: var(--alert-important-color);
 }
-.alert-info {
+.hint-info {
     border-color: var(--alert-info-color);
     color: var(--alert-info-color);
 }
-.alert-warning {
+.hint-warning {
     border-color: var(--alert-warning-color);
     color: var(--alert-warning-color);
 }
-.alert-error {
+.hint-error {
     border-color: var(--alert-error-color);
     color: var(--alert-error-color);
 }
-.alert-success {
+.hint-success {
     border-color: var(--alert-success-color);
     color: var(--alert-success-color);
 }
 
 /* Content text stays readable */
-.alert-info .alert-content,
-.alert-warning .alert-content,
-.alert-error .alert-content,
-.alert-note .alert-content,
-.alert-important .alert-content,
-.alert-success .alert-content {
+.hint-info .hint-content,
+.hint-warning .hint-content,
+.hint-error .hint-content,
+.hint-note .hint-content,
+.hint-important .hint-content,
+.hint-success .hint-content {
     color: var(--text-color);
 }
 
 /* Background tint option */
-.alert-note.alert-bg {
+.hint-note.hint-bg {
     background: color-mix(in srgb, var(--alert-note-color) 12%, transparent);
 }
-.alert-important.alert-bg {
+.hint-important.hint-bg {
     background: color-mix(
         in srgb,
         var(--alert-important-color) 12%,
         transparent
     );
 }
-.alert-info.alert-bg {
+.hint-info.hint-bg {
     background: color-mix(in srgb, var(--alert-info-color) 12%, transparent);
 }
-.alert-warning.alert-bg {
+.hint-warning.hint-bg {
     background: color-mix(in srgb, var(--alert-warning-color) 12%, transparent);
 }
-.alert-error.alert-bg {
+.hint-error.hint-bg {
     background: color-mix(in srgb, var(--alert-error-color) 12%, transparent);
 }
-.alert-success.alert-bg {
+.hint-success.hint-bg {
     background: color-mix(in srgb, var(--alert-success-color) 12%, transparent);
 }
 
-.alert-box {
+.hint-box {
     border-left: 3px solid var(--text-color);
     padding: var(--alert-padding);
     margin: 1rem 0;
     opacity: 0.8;
 }
 
-/* ── Highlight shortcode ────────────────────────────────────── */
-.highlight-box {
+/* ── flag shortcode (prominent full-border) ─────────────────── */
+.flag-box {
     padding: 1rem 1.5rem;
     margin: 1rem 0;
     border-radius: var(--alert-radius);
     border: 2px solid;
 }
 
-.highlight-label {
+.flag-label {
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.75rem;
@@ -505,99 +513,99 @@ pre code {
     margin-bottom: 0.5rem;
 }
 
-.highlight-icon {
+.flag-icon {
     font-size: 1rem;
     margin-right: 0.4rem;
 }
 
-.highlight-content {
+.flag-content {
     color: var(--text-color);
     font-size: 0.9rem;
     line-height: 1.6;
 }
 
-.highlight-content p {
+.flag-content p {
     margin: 0;
 }
 
 /* Type variants — reuse alert color vars */
-.highlight-info {
+.flag-info {
     border-color: var(--alert-info-color);
 }
-.highlight-info .highlight-label {
+.flag-info .flag-label {
     color: var(--alert-info-color);
 }
-.highlight-info .highlight-icon::before {
+.flagt-info .flag-icon::before {
     content: "★";
 }
 
-.highlight-warning {
+.flag-warning {
     border-color: var(--alert-warning-color);
 }
-.highlight-warning .highlight-label {
+.flag-warning .flag-label {
     color: var(--alert-warning-color);
 }
-.highlight-warning .highlight-icon::before {
+.flag-warning .flag-icon::before {
     content: "⚠";
 }
 
-.highlight-success {
+.flag-success {
     border-color: var(--alert-success-color);
 }
-.highlight-success .highlight-label {
+.flag-success .flag-label {
     color: var(--alert-success-color);
 }
-.highlight-success .highlight-icon::before {
+.flag-success .flag-icon::before {
     content: "✓";
 }
 
-.highlight-error {
+.flag-error {
     border-color: var(--alert-error-color);
 }
-.highlight-error .highlight-label {
+.flag-error .flag-label {
     color: var(--alert-error-color);
 }
-.highlight-error .highlight-icon::before {
+.flag-error .flag-icon::before {
     content: "✗";
 }
 
-.highlight-important {
+.flag-important {
     border-color: var(--alert-important-color);
 }
-.highlight-important .highlight-label {
+.flag-important .flag-label {
     color: var(--alert-important-color);
 }
-.highlight-important .highlight-icon::before {
+.flag-important .flag-icon::before {
     content: "⚡";
 }
 
-.highlight-note {
+.flag-note {
     border-color: var(--alert-note-color);
 }
-.highlight-note .highlight-label {
+.flag-note .flag-label {
     color: var(--alert-note-color);
 }
-.highlight-note .highlight-icon::before {
+.flag-note .flag-icon::before {
     content: "✎";
 }
 
 /* Background tint option */
-.highlight-info.highlight-bg {
+.flag-info.flag-bg {
     background: color-mix(in srgb, var(--alert-info-color) 12%, transparent);
 }
-.highlight-note.highlight-bg {
+.flag-note.flag-bg {
     background: color-mix(in srgb, var(--alert-note-color) 12%, transparent);
 }
-.highlight-warning.highlight-bg {
+.flag-warning.flag-bg {
     background: color-mix(in srgb, var(--alert-warning-color) 12%, transparent);
 }
-.highlight-success.highlight-bg {
+.flag-success.flag-bg {
     background: color-mix(in srgb, var(--alert-success-color) 12%, transparent);
 }
-.highlight-error.highlight-bg {
+.flag-error.flag-bg {
     background: color-mix(in srgb, var(--alert-error-color) 12%, transparent);
 }
-.highlight-important.highlight-bg {
+.flag-important.flag-bg {
     background: color-mix(
         in srgb,
         var(--alert-important-color) 12%,
@@ -657,6 +665,87 @@ details[open] .details-summary::before {
 
 .details-bg {
     background: var(--details-bg);
+}
+
+/* ── Columns shortcode ──────────────────────────────────────── */
+.text-columns {
+    margin: 2rem 0;
+}
+
+/* Prevent headings from breaking across columns */
+.text-columns h1,
+.text-columns h2,
+.text-columns h3,
+.text-columns h4,
+.text-columns h5,
+.text-columns h6 {
+    break-after: avoid;
+    column-break-after: avoid;
+}
+
+/* Prevent images/figures from breaking */
+.text-columns img,
+.text-columns figure {
+    break-inside: avoid;
+    column-break-inside: avoid;
+}
+
+/* Mobile — single column */
+@media (max-width: 640px) {
+    .text-columns {
+        column-count: 1 !important;
+    }
+}
+
+/* ── hr shortcode ───────────────────────────────────────────── */
+
+.hr-color-mute      { --hr-color: var(--text-color); }
+.hr-color-info      { --hr-color: var(--alert-info-color); }
+.hr-color-note      { --hr-color: var(--alert-note-color); }
+.hr-color-warning   { --hr-color: var(--alert-warning-color); }
+.hr-color-success   { --hr-color: var(--alert-success-color); }
+.hr-color-error     { --hr-color: var(--alert-error-color); }
+.hr-color-important { --hr-color: var(--alert-important-color); }
+
+/* Horizontal dividers */
+.hr-divider {
+    margin: 3rem auto;
+    width: 100%;
+    text-align: center;
+}
+
+/* Solid line (default) */
+.hr-line {
+    height: 1px;
+    background: var(--hr-color, var(--text-color));
+    border: none;
+}
+
+/* Three dots */
+.hr-dots::before {
+    content: "• • •";
+    color: var(--hr-color, var(--text-color));
+    font-size: 1rem;
+    letter-spacing: 1rem;
+}
+
+/* Gradient fade */
+.hr-fade {
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--hr-color, var(--text-color)) 50%,
+        transparent
+    );
+    border: none;
+}
+
+/* Dashed line across */
+.hr-dashed {
+    height: 0;
+    border: none;
+    border-top: 1px dashed var(--hr-color, var(--text-color));
 }
 
 /* ── Image shortcode ────────────────────────────────────────── */

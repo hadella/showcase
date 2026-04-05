@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Layout/Cell Shortcode | My Showcase</title>
+    <title>layout/cell shortcode | My Showcase</title>
     <link rel="stylesheet" href="/showcase/css/showcase.css" />
     <link rel="stylesheet" href="/showcase/css/syntax.css" />
     
@@ -12,10 +12,46 @@
 <body class="single-page">
     <div class="post-stage" style="max-width: var(--post-max-width-wide);">
         <div class="post-title">
-            <h1>Layout/Cell Shortcode</h1>
+            <h1>layout/cell shortcode</h1>
         </div>
 
-    <div class="post-content"><h2 id="gallery-and-text-side-by-side">Gallery and Text Side-by-Side</h2>
+    <div class="post-content"><p>The <code>layout</code> shortcode breaks out of markdown&rsquo;s single-column flow.
+Use <code>cell</code> for shortcode/HTML content, <code>md</code> for markdown content.
+Both can be mixed within the same layout.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; layout [cols] [gap] [align] /&gt;}}
+{{&lt;/ cell /&gt;}}...{{&lt;/ /cell /&gt;}}
+{{&lt;/ md /&gt;}}...{{&lt;/ /md /&gt;}}
+{{&lt;/ /layout &gt;}}
+</code></pre>
+
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="layout-params">layout params</h3>
+<ul>
+<li><code>cols</code> → fr values e.g. <code>&quot;1 2&quot;</code> (default: equal)</li>
+<li><code>gap</code> → CSS value e.g. <code>&quot;1rem&quot;</code> (default: <code>0</code>)</li>
+<li><code>align</code> → <code>top</code>, <code>center</code>, <code>bottom</code> (default: <code>top</code>)</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="cell--md-params">cell / md params</h3>
+<ul>
+<li><code>text</code> → <code>left</code>, <code>center</code>, <code>right</code>, <code>justify</code></li>
+<li>use <code>cell</code> for shortcodes and HTML</li>
+<li>use <code>md</code> for markdown lists, headings, etc.</li>
+</ul>
+
+</div>
+
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="gallery-and-text-side-by-side">Gallery and Text Side-by-Side</h2>
 
 
 <div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
@@ -24,7 +60,7 @@
 <div class="layout-cell">
     
 
-<div class="gallery" id="gal-1775080133554555378" data-count="5">
+<div class="gallery" id="gal-1775430927726624685" data-count="5">
 
     <div class="gallery-stage">
         <img class="gallery-img active"
@@ -62,7 +98,7 @@
 
 <script>
 (function() {
-    var gal     = document.getElementById("gal-1775080133554555378");
+    var gal     = document.getElementById("gal-1775430927726624685");
     var imgs    = gal.querySelectorAll(".gallery-img");
     var current = gal.querySelector(".gallery-current");
     var prev    = gal.querySelector(".gallery-prev");
@@ -120,6 +156,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 </div>
 
+<div class="hr-divider hr-fade"></div>
 <h2 id="image-and-text-side-by-side">Image and Text Side-by-Side</h2>
 
 
@@ -148,7 +185,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 </div>
 
-<h2 id="image-wall-exceeds-column-limit">Image Wall Exceeds Column Limit</h2>
+<div class="hr-divider hr-fade"></div>
+<h2 id="image-wall">Image Wall</h2>
 
 
 <div class="layout-grid" style="grid-template-columns:1fr 1fr 1fr;gap:0;align-items:start;">
@@ -234,7 +272,8 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 </div>
 
-<h2 id="two-columns-of-text-with-left-column-wide">Two Columns of Text with Left Column Wide</h2>
+<div class="hr-divider hr-fade"></div>
+<h2 id="unequal-columns">Unequal Columns</h2>
 
 
 <div class="layout-grid" style="grid-template-columns:2fr 1fr;gap:1rem;align-items:start;">
@@ -264,36 +303,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 </div>
 
-<h2 id="two-columns-of-text-with-right-column-wide">Two Columns of Text with Right Column Wide</h2>
-
-
-<div class="layout-grid" style="grid-template-columns:1fr 2fr;gap:1rem;align-items:start;">
-    
-
-<div class="layout-cell" style="text-align: justify;">
-    
-<p>
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-</p>
-
-</div>
-
-
-<div class="layout-cell" style="text-align: justify;">
-    
-<p>
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-</p>
-<p>
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
-</p>
-
-</div>
-
-
-
-</div>
-
+<div class="hr-divider hr-fade"></div>
 <h2 id="three-columns-of-text">Three Columns of Text</h2>
 
 
@@ -330,7 +340,8 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 </div>
 
-<h2 id="three-columns-middle-one-wide">Three Columns Middle One Wide</h2>
+<div class="hr-divider hr-fade"></div>
+<h2 id="three-columns-middle-wide">Three Columns Middle Wide</h2>
 
 
 <div class="layout-grid" style="grid-template-columns:1fr 2fr 1fr;gap:1rem;align-items:start;">
@@ -354,34 +365,30 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 <div class="layout-cell">
     
 
-<div class="alert alert-info">
-    <div class="alert-label">info</div>
-    <div class="alert-content">This is an informational alert. Great for sharing helpful info. No tint.</div>
+<div class="hint hint-info">
+    <div class="hint-label">info</div>
+    <div class="hint-content">This is an informational hint. Great for sharing helpful info. No tint.</div>
 </div>
 
 
-
-<div class="alert alert-warning alert-bg">
-    <div class="alert-label">warning</div>
-    <div class="alert-content">This is a warning alert. Use it to caution readers about potential issues.</div>
+<div class="hint hint-warning hint-bg">
+    <div class="hint-label">warning</div>
+    <div class="hint-content">This is a warning hint. Use it to caution readers about potential issues.</div>
 </div>
 
-
-<div class="highlight-box highlight-note">
-    <div class="highlight-label">
-        <span class="highlight-icon"></span>note
+<div class="flag-box flag-note">
+    <div class="flag-label">
+        <span class="flag-icon"></span>note
     </div>
-    <div class="highlight-content">Highlights are great for sharing key takeaways and notes. No tint.</div>
+    <div class="flag-content">flags are great for sharing key takeaways and notes. No tint.</div>
 </div>
 
-
-<div class="highlight-box highlight-success highlight-bg">
-    <div class="highlight-label">
-        <span class="highlight-icon"></span>success
+<div class="flag-box flag-success flag-bg">
+    <div class="flag-label">
+        <span class="flag-icon"></span>success
     </div>
-    <div class="highlight-content">Your configuration is working correctly! No tint.</div>
+    <div class="flag-content">Your configuration is working correctly! No tint.</div>
 </div>
-
 
 </div>
 
@@ -398,7 +405,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 </div>
 
-<h2 id="code-blocks-in-multi-columns">Code Blocks in Multi-Columns</h2>
+<h2 id="code-and-tabs-side-by-side">Code and Tabs Side-by-Side</h2>
 
 
 <div class="layout-grid" style="gap:1rem;align-items:start;">
@@ -423,7 +430,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 <div class="layout-cell">
     
-<div class="tab-group" id="tabs-1775080133">
+<div class="tab-group" id="tabs-1775430927">
     <div class="tab-buttons"></div>
     <div class="tab-content">
 
@@ -459,7 +466,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 <script>
 (function() {
-    var group   = document.getElementById("tabs-1775080133");
+    var group   = document.getElementById("tabs-1775430927");
     var buttons = group.querySelector(".tab-buttons");
     var content = group.querySelector(".tab-content");
     var tabs    = content.querySelectorAll(".tab-pane");
@@ -497,7 +504,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 </div>
 
-<h2 id="get-crazy">Get Crazy</h2>
+<h2 id="get-crazy--nested-layouts">Get Crazy — Nested Layouts</h2>
 
 
 <div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
@@ -534,7 +541,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 <div class="layout-cell">
     
-<div class="table-wrapper table-note">
+<div class="table-wrapper">
     <table>
 <thead>
 <tr>
@@ -591,26 +598,23 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 <div class="layout-cell">
     
 
-<div class="alert alert-info">
-    <div class="alert-label">info</div>
-    <div class="alert-content">This is an informational alert. Great for sharing helpful info. No tint.</div>
+<div class="hint hint-info">
+    <div class="hint-label">info</div>
+    <div class="hint-content">This is an informational hint. Great for sharing helpful info. No tint.</div>
 </div>
 
 
-
-<div class="alert alert-warning alert-bg">
-    <div class="alert-label">warning</div>
-    <div class="alert-content">This is a warning alert. Use it to caution readers about potential issues.</div>
+<div class="hint hint-warning hint-bg">
+    <div class="hint-label">warning</div>
+    <div class="hint-content">This is a warning hint. Use it to caution readers about potential issues.</div>
 </div>
 
-
-<div class="highlight-box highlight-note">
-    <div class="highlight-label">
-        <span class="highlight-icon"></span>note
+<div class="flag-box flag-note">
+    <div class="flag-label">
+        <span class="flag-icon"></span>note
     </div>
-    <div class="highlight-content">Highlights are great for sharing key takeaways and notes. No tint.</div>
+    <div class="flag-content">flags are great for sharing key takeaways and notes. No tint.</div>
 </div>
-
 
 </div>
 

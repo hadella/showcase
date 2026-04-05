@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery Demo | My Showcase</title>
-    <link rel="stylesheet" href="/css/showcase.css" />
-    <link rel="stylesheet" href="/css/syntax.css" />
+    <title>gallery shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
     
 
 </head>
 <body class="single-page">
     <div class="post-stage">
         <div class="post-title">
-            <h1>Gallery Demo</h1>
+            <h1>gallery shortcode</h1>
         </div>
 
-    <div class="post-content"><h2 id="full-width-gallery">Full Width Gallery</h2>
+    <div class="post-content"><p>The <code>gallery</code> shortcode creates an image cycler with left/right
+navigation. Images are driven by natural dimensions — no fixed
+aspect ratio.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; gallery [width] /&gt;}}
+image-path-1.jpg
+image-path-2.jpg
+{{&lt;/ /gallery &gt;}}
+</code></pre>
 
-<div class="gallery" id="gal-1775429261268684156" data-count="5">
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="parameters">Parameters</h3>
+<ul>
+<li><code>width</code> → max width in px, centered (default: full width)</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="navigation">Navigation</h3>
+<ul>
+<li>on-screen ← → arrows</li>
+<li>keyboard arrow keys while hovering</li>
+<li>counter shows <code>1/N</code></li>
+</ul>
+
+</div>
+
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="full-width">Full Width</h2>
+
+<div class="gallery" id="gal-1775430927724769889" data-count="5">
 
     <div class="gallery-stage">
         <img class="gallery-img active"
@@ -55,7 +89,7 @@
 
 <script>
 (function() {
-    var gal     = document.getElementById("gal-1775429261268684156");
+    var gal     = document.getElementById("gal-1775430927724769889");
     var imgs    = gal.querySelectorAll(".gallery-img");
     var current = gal.querySelector(".gallery-current");
     var prev    = gal.querySelector(".gallery-prev");
@@ -97,11 +131,10 @@
 })();
 </script>
 
-<p>A simple gallery demo — use the arrows or keyboard left/right to cycle through images.</p>
-<h2 id="custom-width-gallery">Custom Width Gallery</h2>
+<h2 id="custom-width">Custom Width</h2>
 
 <div style="width: 100%;">
-    <div class="gallery" id="gal-1775429261268847985" data-count="5"
+    <div class="gallery" id="gal-1775430927724997641" data-count="5"
          style="max-width:600px; margin: 0 auto;">
 
     <div class="gallery-stage">
@@ -141,7 +174,7 @@
 
 <script>
 (function() {
-    var gal     = document.getElementById("gal-1775429261268847985");
+    var gal     = document.getElementById("gal-1775430927724997641");
     var imgs    = gal.querySelectorAll(".gallery-img");
     var current = gal.querySelector(".gallery-current");
     var prev    = gal.querySelector(".gallery-prev");
@@ -183,7 +216,8 @@
 })();
 </script>
 
-<p>We can also specify a width. Notice that both galleries operate independentally.</p>
+<p>Both galleries operate independently — keyboard input only affects
+the gallery currently under the mouse cursor.</p>
 </div>
 </div>
 

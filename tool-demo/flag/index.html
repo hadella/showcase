@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flag shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>flag shortcode</h1>
+        </div>
+
+    <div class="post-content"><p>Flags are similar to hints but with different styling; a <code>hint</code> is subtle, where a <code>flag</code> demands attention.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; flag [option] [tint] &gt;}}
+</code></pre>
+
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="option">Option</h3>
+<ul>
+<li>info → (default)</li>
+<li>note</li>
+<li>warning</li>
+<li>success</li>
+<li>error</li>
+<li>important</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="tint">Tint</h3>
+<ul>
+<li>true</li>
+<li>false → (default)</li>
+</ul>
+
+</div>
+
+
+</div>
+
+<h2 id="examples">Examples</h2>
+<pre tabindex="0"><code>{{% flag info %}}
+flags are great for sharing important information. No tint.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-info">
+    <div class="flag-label">
+        <span class="flag-icon"></span>info
+    </div>
+    <div class="flag-content">flags are great for sharing important information. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% flag info true %}}
+flags are great for sharing important information.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-info flag-bg">
+    <div class="flag-label">
+        <span class="flag-icon"></span>info
+    </div>
+    <div class="flag-content">flags are great for sharing important information.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% flag note %}}
+flags are great for sharing key takeaways and notes. No tint.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-note">
+    <div class="flag-label">
+        <span class="flag-icon"></span>note
+    </div>
+    <div class="flag-content">flags are great for sharing key takeaways and notes. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% flag note true %}}
+flags are great for sharing key takeaways and notes.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-note flag-bg">
+    <div class="flag-label">
+        <span class="flag-icon"></span>note
+    </div>
+    <div class="flag-content">flags are great for sharing key takeaways and notes.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% flag warning %}}
+Be careful with this approach in production environments. No tint.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-warning">
+    <div class="flag-label">
+        <span class="flag-icon"></span>warning
+    </div>
+    <div class="flag-content">Be careful with this approach in production environments. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% flag warning true %}}
+Be careful with this approach in production environments.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-warning flag-bg">
+    <div class="flag-label">
+        <span class="flag-icon"></span>warning
+    </div>
+    <div class="flag-content">Be careful with this approach in production environments.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% flag success true %}}
+Your configuration is working correctly! No tint.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-success">
+    <div class="flag-label">
+        <span class="flag-icon"></span>success
+    </div>
+    <div class="flag-content">Your configuration is working correctly! No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% flag success true %}}
+Your configuration is working correctly!.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-success flag-bg">
+    <div class="flag-label">
+        <span class="flag-icon"></span>success
+    </div>
+    <div class="flag-content">Your configuration is working correctly!.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% flag error %}}
+This operation cannot be reversed. No tint.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-error">
+    <div class="flag-label">
+        <span class="flag-icon"></span>error
+    </div>
+    <div class="flag-content">This operation cannot be reversed. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% flag error true %}}
+This operation cannot be reversed.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-error flag-bg">
+    <div class="flag-label">
+        <span class="flag-icon"></span>error
+    </div>
+    <div class="flag-content">This operation cannot be reversed.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% flag important %}}
+Always backup your data before proceeding. No tint.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-important">
+    <div class="flag-label">
+        <span class="flag-icon"></span>important
+    </div>
+    <div class="flag-content">Always backup your data before proceeding. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% flag important true %}}
+Always backup your data before proceeding.
+{{% /flag %}}
+</code></pre><div class="flag-box flag-important flag-bg">
+    <div class="flag-label">
+        <span class="flag-icon"></span>important
+    </div>
+    <div class="flag-content">Always backup your data before proceeding.</div>
+</div>
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

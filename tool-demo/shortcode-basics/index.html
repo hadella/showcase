@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shortcode basics | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>shortcode basics</h1>
+        </div>
+
+    <div class="post-content"><p>Hugo shortcodes are reusable content snippets embedded in markdown.
+Two delimiter styles control how inner content is processed.</p>
+<h2 id="delimiters">Delimiters</h2>
+
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+    
+
+<div class="layout-cell">
+    <h3 id="angle-brackets--raw"><code>[angle brackets]</code> — raw</h3>
+<p>Inner content passed through as-is. Use when the cell contains:</p>
+<ul>
+<li>Other shortcodes</li>
+<li>Raw HTML</li>
+<li>No markdown needed</li>
+</ul>
+</div>
+
+
+<div class="layout-cell">
+    <h3 id="percent-signs--markdown"><code>[percent signs]</code> — markdown</h3>
+<p>Inner content processed as markdown first. Use when the cell contains:</p>
+<ul>
+<li>Bold, italic text</li>
+<li>Bullet lists</li>
+<li>Headings</li>
+<li>Inline code</li>
+</ul>
+</div>
+
+
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="examples">Examples</h2>
+<h3 id="shortcode-inside-a-shortcode--use--">Shortcode inside a shortcode → use <code>{{&lt; &gt;}}</code></h3>
+<pre tabindex="0"><code>{{&lt; layout cols=&#34;1 1&#34; &gt;}}
+{{&lt; cell &gt;}}
+{{&lt; img src=&#34;photo.jpg&#34; &gt;}}
+{{&lt; /cell &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre><h3 id="markdown-content--use--">Markdown content → use <code>{{% %}}</code></h3>
+<pre tabindex="0"><code>{{% hint info %}}
+This text uses bold and a link.
+{{% /hint %}}
+</code></pre><div class="hint hint-info">
+    <div class="hint-label">info</div>
+    <div class="hint-content">This text uses <strong>bold</strong> and a <a href="https://example.com">link</a>.</div>
+</div>
+<h3 id="markdown-list-in-a-layout-cell--use-md-shortcode">Markdown list in a layout cell → use <code>md</code> shortcode</h3>
+<pre tabindex="0"><code>{{&lt; layout cols=&#34;1 1&#34; &gt;}}
+{{&lt; md &gt;}}
+- Item one
+- Item two
+- Item three
+{{&lt; /md &gt;}}
+{{&lt; cell &gt;}}
+{{&lt; img src=&#34;photo.jpg&#34; &gt;}}
+{{&lt; /cell &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre><div class="hr-divider hr-fade"></div>
+<h2 id="quick-reference">Quick Reference</h2>
+<ul>
+<li><strong>angle</strong> → <code>{{&lt; &gt;}}</code></li>
+<li><strong>percent</strong> → <code>{{% %}}</code></li>
+</ul>
+<div class="table-wrapper table-info">
+    <p class="table-caption">When to use each delimiter</p>
+    <table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shortcode inside shortcode</td>
+<td>angle</td>
+</tr>
+<tr>
+<td>Raw HTML inside shortcode</td>
+<td>angle</td>
+</tr>
+<tr>
+<td>Bold, italic, lists inside</td>
+<td>percent</td>
+</tr>
+<tr>
+<td>hint, flag, details content</td>
+<td>percent</td>
+</tr>
+<tr>
+<td>layout, cell, tabgroup container</td>
+<td>angle</td>
+</tr>
+<tr>
+<td>md shortcode content</td>
+<td>angle</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="hr-divider hr-fade"></div>
+<h2 id="the-md-shortcode">The <code>md</code> shortcode</h2>
+<p>The <code>md</code> shortcode exists specifically to allow markdown inside
+<code>{{&lt; &gt;}}</code> contexts like <code>layout</code>. It applies <code>markdownify</code> internally
+so you get markdown processing without switching delimiter styles.</p>
+<pre tabindex="0"><code>{{&lt; layout cols=&#34;1 1&#34; &gt;}}
+{{&lt; md &gt;}}
+- markdown list works here
+- bold works too
+{{&lt; /md &gt;}}
+{{&lt; cell &gt;}}
+{{&lt; img src=&#34;photo.jpg&#34; &gt;}}
+{{&lt; /cell &gt;}}
+{{&lt; /layout &gt;}}
+</code></pre>
+
+<div class="layout-grid" style="grid-template-columns:1fr 1fr;gap:1rem;align-items:start;">
+    
+<div class="layout-cell">
+    <ul>
+<li>markdown list works here</li>
+<li><strong>bold works too</strong></li>
+<li>and nested lists
+<ul>
+<li>like this</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    
+<figure class="img-figure" style="--img-width: 800px;">
+    <img src="../img/images/rubber-duck.png" alt="" />
+</figure>
+
+
+</div>
+
+
+</div>
+
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

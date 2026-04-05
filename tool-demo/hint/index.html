@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hint shortcode | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>hint shortcode</h1>
+        </div>
+
+    <div class="post-content"><p>Hints come in several types for different purposes. Without a label, the hint is styled simply.</p>
+<pre tabindex="0"><code>{{&lt; hint &gt;}}
+This is a simple hint without a label; use for for general callouts
+{{&lt; /hint &gt;}}
+</code></pre>
+<div class="hint-box">This is a simple hint without a label; use for for general callouts</div>
+<p><em>The <code>showcase</code> Hugo theme doesn&rsquo;t support normal markdown blockquotes, as the <code>hint</code> shortcode is essentially its replacement.</em></p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; hint [option] [tint] &gt;}}
+</code></pre>
+
+<div class="layout-grid" style="gap:0;align-items:start;">
+    
+<div class="layout-cell">
+    <h3 id="option">Option</h3>
+<ul>
+<li>(empty) → (default)</li>
+<li>info</li>
+<li>note</li>
+<li>warning</li>
+<li>success</li>
+<li>error</li>
+<li>important</li>
+</ul>
+
+</div>
+
+<div class="layout-cell">
+    <h3 id="tint">Tint</h3>
+<ul>
+<li>true</li>
+<li>false → (default)</li>
+</ul>
+
+</div>
+
+
+</div>
+
+<h2 id="examples">Examples</h2>
+<pre tabindex="0"><code>{{% hint info %}}
+This is an informational hint. Great for sharing helpful info. No tint.
+{{% /hint %}}
+</code></pre><div class="hint hint-info">
+    <div class="hint-label">info</div>
+    <div class="hint-content">This is an informational hint. Great for sharing helpful info. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% hint info true %}}
+This is an informational hint. Great for sharing helpful info.
+{{% /hint %}}
+</code></pre><div class="hint hint-info hint-bg">
+    <div class="hint-label">info</div>
+    <div class="hint-content">This is an informational hint. Great for sharing helpful info.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% hint note %}}
+This is a note hint. Use it for general observations or side notes. No tint.
+{{% /hint %}}
+</code></pre><div class="hint hint-note">
+    <div class="hint-label">note</div>
+    <div class="hint-content">This is a note hint. Use it for general observations or side notes. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% hint note true %}}
+This is a note hint. Use it for general observations or side notes.
+{{% /hint %}}
+</code></pre><div class="hint hint-note hint-bg">
+    <div class="hint-label">note</div>
+    <div class="hint-content">This is a note hint. Use it for general observations or side notes.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% hint warning %}}
+Use warning hints to caution readers about potential issues. No tint.
+{{% /hint %}}
+</code></pre><div class="hint hint-warning">
+    <div class="hint-label">warning</div>
+    <div class="hint-content">Use warning hints to caution readers about potential issues. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% hint warning true %}}
+Use warning hints to caution readers about potential issues.
+{{% /hint %}}
+</code></pre><div class="hint hint-warning hint-bg">
+    <div class="hint-label">warning</div>
+    <div class="hint-content">Use warning hints to caution readers about potential issues.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% hint success %}}
+This is an success hint. Perfect for highlighting achievements. No tint.
+{{% /hint %}}
+</code></pre><div class="hint hint-success">
+    <div class="hint-label">success</div>
+    <div class="hint-content">This is an success hint. Perfect for highlighting achievements. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% hint success true %}}
+This is an success hint. Perfect for highlighting achievements.
+{{% /hint %}}
+</code></pre><div class="hint hint-success hint-bg">
+    <div class="hint-label">success</div>
+    <div class="hint-content">This is an success hint. Perfect for highlighting achievements.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% hint error %}}
+This is an error hint. Perfect for highlighting mistakes to avoid. No tint.
+{{% /hint %}}
+</code></pre><div class="hint hint-error">
+    <div class="hint-label">error</div>
+    <div class="hint-content">This is an error hint. Perfect for highlighting mistakes to avoid. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% hint error true %}}
+This is an error hint. Perfect for highlighting mistakes to avoid.
+{{% /hint %}}
+</code></pre><div class="hint hint-error hint-bg">
+    <div class="hint-label">error</div>
+    <div class="hint-content">This is an error hint. Perfect for highlighting mistakes to avoid.</div>
+</div>
+<div class="hr-divider hr-fade"></div>
+<pre tabindex="0"><code>{{% hint important %}}
+This is an important hint. Use it for **critical** information. No tint.
+{{% /hint %}}
+</code></pre><div class="hint hint-important">
+    <div class="hint-label">important</div>
+    <div class="hint-content">This is an important hint. Use it for <strong>critical</strong> information. No tint.</div>
+</div>
+<pre tabindex="0"><code>{{% hint important true %}}
+This is an important hint. Use it for **critical** information.
+{{% /hint %}}
+</code></pre><div class="hint hint-important hint-bg">
+    <div class="hint-label">important</div>
+    <div class="hint-content">This is an important hint. Use it for <strong>critical</strong> information.</div>
+</div>
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
