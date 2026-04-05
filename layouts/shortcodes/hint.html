@@ -1,0 +1,26 @@
+{{- /*
+    shortcodes/hint.html
+
+    Subtle border-left callout box for supplementary content.
+
+    Usage:
+        {{% hint info %}}Your message here.{{% /hint %}}
+        {{% hint warning true %}}With tinted background.{{% /hint %}}
+
+    Parameters:
+        type (positional 0) — info, note, warning, success, error,
+                              important, or empty for unlabeled
+        bg   (positional 1) — true to add tinted background
+*/ -}}
+
+{{- $type := .Get 0 | default "" | lower -}}
+{{- $bg   := .Get 1 | default false -}}
+
+{{- if eq $type "" }}
+<div class="hint-box">{{ .Inner | markdownify }}</div>
+{{- else }}
+<div class="hint hint-{{ $type }}{{ if $bg }} hint-bg{{ end }}">
+    <div class="hint-label">{{ $type }}</div>
+    <div class="hint-content">{{ .Inner | markdownify }}</div>
+</div>
+{{- end }}

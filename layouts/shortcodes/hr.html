@@ -1,0 +1,31 @@
+{{- /*
+    shortcodes/hr.html
+
+    Creates styled horizontal dividers between content sections.
+
+    Usage:
+        {{< hr >}}
+        {{< hr dots >}}
+        {{< hr fade warning >}}
+
+    Parameters:
+        style (positional 0) — line, dots, fade, dashes
+                               (default: line)
+        color (positional 1) — mute, info, note, warning, success,
+                               error, important
+                               (default: mute color)
+
+    Style options:
+        line   — solid line
+        dots   — three centered dots
+        fade   — line that fades at edges
+        dashed — dashed line across
+
+    Color options match alert/highlight types. When omitted
+    the mute (normal text) color is used.
+*/ -}}
+
+{{- $style := .Get 0 | default "line" | lower -}}
+{{- $color := .Get 1 | default "" | lower -}}
+
+<div class="hr-divider hr-{{ $style }}{{ if $color }} hr-color-{{ $color }}{{ end }}"></div>

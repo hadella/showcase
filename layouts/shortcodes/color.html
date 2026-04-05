@@ -1,0 +1,24 @@
+{{- /*
+    shortcodes/color.html
+
+    Applies color to inline text without breaking flow.
+
+    Usage:
+        Regular text with {{< color "info" >}}cyan highlight{{< /color >}} inline.
+
+        {{< color "warning" >}}orange text{{< /color >}}
+
+    Available colors:
+        - info      (cyan)
+        - note      (magenta/purple)
+        - warning   (orange)
+        - success   (green)
+        - error     (red)
+        - important (yellow)
+
+    Useful for emphasizing specific words or phrases without using an alert box.
+*/ -}}
+
+{{- $color := .Get 0 | default "primary" -}}
+
+<span class="color-{{ $color }}">{{ .Inner }}</span>

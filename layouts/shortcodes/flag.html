@@ -1,0 +1,24 @@
+{{- /*
+    shortcodes/flag.html
+
+    Prominent full-border callout block with icon prefix.
+
+    Usage:
+        {{% flag info %}}Key point.{{% /flag %}}
+        {{% flag warning true %}}With tinted background.{{% /flag %}}
+
+    Parameters:
+        type (positional 0) — info, note, warning, success, error,
+                              important (default: info)
+        bg   (positional 1) — true to add tinted background
+*/ -}}
+
+{{- $type := .Get 0 | default "info" | lower -}}
+{{- $bg   := .Get 1 | default false -}}
+
+<div class="flag-box flag-{{ $type }}{{ if $bg }} flag-bg{{ end }}">
+    <div class="flag-label">
+        <span class="flag-icon"></span>{{ $type }}
+    </div>
+    <div class="flag-content">{{ .Inner | markdownify }}</div>
+</div>

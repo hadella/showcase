@@ -1,0 +1,18 @@
+{{- /*
+    shortcodes/space.html
+
+    Adds vertical whitespace between content sections.
+
+    Usage:
+        {{< space >}}
+        {{< space "2rem" >}}
+        {{< space "50px" >}}
+
+    Parameters:
+        height (positional 0) — any valid CSS height value
+                                (default: 1rem)
+*/ -}}
+
+{{- $height := .Get 0 | default "1rem" -}}
+
+<div style="height: {{ $height }};"></div>

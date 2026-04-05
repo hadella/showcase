@@ -8,18 +8,19 @@
         | a     | b     |
         {{< /table >}}
 
-        {{< table color="accent" caption="My table" >}}
+        {{< table info "My caption" >}}
         ...
         {{< /table >}}
 
     Parameters:
-        color   (optional) — info, note, warning, success, error,
-                             important (default: info)
-        caption (optional) — caption shown above table
+        color   (positional 0) — info, note, warning, success, error,
+                                 important (default: info)
+        caption (positional 1) — caption shown above table
+                                 (default: none)
 */ -}}
 
-{{- $color   := .Get "color"   | default "" | lower -}}
-{{- $caption := .Get "caption" | default "" -}}
+{{- $color   := .Get 0 | default "" | lower -}}
+{{- $caption := .Get 1 | default "" -}}
 
 <div class="table-wrapper{{ if $color }} table-{{ $color }}{{ end }}">
     {{- if $caption }}

@@ -1,11 +1,41 @@
 +++
-title      = "Layout/Cell Shortcode"
+title      = "layout/cell shortcode"
 date       = 2026-03-30
 draft      = false
 tile_bg    = "#1e1e2e"
 tile_color = "#6e6e8e"
 wide       = true
 +++
+
+The `layout` shortcode breaks out of markdown's single-column flow.
+Use `cell` for shortcode/HTML content, `md` for markdown content.
+Both can be mixed within the same layout.
+
+## Syntax
+
+```
+{{</* layout [cols] [gap] [align] />}}
+{{</ cell />}}...{{</ /cell />}}
+{{</ md />}}...{{</ /md />}}
+{{</ /layout */>}}
+```
+
+{{< layout >}}
+{{< md >}}
+### layout params
+- `cols` → fr values e.g. `"1 2"` (default: equal)
+- `gap` → CSS value e.g. `"1rem"` (default: `0`)
+- `align` → `top`, `center`, `bottom` (default: `top`)
+{{< /md >}}
+{{< md >}}
+### cell / md params
+- `text` → `left`, `center`, `right`, `justify`
+- use `cell` for shortcodes and HTML
+- use `md` for markdown lists, headings, etc.
+{{< /md >}}
+{{< /layout >}}
+
+{{< hr fade >}}
 
 ## Gallery and Text Side-by-Side
 
@@ -29,6 +59,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 {{< /layout >}}
 
+{{< hr fade >}}
+
 ## Image and Text Side-by-Side
 
 {{< layout cols="1 1" gap="1rem" >}}
@@ -45,7 +77,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 {{< /layout >}}
 
-## Image Wall Exceeds Column Limit
+{{< hr fade >}}
+
+## Image Wall
 
 {{< layout cols="1 1 1" >}}
 
@@ -89,7 +123,9 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 {{< /layout >}}
 
-## Two Columns of Text with Left Column Wide
+{{< hr fade >}}
+
+## Unequal Columns
 
 {{< layout cols="2 1" gap="1rem" >}}
 
@@ -110,26 +146,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 {{< /layout >}}
 
-## Two Columns of Text with Right Column Wide
-
-{{< layout cols="1 2" gap="1rem" >}}
-
-{{< cell text="justify" >}}
-<p>
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-</p>
-{{< /cell >}}
-
-{{< cell text="justify" >}}
-<p>
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
-</p>
-<p>
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere.
-</p>
-{{< /cell >}}
-
-{{< /layout >}}
+{{< hr fade >}}
 
 ## Three Columns of Text
 
@@ -155,7 +172,9 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 {{< /layout >}}
 
-## Three Columns Middle One Wide
+{{< hr fade >}}
+
+## Three Columns Middle Wide
 
 {{< layout cols="1 2 1" gap="1rem" >}}
 
@@ -168,21 +187,21 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 {{< /md >}}
 
 {{< cell >}}
-{{% alert info %}}
-This is an informational alert. Great for sharing helpful info. No tint.
-{{% /alert %}}
+{{% hint info %}}
+This is an informational hint. Great for sharing helpful info. No tint.
+{{% /hint %}}
 
-{{% alert warning true %}}
-This is a warning alert. Use it to caution readers about potential issues.
-{{% /alert %}}
+{{% hint warning true %}}
+This is a warning hint. Use it to caution readers about potential issues.
+{{% /hint %}}
 
-{{% highlight note %}}
-Highlights are great for sharing key takeaways and notes. No tint.
-{{% /highlight %}}
+{{% flag note %}}
+flags are great for sharing key takeaways and notes. No tint.
+{{% /flag %}}
 
-{{% highlight success true %}}
+{{% flag success true %}}
 Your configuration is working correctly! No tint.
-{{% /highlight %}}
+{{% /flag %}}
 {{< /cell >}}
 
 {{< cell text="justify" >}}
@@ -193,7 +212,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapi
 
 {{< /layout >}}
 
-## Code Blocks in Multi-Columns
+## Code and Tabs Side-by-Side
 
 {{< layout gap="1rem">}}
 
@@ -246,7 +265,7 @@ func main() {
 
 {{< /layout >}}
 
-## Get Crazy
+## Get Crazy — Nested Layouts
 
 {{< layout cols="1 1" gap="1rem" >}}
 
@@ -284,17 +303,17 @@ You can include any Markdown content here:
 {{< /cell >}}
 
 {{< cell >}}
-{{% alert info %}}
-This is an informational alert. Great for sharing helpful info. No tint.
-{{% /alert %}}
+{{% hint info %}}
+This is an informational hint. Great for sharing helpful info. No tint.
+{{% /hint %}}
 
-{{% alert warning true %}}
-This is a warning alert. Use it to caution readers about potential issues.
-{{% /alert %}}
+{{% hint warning true %}}
+This is a warning hint. Use it to caution readers about potential issues.
+{{% /hint %}}
 
-{{% highlight note %}}
-Highlights are great for sharing key takeaways and notes. No tint.
-{{% /highlight %}}
+{{% flag note %}}
+flags are great for sharing key takeaways and notes. No tint.
+{{% /flag %}}
 {{< /cell >}}
 
 {{< cell >}}

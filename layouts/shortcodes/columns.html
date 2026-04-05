@@ -1,0 +1,36 @@
+{{- /*
+    shortcodes/columns.html
+
+    Creates newspaper-style columns where text flows naturally between them.
+
+    Usage:
+        {{< columns >}}
+        Long text that automatically breaks and flows into two columns.
+        {{< /columns >}}
+
+        {{< columns count="3" gap="2rem" >}}
+        Text flows across three columns with 2rem gap between them.
+        {{< /columns >}}
+
+    Parameters:
+        - count: Number of columns (default: 2)
+        - gap:   Space between columns (default: 2rem)
+		- align: Text alignment: left, center, right, justify
+                 (default: left)
+
+    Text flows automatically like a newspaper. Different from layout shortcode
+    where each cell is independent - here one continuous text block flows across columns.
+
+    On mobile (≤640px), columns collapse to single column for readability.
+*/ -}}
+
+{{- $count := .Get "count" | default "2" -}}
+{{- $gap   := .Get "gap"   | default "2rem" -}}
+{{- $align := .Get "align" | default "left" -}}
+
+<div class="text-columns"
+     style="column-count: {{ $count }};
+            column-gap: {{ $gap }};
+            text-align: {{ $align }};">
+    {{ .Inner | markdownify }}
+</div>
