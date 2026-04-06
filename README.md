@@ -16,15 +16,22 @@ Check out the [demo](https://hadella.github.io/showcase/) to see it in action
   collection) rather than a single post
 - Text-only tiles driven by front matter — no image required
 - Optional title/banner per page and section via `show_title`
+- Per-post wide layout mode via `wide = true` front matter
 - Single-column mobile fallback
-- Built-in `alert` shortcode for callout boxes
+- Built-in `cell` / `md` shortcodes for independent column cells
 - Built-in `center` shortcode for centering markdown content
+- Built-in `color` shortcode for inline colored text
+- Built-in `columns` shortcode for newspaper-style flowing text columns
 - Built-in `details` shortcode for collapsible sections
+- Built-in `flag` shortcode for prominent bordered callout blocks
 - Built-in `gallery` shortcode for image cycling with keyboard navigation
-- Built-in `highlight` shortcode for bordered content blocks with icons
+- Built-in `hint` shortcode for subtle border-left callout boxes
+- Built-in `hr` shortcode for styled horizontal dividers
 - Built-in `img` shortcode for images with captions and width control
+- Built-in `layout` shortcode for multi-column content arrangement
 - Built-in `p5` shortcode for embedding p5.js sketches
-- Built-in `tab`/`tabgroup` shortcodes for tabbed content
+- Built-in `space` shortcode for vertical spacing
+- Built-in `tab` / `tabgroup` shortcodes for tabbed content
 - Built-in `table` shortcode for styled tables with color variants
 - Built-in `youtube` shortcode with styled wrapper
 - Syntax highlighting via Hugo chroma with CSS class mode
@@ -52,13 +59,20 @@ themes/showcase/
       grid.html        ← reusable grid partial
       footer.html      ← site footer
     shortcodes/
-      alert.html       ← alert/callout shortcode
+      cell.html        ← layout cell shortcode
       center.html      ← center content shortcode
+      color.html       ← inline colored text shortcode
+      columns.html     ← newspaper-style text columns shortcode
       details.html     ← collapsible section shortcode
+      flag.html        ← prominent bordered callout shortcode
       gallery.html     ← image cycler shortcode
-      highlight.html   ← bordered highlight block shortcode
+      hint.html        ← subtle border-left callout shortcode
+      hr.html          ← styled horizontal divider shortcode
       img.html         ← image with caption shortcode
+      layout.html      ← multi-column layout shortcode
+      md.html          ← markdown cell shortcode
       p5.html          ← p5.js embed shortcode
+      space.html       ← vertical spacing shortcode
       tab.html         ← tab pane shortcode
       tabgroup.html    ← tab group container shortcode
       table.html       ← styled table shortcode
@@ -218,7 +232,7 @@ show_title = true                    # optional
 +++
 title      = "Brand-X"
 thumbnail  = "images/brand-x-thumb.png"   # 4:3 recommended
-# banner     = "images/brand-x-banner.png"  # optional
+banner     = "images/brand-x-banner.png"  # optional
 show_title = true                         # optional
 
 # Override site-wide grid dimensions for this section:
@@ -265,20 +279,23 @@ Then on GitHub go to Settings → Pages and set the source to the
 
 ## Shortcodes
 
-### alert
-```
-{{% alert info %}}
-Your message here.
-{{% /alert %}}
+### cell / md
 
-{{% alert warning true %}}
-With tinted background.
-{{% /alert %}}
+```
+{{< layout cols="1 1" gap="1rem" >}}
+{{< cell >}}
+{{< img src="photo.jpg" >}}
+{{< /cell >}}
+{{< md >}}
+- markdown list
+- bold text
+{{< /md >}}
+{{< /layout >}}
 ```
 
-Types: `info`, `note`, `warning`, `success`, `error`, `important`, or
-empty for an unlabeled callout. Second positional param `true` adds a
-tinted background.
+Use `cell` for shortcode and HTML content. Use `md` for markdown
+content (lists, headings, bold, etc.). Both accept a `text` param
+for alignment: `left`, `center`, `right`, `justify`.
 
 ---
 
@@ -291,7 +308,39 @@ Your **markdown** content here.
 
 ---
 
+### color
+
+```
+Regular text with {{< color info >}}colored words{{< /color >}} inline.
+```
+
+Types: `info`, `note`, `warning`, `success`, `error`, `important`.
+Matches the hint/flag color vocabulary.
+
+---
+
+### columns
+
+```
+{{< columns count="2" align="justify" >}}
+Long text that flows across columns like a newspaper.
+{{< /columns >}}
+```
+
+Parameters:
+- `count` — number of columns (default: `2`)
+- `gap` — space between columns (default: `2rem`)
+- `align` — text alignment: `left`, `center`, `right`, `justify`
+             (default: `left`)
+
+Different from `layout` — one continuous text block flows across
+columns rather than independent content blocks side by side.
+Collapses to single column on mobile.
+
+---
+
 ### details
+
 ```
 {{% details "Click to expand" %}}
 Hidden content revealed on click.
@@ -304,6 +353,23 @@ Tinted background variant.
 
 Parameters: summary text (positional 0), optional tinted background
 (positional 1, default false).
+
+---
+
+### flag
+```
+{{% flag info %}}
+Key takeaway or important point.
+{{% /flag %}}
+
+{{% flag warning true %}}
+With tinted background.
+{{% /flag %}}
+```
+
+Types: `info`, `note`, `warning`, `success`, `error`, `important`.
+Second positional param `true` adds a tinted background. Similar to
+`alert` but uses a full border and an icon prefix.
 
 ---
 
@@ -334,20 +400,38 @@ no fixed aspect ratio.
 
 ---
 
-### highlight
+### hint
 ```
-{{% highlight info %}}
-Key takeaway or important point.
-{{% /highlight %}}
+{{% hint info %}}
+Your message here.
+{{% /hint %}}
 
-{{% highlight warning true %}}
+{{% hint warning true %}}
 With tinted background.
-{{% /highlight %}}
+{{% /hint %}}
 ```
 
-Types: `info`, `note`, `warning`, `success`, `error`, `important`.
-Second positional param `true` adds a tinted background. Similar to
-`alert` but uses a full border and an icon prefix.
+Types: `info`, `note`, `warning`, `success`, `error`, `important`, or
+empty for an unlabeled callout. Second positional param `true` adds a
+tinted background.
+
+---
+
+### hr
+
+```
+{{< hr >}}
+{{< hr dots >}}
+{{< hr fade warning >}}
+{{< hr dashes success >}}
+```
+
+Parameters:
+- style (positional 0) — `line`, `dots`, `fade`, `dashes`
+                          (default: `line`)
+- color (positional 1) — `mute`, `info`, `note`, `warning`,
+                          `success`, `error`, `important`
+                          (default: `mute`)
 
 ---
 
@@ -448,6 +532,20 @@ window.addEventListener("message", function(e) {
 });
 </script>
 ```
+
+---
+
+### space
+```
+{{< space >}}
+{{< space "2rem" >}}
+{{< space "50px" >}}
+```
+
+Parameters: height (positional 0) — any valid CSS height value
+(default: `1rem`).
+
+---
 
 ### tab / tabgroup
 ```
@@ -562,16 +660,16 @@ Key variables:
     --gallery-counter-color: var(--text-color);
     --gallery-ratio: 4 / 3;
 
-    /* ── Alert ──────────────────────────────────────────── */
-    --alert-info-color: #4da6ff;
-    --alert-warning-color: #ff8f40;
-    --alert-error-color: #e94560;
-    --alert-note-color: #a78bfa;
-    --alert-important-color: #ffbf00;
-    --alert-success-color: #26a98b;
-    --alert-label-size: 0.7rem;
-    --alert-radius: 4px;
-    --alert-padding: 0.75rem 1rem;
+    /* ── Hint / Flag / Hr / Color ───────────────────────── */
+    --alert-info-color:      #4da6ff;
+    --alert-warning-color:   #ffb347;
+    --alert-error-color:     #e94560;
+    --alert-success-color:   #4caf80;
+    --alert-note-color:      #a78bfa;
+    --alert-important-color: #fb923c;
+    --alert-label-size:      0.7rem;
+    --alert-radius:          4px;
+    --alert-padding:         0.75rem 1rem;
 
     /* ── Details ────────────────────────────────────────── */
     --details-color: #7a8aaa;
