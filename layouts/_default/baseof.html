@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="{{ "css/showcase.css" | relURL }}" />
     <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}" />
     {{ block "head_extra" . }}{{ end }}
+    {{ with .Site.Params.custom_css }}
+		<link rel="stylesheet" href="{{ . | relURL }}" />
+	{{ end }}
 </head>
 <body class="{{ block "body_class" . }}{{ end }}">
     {{ block "main" . }}{{ end }}
