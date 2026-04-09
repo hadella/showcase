@@ -13,14 +13,14 @@
 {{- $banner := .Site.Params.banner_image -}}
 
 {{- $pages := union .Site.Home.Sections .Site.Home.RegularPages -}}
-{{- $show_title := .Site.Params.show_title | default true -}}
+{{- $show_title := .Site.Params.show_title | default .Site.Params.show_title | default true -}}
 
 {{ partial "grid.html" (dict
-    "pages"  $pages
-    "cols"   $cols
-    "rows"   $rows
-    "banner" $banner
-    "title"  .Site.Title
+    "pages"      $pages
+    "cols"       $cols
+    "rows"       $rows
+    "banner"     $banner
+    "title"      .Title
     "show_title" $show_title
 ) }}
 {{ end }}
