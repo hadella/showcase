@@ -5,13 +5,24 @@
 
 /* ── Variables ─────────────────────────────────────────────── */
 :root {
-    --syntax-fn-color: #4da6ff;
-    --syntax-keyword-color: #ff9940;
-    --syntax-string-color: #4caf80;
-    --syntax-number-color: #e94560;
+    /* Code tokens reuse the theme's semantic palette so code blocks
+       and callouts share one color system — light mode included.
+       Only comment, line-highlight, and panel surface are their own. */
+    --syntax-fn-color:      var(--alert-info-color);
+    --syntax-keyword-color: var(--alert-warning-color);
+    --syntax-string-color:  var(--alert-success-color);
+    --syntax-number-color:  var(--alert-error-color);
+    --syntax-amber-color:   var(--alert-important-color);
     --syntax-comment-color: #5a6a7a;
-    --syntax-amber-color: #ffb347;
     --syntax-highlight-color: rgba(255, 255, 255, 0.05);
+    --code-surface: var(--post-bg);
+}
+
+/* ── Light theme (panel + non-semantic tokens) ──────────────── */
+:root[data-theme="light"] {
+    --syntax-comment-color:   #6b7480;
+    --syntax-highlight-color: rgba(0, 0, 0, 0.06);
+    --code-surface:           #ffffff;
 }
 
 /* ── Base ───────────────────────────────────────────────────── */
@@ -20,7 +31,7 @@
 }
 
 .chroma {
-    background-color: var(--post-bg);
+    background-color: var(--code-surface);
     color: var(--text-color);
 }
 
