@@ -15,6 +15,8 @@ theme         = "showcase"
     grid_cols = 5
     show_title = true
 
+	#color_mode = "light" # omit or "dark" for the default dark theme
+
 [markup.goldmark.renderer]
     unsafe = true
 

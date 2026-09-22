@@ -10,12 +10,14 @@
     --text-color: #e0e0e0;
     --post-max-width-wide: 80vw;
     --p5-responsive-ratio: 16 / 9;
+	--tint-strength: 18%;
 
     /* ── Grid ───────────────────────────────────────────── */
     --grid-gap: 12px;
     --tile-transition: 0.18s ease;
     --tile-overlay-bg: rgba(0, 0, 0, 0);
     --tile-overlay-hover: rgba(0, 0, 0, 0.25);
+	--tile-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
 
     /* ── Text tiles ─────────────────────────────────────── */
     --tile-text-bg: #1e1e2e;
@@ -39,6 +41,7 @@
     /* ── Code ───────────────────────────────────────────── */
     --code-bg: #2a2a3e;
     --code-bright: #ffffff;
+	--pre-border: var(--code-bg);
 
     /* ── p5 embed ───────────────────────────────────────── */
     --p5-border: none;
@@ -70,7 +73,7 @@
 
     /* ── Details ────────────────────────────────────────── */
     --details-color: #7a8aaa;
-    --details-bg: color-mix(in srgb, var(--details-color) 12%, transparent);
+    --details-bg: color-mix(in srgb, var(--details-color) var(--tint-strength), transparent);
 
     /* ── Img shortcode ──────────────────────────────────── */
     --figcaption-color: var(--text-color);
@@ -84,6 +87,61 @@
 
     /* --- Table ------------------------------------------- */
     --table-border-color: #3a3a5a;
+	--table-stripe: rgba(255, 255, 255, 0.03);
+}
+
+/* ── Light theme ────────────────────────────────────────────────
+ * Opt in per-site with [params] color_mode = "light".
+ * Only overrides colors; layout/spacing vars stay shared.
+ * Accent + semantic colors are darkened so borders and label
+ * text read on an off-white page — tune to taste.
+ */
+:root[data-theme="light"] {
+    /* Site-wide */
+    --bg-color:     #f5f6f8;   /* slightly off-white */
+    --accent-color: #0e7490;   /* deep teal — readable on light */
+    --text-color:   #2a2e37;   /* dark slate */
+	--tint-strength: 18%;   	 /* pale colors over white need more */
+
+    /* Text tiles */
+    --tile-text-bg:    #eceef2;
+    --tile-text-color: #5b6370;
+    --tile-shadow:     0 6px 20px rgba(0, 0, 0, 0.15);
+
+    /* Post */
+    --post-bg:      #f5f6f8;
+    --post-text:    #2a2e37;
+    --post-heading: #14171d;
+
+    /* Code (inline bg + pre border) */
+    --code-bg:     #e7e9ee;
+    --code-bright: #14171d;
+	--pre-border: #d8dce4;
+
+    /* Semantic colors — darkened for contrast on light.
+     * The color-mix tints derive from these automatically. */
+    --alert-info-color:      #1c7ed6;   /* blue   */
+    --alert-note-color:      #7048e8;   /* violet */
+    --alert-warning-color:   #e8590c;   /* orange */
+    --alert-important-color: #e6a400;   /* gold-yellow */
+    --alert-error-color:     #e03131;   /* red    */
+    --alert-success-color:   #2f9e44;   /* green  */
+
+    /* Details */
+    --details-color: #5b6370;
+
+    /* Tabs */
+    --tab-border-color: #d8dce4;
+    --tab-btn-bg:       #eceef2;
+    --tab-btn-hover:    #e2e5ea;
+    --tab-content-bg:   #ffffff;
+
+    /* Table */
+    --table-border-color: #d8dce4;
+    --table-stripe:       rgba(0, 0, 0, 0.03);
+
+    /* Softer media shadow */
+    --yt-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 /* ── Reset / Base ───────────────────────────────────────────── */
@@ -157,7 +215,7 @@ a:hover {
 
 .tile-cell:hover {
     transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: var(--tile-shadow);
     z-index: 1;
 }
 
@@ -377,7 +435,7 @@ li code {
 /* Code blocks */
 pre {
     background-color: var(--post-bg);
-    border: 1px solid var(--code-bg);
+    border: 1px solid var(--pre-border);
     border-radius: 6px;
     padding: 1.5rem;
     overflow-x: auto;
@@ -468,26 +526,26 @@ pre code {
 
 /* Background tint option */
 .hint-note.hint-bg {
-    background: color-mix(in srgb, var(--alert-note-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-note-color) var(--tint-strength), transparent);
 }
 .hint-important.hint-bg {
     background: color-mix(
         in srgb,
-        var(--alert-important-color) 12%,
+        var(--alert-important-color) var(--tint-strength),
         transparent
     );
 }
 .hint-info.hint-bg {
-    background: color-mix(in srgb, var(--alert-info-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-info-color) var(--tint-strength), transparent);
 }
 .hint-warning.hint-bg {
-    background: color-mix(in srgb, var(--alert-warning-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-warning-color) var(--tint-strength), transparent);
 }
 .hint-error.hint-bg {
-    background: color-mix(in srgb, var(--alert-error-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-error-color) var(--tint-strength), transparent);
 }
 .hint-success.hint-bg {
-    background: color-mix(in srgb, var(--alert-success-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-success-color) var(--tint-strength), transparent);
 }
 
 .hint-box {
@@ -535,7 +593,7 @@ pre code {
 .flag-info .flag-label {
     color: var(--alert-info-color);
 }
-.flagt-info .flag-icon::before {
+.flag-info .flag-icon::before {
     content: "★";
 }
 
@@ -591,24 +649,24 @@ pre code {
 
 /* Background tint option */
 .flag-info.flag-bg {
-    background: color-mix(in srgb, var(--alert-info-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-info-color) var(--tint-strength), transparent);
 }
 .flag-note.flag-bg {
-    background: color-mix(in srgb, var(--alert-note-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-note-color) var(--tint-strength), transparent);
 }
 .flag-warning.flag-bg {
-    background: color-mix(in srgb, var(--alert-warning-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-warning-color) var(--tint-strength), transparent);
 }
 .flag-success.flag-bg {
-    background: color-mix(in srgb, var(--alert-success-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-success-color) var(--tint-strength), transparent);
 }
 .flag-error.flag-bg {
-    background: color-mix(in srgb, var(--alert-error-color) 12%, transparent);
+    background: color-mix(in srgb, var(--alert-error-color) var(--tint-strength), transparent);
 }
 .flag-important.flag-bg {
     background: color-mix(
         in srgb,
-        var(--alert-important-color) 12%,
+        var(--alert-important-color) var(--tint-strength),
         transparent
     );
 }
@@ -983,7 +1041,7 @@ details[open] .details-summary::before {
 }
 
 .table-wrapper tr:nth-child(odd) td {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--table-stripe);
 }
 
 .table-wrapper th {

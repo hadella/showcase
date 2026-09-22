@@ -36,6 +36,7 @@ Check out the [demo](https://hadella.github.io/showcase/) to see it in action
 - Built-in `youtube` shortcode with styled wrapper
 - Syntax highlighting via Hugo chroma with CSS class mode
 - 100% CSS variable driven — retheme without touching HTML
+- Light or dark theme, chosen per-site via `color_mode` (dark by default)
 - Default single post layout; fully overridable per project
 
 ## Directory Structure
@@ -196,6 +197,7 @@ theme        = "showcase"
     banner_image = "images/banner.png"   # optional
     grid_cols    = 4
     show_title   = true                  # optional
+	# color_mode = "light"               # "light", or omit for dark (default)
 
 [markup.goldmark.renderer]
     unsafe = true              # required for script blocks in markdown
@@ -369,7 +371,7 @@ With tinted background.
 
 Types: `info`, `note`, `warning`, `success`, `error`, `important`.
 Second positional param `true` adds a tinted background. Similar to
-`alert` but uses a full border and an icon prefix.
+`hint` but uses a full border and an icon prefix.
 
 ---
 
@@ -599,6 +601,35 @@ The footer displays a copyright line and theme credit. Override it
 in your site by creating `layouts/partials/footer.html` — Hugo will
 prefer your version over the theme's.
 
+## Light & dark themes
+
+The theme ships dark by default. Opt an entire site into light mode
+with one param in `hugo.toml`:
+
+    [params]
+        color_mode = "light"   # omit (or "dark") for the default dark
+
+That value is emitted as a `data-theme` attribute on the `<html>` tag,
+which two override blocks key off of — one in `static/css/showcase.css`,
+one in `static/css/syntax.css` (code blocks). Everything is
+variable-driven: dark mode is untouched, light mode only redefines
+colors. It's a per-site choice, not a runtime toggle.
+
+**Tint strength.** The `hint` / `flag` / `details` tinted backgrounds
+are a `color-mix` governed by `--tint-strength`, set independently per
+mode (pale tints over white need more than over black):
+
+    :root                     { --tint-strength: 18%; }
+    :root[data-theme="light"] { --tint-strength: 18%; }
+
+**Caveat — content vs. chrome.** Light mode restyles the theme, but it
+can't reach colors hardcoded *inside* a post — literal `tile_bg` /
+`tile_color` front-matter values, or inline `style="..."` in markdown.
+Author those with the semantic vars if you want a post to follow the
+theme in both modes; otherwise it'll keep whatever literal you gave it.
+This is why a dark-authored demo won't look right if you just flip the
+site to light.
+
 ## Retheme via CSS variables
 
 All variables are in a single `:root` block at the top of
@@ -689,3 +720,9 @@ Key variables:
     --table-border-color: #3a3a5a;
 }
 ```
+
+Light-mode values live in a `:root[data-theme="light"]` block below the
+main `:root` (and a matching one in `syntax.css`). Edit those to tune
+light; edit `:root` to tune dark. Newer knobs: `--tint-strength` (tint
+opacity), `--pre-border` and `--code-surface` (code-block edge and
+panel), `--table-stripe` (row shading), `--tile-shadow`.
