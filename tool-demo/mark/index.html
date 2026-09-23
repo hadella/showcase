@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mark | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+    
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>mark</h1>
+        </div>
+
+    <div class="post-content"><p>The <code>mark</code> shortcode is an inline highlighter — a translucent color
+wash in light mode, and a bright underline in dark mode (a wash goes
+muddy on a dark page). The text keeps its normal color either way.</p>
+<h2 id="syntax">Syntax</h2>
+<pre tabindex="0"><code>{{&lt; mark [color] &gt;}}highlighted text{{&lt; /mark &gt;}}
+</code></pre><p>Colors match the <code>hint</code> / <code>flag</code> vocabulary; omit for the default yellow.</p>
+<div class="hr-divider hr-fade"></div>
+<h2 id="the-colors">The colors</h2>
+<p>Here is <mark class="mark">the default yellow</mark>, plus
+<mark class="mark mark-info">info</mark>,
+<mark class="mark mark-note">note</mark>,
+<mark class="mark mark-warning">warning</mark>,
+<mark class="mark mark-success">success</mark>,
+<mark class="mark mark-error">error</mark>, and
+<mark class="mark mark-important">important</mark> — all inline, mid-sentence.</p>
+<div class="hr-divider hr-fade"></div>
+<h2 id="in-real-text">In real text</h2>
+<p>The <code>rb_push()</code> call returns <mark class="mark mark-success">0 on success</mark>
+and <mark class="mark mark-error">-1 when the buffer is full</mark>. Note that
+<code>RB_CAP</code> <mark class="mark mark-warning">must be a power of two</mark> or the
+mask math breaks.</p>
+<div class="hr-divider hr-fade"></div>
+<h2 id="spanning-several-lines">Spanning several lines</h2>
+<p>A highlight can <mark class="mark">run across a long stretch of text and wrap
+onto the next line, where each line keeps its own strip instead of
+stretching into one lopsided box</mark> — box-decoration-break at work in light mode.</p>
+<div class="hr-divider hr-fade"></div>
+<h2 id="inside-a-callout">Inside a callout</h2>
+<div class="hint hint-info">
+    <div class="hint-label">info</div>
+    <div class="hint-content">Drop a <mark class="mark mark-success">highlight</mark> inside a hint or flag
+to pull the eye to one phrase.</div>
+</div>
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>code blocks | My Showcase</title>
+    <link rel="stylesheet" href="/showcase/css/showcase.css" />
+    <link rel="stylesheet" href="/showcase/css/syntax.css" />
+    
+
+    
+</head>
+<body class="single-page">
+    <div class="post-stage">
+        <div class="post-title">
+            <h1>code blocks</h1>
+        </div>
+
+    <div class="post-content"><p>Shows how code renders — standalone, inline, and inside a tab group —
+with enough real code to see the palette working in both light and
+dark site themes.</p>
+<h2 id="standalone-blocks">Standalone blocks</h2>
+<p>A C ring buffer — comments, preprocessor, a struct, numbers, functions:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// ring_buffer.c — fixed-capacity byte FIFO
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define RB_CAP 256   </span><span class="c1">// power of two
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint8_t</span>  <span class="n">buf</span><span class="p">[</span><span class="n">RB_CAP</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint16_t</span> <span class="n">head</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint16_t</span> <span class="n">tail</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">ring_buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Push one byte; 0 on success, -1 if full.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">rb_push</span><span class="p">(</span><span class="n">ring_buffer</span> <span class="o">*</span><span class="n">rb</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint16_t</span> <span class="n">next</span> <span class="o">=</span> <span class="p">(</span><span class="n">rb</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">RB_CAP</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">next</span> <span class="o">==</span> <span class="n">rb</span><span class="o">-&gt;</span><span class="n">tail</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rb</span><span class="o">-&gt;</span><span class="n">buf</span><span class="p">[</span><span class="n">rb</span><span class="o">-&gt;</span><span class="n">head</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rb</span><span class="o">-&gt;</span><span class="n">head</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The same idea in Python — a decorator, a docstring, strings:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">hypot</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@dataclass</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Vec2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;Euclidean magnitude.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">hypot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="n">v</span><span class="p">:</span> <span class="n">Vec2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vec2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mag</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">length</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">mag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;cannot normalize a zero vector&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Vec2</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">mag</span><span class="p">,</span> <span class="n">v</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">mag</span><span class="p">)</span>
+</span></span></code></pre></div><div class="hr-divider hr-fade"></div>
+<h2 id="inline-code">Inline code</h2>
+<p>Call <code>rb_push()</code> to enqueue a byte, and tune capacity with the
+<code>RB_CAP</code> macro.</p>
+<div class="hr-divider hr-fade"></div>
+<h2 id="in-a-tab-group">In a tab group</h2>
+<p>The same small <code>gcd</code> across languages:</p>
+<div class="tab-group" id="tabs-1790134046345618209">
+    <div class="tab-buttons"></div>
+    <div class="tab-content">
+<div class="tab-pane" data-title="C">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// greatest common divisor (Euclid)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">a</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">unsigned</span> <span class="n">t</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+<div class="tab-pane" data-title="Python">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Greatest common divisor (Euclid).&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span>
+</span></span></code></pre></div>
+</div>
+
+<div class="tab-pane" data-title="Rust">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="sd">/// Greatest common divisor (Euclid)
+</span></span></span><span class="line"><span class="cl"><span class="sd"></span><span class="k">fn</span> <span class="nf">gcd</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="n">a</span>: <span class="kt">u64</span><span class="p">,</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">b</span>: <span class="kt">u64</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u64</span> <span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div>
+</div>
+
+<div class="tab-pane" data-title="Go">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// greatest common divisor (Euclid)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">gcd</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="nx">b</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="p">=</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="o">%</span><span class="nx">b</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</div>
+
+</div>
+</div>
+
+<script>
+(function() {
+    var group   = document.getElementById("tabs-1790134046345618209");
+    var buttons = group.querySelector(".tab-buttons");
+    var content = group.querySelector(".tab-content");
+    var tabs    = content.querySelectorAll(".tab-pane");
+
+    tabs.forEach(function(tab, i) {
+        var title = tab.getAttribute("data-title") || "Tab " + (i + 1);
+        var btn   = document.createElement("button");
+        btn.textContent = title;
+        btn.className   = "tab-btn";
+
+        if (i === 0) {
+            btn.classList.add("active");
+            tab.style.display = "block";
+        } else {
+            tab.style.display = "none";
+        }
+
+        btn.addEventListener("click", function() {
+            buttons.querySelectorAll(".tab-btn")
+                   .forEach(function(b) { b.classList.remove("active"); });
+            tabs.forEach(function(t) { t.style.display = "none"; });
+            btn.classList.add("active");
+            tab.style.display = "block";
+        });
+
+        buttons.appendChild(btn);
+    });
+})();
+</script>
+
+</div>
+</div>
+
+    <footer class="site-footer">
+    <div class="stage">
+        <hr class="footer-rule" />
+        <p class="footer-text">
+            &copy; 2026 Justin Hadella &mdash; Built with
+            <a href="https://gohugo.io">Hugo</a> using the
+            <a href="https://github.com/hadella/showcase">Showcase</a> theme
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

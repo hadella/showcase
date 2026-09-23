@@ -6,8 +6,22 @@
     <description>Recent content on My Showcase</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://hadella.github.io/showcase/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>code blocks</title>
+      <link>https://hadella.github.io/showcase/tool-demo/code-blocks/</link>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/code-blocks/</guid>
+      <description>Shows how code renders — standalone, inline, and inside a tab group — with enough real code to see the palette working in both light and dark site themes.&#xA;Standalone blocks A C ring buffer — comments, preprocessor, a struct, numbers, functions:&#xA;// ring_buffer.c — fixed-capacity byte FIFO #include &amp;lt;stdint.h&amp;gt; #define RB_CAP 256 // power of two typedef struct { uint8_t buf[RB_CAP]; uint16_t head; uint16_t tail; } ring_buffer; // Push one byte; 0 on success, -1 if full.</description>
+    </item>
+    <item>
+      <title>mark</title>
+      <link>https://hadella.github.io/showcase/tool-demo/mark/</link>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://hadella.github.io/showcase/tool-demo/mark/</guid>
+      <description>The mark shortcode is an inline highlighter — a translucent color wash in light mode, and a bright underline in dark mode (a wash goes muddy on a dark page). The text keeps its normal color either way.&#xA;Syntax {{&amp;lt; mark [color] &amp;gt;}}highlighted text{{&amp;lt; /mark &amp;gt;}} Colors match the hint / flag vocabulary; omit for the default yellow.&#xA;The colors Here is the default yellow, plus info, note, warning, success, error, and important — all inline, mid-sentence.</description>
+    </item>
     <item>
       <title>space shortcode</title>
       <link>https://hadella.github.io/showcase/tool-demo/space/</link>

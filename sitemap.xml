@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://hadella.github.io/showcase/</loc>
-    <lastmod>2026-04-05T00:00:00+00:00</lastmod>
+    <loc>https://hadella.github.io/showcase/tool-demo/code-blocks/</loc>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://hadella.github.io/showcase/tool-demo/space/</loc>
-    <lastmod>2026-04-05T00:00:00+00:00</lastmod>
+    <loc>https://hadella.github.io/showcase/tool-demo/mark/</loc>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hadella.github.io/showcase/</loc>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hadella.github.io/showcase/tool-demo/</loc>
+    <lastmod>2026-09-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://hadella.github.io/showcase/tool-demo/space/</loc>
     <lastmod>2026-04-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://hadella.github.io/showcase/tool-demo/columns/</loc>
