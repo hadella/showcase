@@ -29,6 +29,7 @@ Check out the [demo](https://hadella.github.io/showcase/) to see it in action
 - Built-in `hr` shortcode for styled horizontal dividers
 - Built-in `img` shortcode for images with captions and width control
 - Built-in `layout` shortcode for multi-column content arrangement
+- Built-in `mark` shortcode for inline highlighting (wash in light, underline in dark)
 - Built-in `p5` shortcode for embedding p5.js sketches
 - Built-in `space` shortcode for vertical spacing
 - Built-in `tab` / `tabgroup` shortcodes for tabbed content
@@ -71,6 +72,7 @@ themes/showcase/
       hr.html          ← styled horizontal divider shortcode
       img.html         ← image with caption shortcode
       layout.html      ← multi-column layout shortcode
+      mark.html        ← inline highlighter shortcode
       md.html          ← markdown cell shortcode
       p5.html          ← p5.js embed shortcode
       space.html       ← vertical spacing shortcode
@@ -451,6 +453,19 @@ Parameters:
 - `alt` — alt text (defaults to caption if set)
 
 ---
+
+### mark
+
+```
+Regular text with {{< mark >}}highlighted words{{< /mark >}}.
+{{< mark warning >}}watch this{{< /mark >}}
+```
+
+Inline highlighter — a translucent color wash in light mode, a bright
+underline in dark mode (a wash muddies on a dark page). Colors: `info`,
+`note`, `warning`, `success`, `error`, `important`; omit for the default
+yellow. Text color is inherited, so it reads in both themes. Hues and
+wash strength are set by the `--mark-*` variables.
 
 ### p5
 ```

@@ -85,9 +85,22 @@
     --tab-btn-hover: #2a2a3e;
     --tab-content-bg: #1e1e2e;
 
-    /* --- Table ------------------------------------------- */
+    /* ── Table ──────────────────────────────────────────── */
     --table-border-color: #3a3a5a;
 	--table-stripe: rgba(255, 255, 255, 0.03);
+
+	/* ── Mark shortcode ─────────────────────────────────── */
+    --mark-default:   #ffff00;   /* bare {{< mark >}} — marker yellow */
+	--mark-info:      #4da6ff;
+    --mark-note:      #a78bfa;
+    --mark-warning:   #ff8f40;
+    --mark-success:   #26a98b;
+    --mark-error:     #e94560;
+    --mark-important: #ffbf00;
+
+    --mark-strength: 50%;        /* wash opacity — dark theme */
+    --mark-pad:      0.05em 0.28em;
+    --mark-radius:   3px;
 }
 
 /* ── Light theme ────────────────────────────────────────────────
@@ -120,12 +133,12 @@
 
     /* Semantic colors — darkened for contrast on light.
      * The color-mix tints derive from these automatically. */
-    --alert-info-color:      #1c7ed6;   /* blue   */
-    --alert-note-color:      #7048e8;   /* violet */
-    --alert-warning-color:   #e8590c;   /* orange */
-    --alert-important-color: #e6a400;   /* gold-yellow */
-    --alert-error-color:     #e03131;   /* red    */
-    --alert-success-color:   #2f9e44;   /* green  */
+    --alert-info-color:      #1c7ed6;
+    --alert-note-color:      #7048e8;
+    --alert-warning-color:   #e8590c;
+    --alert-important-color: #e6a400;
+    --alert-error-color:     #e03131;
+    --alert-success-color:   #2f9e44;
 
     /* Details */
     --details-color: #5b6370;
@@ -142,6 +155,9 @@
 
     /* Softer media shadow */
     --yt-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+
+	/* Mark */
+	--mark-strength: 70%; /* over white needs a bit more */
 }
 
 /* ── Reset / Base ───────────────────────────────────────────── */
@@ -1088,6 +1104,39 @@ details[open] .details-summary::before {
 .table-note th {
     border-bottom-color: var(--alert-note-color);
 }
+
+/* ── Mark shortcode (inline highlighter) ────────────────────── */
+
+/* Base (dark theme): a bright marker underline — a wash goes muddy on
+   a dark page, so underline in the intense color instead. */
+.mark {
+    color: inherit;
+    background: none;
+    text-decoration: underline;
+    text-decoration-color: var(--mark-color, var(--mark-default));
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.2em;
+    text-decoration-skip-ink: none;
+}
+
+/* Light theme: the true highlighter — a translucent color wash. */
+:root[data-theme="light"] .mark {
+    background: color-mix(in srgb,
+        var(--mark-color, var(--mark-default)) var(--mark-strength),
+        transparent);
+    text-decoration: none;
+    padding: var(--mark-pad);
+    border-radius: var(--mark-radius);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+.mark-info      { --mark-color: var(--mark-info); }
+.mark-note      { --mark-color: var(--mark-note); }
+.mark-warning   { --mark-color: var(--mark-warning); }
+.mark-success   { --mark-color: var(--mark-success); }
+.mark-error     { --mark-color: var(--mark-error); }
+.mark-important { --mark-color: var(--mark-important); }
 
 /* ── Footer ─────────────────────────────────────────────────── */
 .site-footer {

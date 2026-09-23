@@ -1,0 +1,17 @@
+{{- /*
+    shortcodes/mark.html
+
+    Inline highlighter — a translucent color wash behind text.
+    Text color is inherited, so it reads in both themes.
+
+    Usage:
+        Regular text with {{< mark >}}highlighted words{{< /mark >}}.
+        {{< mark warning >}}watch this{{< /mark >}}
+
+    Parameters:
+        color (positional 0) — info, note, warning, success, error,
+                               important. Omit for the default
+                               (marker yellow, --mark-default).
+*/ -}}
+{{- $color := .Get 0 | default "" | lower -}}
+<mark class="mark{{ with $color }} mark-{{ . }}{{ end }}">{{ .Inner }}</mark>
